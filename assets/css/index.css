@@ -1,0 +1,181 @@
+html {
+  font-size: 62.5%;
+}
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =================
+   Header base
+================= */
+:root {
+  --header-height: 7rem; /* mặc định (mobile) */
+  --space-comp-main: 5rem;
+  --margin: 2rem;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--header-height);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-shadow: 1px 1px 5px gray;
+  user-select: none;
+  padding: 0.4rem 3rem;
+  z-index: 1000;
+}
+
+header a img {
+  width: 8rem;
+}
+
+/* Main tránh header */
+main {
+  margin-top: calc(var(--header-height));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-comp-main);
+}
+
+/* Desktop mặc định ẩn */
+.header__desktop-nav,
+.header__desktop-login-btn {
+  display: none;
+}
+
+/* =================
+   Mobile & Tablet
+================= */
+.header__mobile-nav {
+  display: block;
+  position: relative;
+}
+
+.header__mobile-nav .fa-list {
+  font-size: 4rem;
+  cursor: pointer;
+}
+
+.header__mobile-list {
+  position: fixed;
+  top: var(--header-height);
+  right: -100%;
+  bottom: 0;
+  width: 0;
+  background: #fff;
+  z-index: 999;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.15s linear;
+}
+
+.header__mobile-list.active {
+  right: 0;
+  width: 100%;
+}
+
+.header__mobile-item {
+  padding: 1rem 0;
+  font-size: 2.2rem;
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  border-bottom: 1px solid gray;
+}
+
+.header__mobile-item:last-child {
+  border-bottom: none;
+}
+
+/* =================
+  BREAD CRUMB
+================= */
+
+.bread-crumb {
+}
+
+
+/*===========================
+* FOOTER PAGE
+============================*/
+footer {
+  width: 100%;
+  background: gray;
+  padding: 0.6rem 0;
+}
+
+footer p {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* Tablet chỉnh padding + header height */
+@media (min-width: 600px) and (max-width: 1023px) {
+  :root {
+    --header-height: 5.4rem;
+  }
+
+  header {
+    padding: 0.4rem 8rem;
+  }
+}
+
+/* =================
+   Desktop
+================= */
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 6rem;
+  }
+
+  header {
+    padding: 0.4rem 12rem;
+  }
+
+  .header__mobile-nav {
+    display: none;
+  }
+
+  .header__desktop-nav {
+    display: flex;
+    gap: 2rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .header__desktop-nav a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .header__desktop-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .header__desktop-login-btn {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid gray;
+    color: #000;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .header__desktop-login-btn:hover {
+    box-shadow: 1px 1px 6px gray;
+  }
+}

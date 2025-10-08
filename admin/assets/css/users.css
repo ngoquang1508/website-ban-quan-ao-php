@@ -1,0 +1,177 @@
+:root {
+  --title-size: 2.4rem;
+  --border-radius: 1rem;
+}
+
+/* user/list.php */
+.main-user__container {
+  padding: 0 2rem;
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 1rem;
+}
+
+.main-user__title {
+  font-size: var(--title-size);
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.main-user__no_result {
+  color: red;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.main-user__container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
+
+.main-user__container thead {
+  background: #007bff;
+  color: #fff;
+}
+
+.main-user__container th,
+.main-user__container td {
+  padding: 1.2rem 1.6rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.main-user__container tbody tr:hover {
+  background: #eeeeee;
+}
+
+.main-user__btn a {
+  display: inline-block;
+  padding: 1rem 1.8rem;
+  border-radius: 0.6rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.main-user__btn-edit {
+  margin-right: 1rem;
+  background: #ffc107;
+  color: #fff;
+}
+
+.main-user__btn-edit:hover {
+  background: #e0a800;
+}
+
+.main-user__btn-delete {
+  background: #dc3545;
+  color: #fff;
+}
+
+.main-user__btn-delete:hover {
+  background: #b02a37;
+}
+
+.main-user__empty {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: #777;
+}
+
+/* users/edit.php */
+
+.edit-user__wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 4rem auto;
+}
+
+.edit-user__go-back {
+  margin-left: 2rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+  transition: background, color, border-radius 0.15s ease;
+}
+
+.edit-user__go-back:hover {
+  background: #0077ff;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+
+.edit-user__container {
+  width: 50rem;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+}
+
+.edit-user__container:hover {
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.edit-user__container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: var(--title-size);
+}
+
+.edit-user__container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.edit-user__container label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.edit-user__container input[type="text"],
+.edit-user__container input[type="email"],
+.edit-user__container select {
+  padding: 1.4rem;
+  font-size: 1.4rem;
+  border: 0.1rem solid #ccc;
+  border-radius: var(--border-radius);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.edit-user__container input[type="text"]:focus,
+.edit-user__container input[type="email"]:focus,
+.edit-user__container select:focus {
+  border-color: #4a90e2;
+}
+
+.edit-user__container input[type="submit"] {
+  margin-top: 2rem;
+  padding: 1.4rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  background: #4a90e2;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.3s;
+  transition: all 0.3s ease;
+}
+
+.edit-user__container input[type="submit"]:hover {
+  border-radius: 0;
+  background: #357abd;
+}
