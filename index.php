@@ -1,3 +1,7 @@
+<?php
+session_start();
+require "config/const.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,71 +10,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/pages/trangchu.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/index.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/pages/trangchu.css">
 </head>
 
 <body>
 
     <?php
-    session_start();
     $page = $_GET['page'] ?? 'trangchu';
-
+    $file = "pages/$page.php";
 
     // HEADER CHUNG CHO PAGES
     if ($page !== 'dangnhap' &&  $page !== 'dangky' && $page !== 'quenmatkhau' && $page !== 'doimatkhau') {
-        include 'includes/header.php';
+        require_once __DIR__ . '/includes/header.php';
     }
 
     // ROUTER
     switch ($page) {
         case 'trangchu':
-            include 'pages/trangchu.php';
+            require __DIR__ . '/pages/trangchu.php';
             break;
         case 'ao':
-            include 'pages/ao.php';
+            require __DIR__ . '/pages/ao.php';
             break;
 
         case 'quan':
-            include 'pages/quan.php';
+            require __DIR__ . '/pages/quan.php';
             break;
 
         case 'phukien':
-            include 'pages/phukien.php';
+            require __DIR__ . '/pages/phukien.php';
             break;
 
         case 'tintuc':
-            include 'pages/tintuc.php';
+            require __DIR__ . '/pages/tintuc.php';
             break;
 
         case 'lienhe':
-            include 'pages/lienhe.php';
+            require __DIR__ . '/pages/lienhe.php';
             break;
 
         case 'dangnhap':
-            include 'pages/dangnhap.php';
+            require __DIR__ . '/pages/dangnhap.php';
             break;
 
         case 'dangky':
-            include 'pages/dangky.php';
+            require __DIR__ . '/pages/dangky.php';
             break;
 
         case 'quenmatkhau':
-            include 'pages/quenmatkhau.php';
+            require __DIR__ . '/pages/quenmatkhau.php';
             break;
 
         case 'doimatkhau':
-            include 'pages/doimatkhau.php';
+            require __DIR__ . '/pages/doimatkhau.php';
             break;
 
         default:
-            include 'pages/404.php';
+            require __DIR__ . '/pages/404.php';
             break;
     }
 
     // FOOTER CHUNG CHO PAGES
     if ($page !== 'dangnhap' && $page !== 'dangky' && $page !== 'quenmatkhau' && $page !== 'doimatkhau') {
-        include 'includes/footer.php';
+        require_once __DIR__ . '/includes/footer.php';
     }
 
     ?>

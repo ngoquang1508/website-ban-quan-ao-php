@@ -19,7 +19,7 @@ $filesize = $_FILES['photo']['size'];
 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
 // Vị trí lưu file
-$targetDir = 'uploads/';
+$targetDir = '../uploads/';
 
 // Giới hạn dung lượng file < 5mb;
 $maxsize = 2 * 1024 * 1024;
@@ -27,13 +27,13 @@ if ($filesize > $maxsize) {
     die("Dung lượng file lớn hớn 2MB: " . $filesize);
 }
 
-// Đảm bảo thư mục ../uploads tồn tại
-if (!is_dir("../" . $targetDir)) {
-    mkdir("../uploads", 0777, true);
+// Đảm bảo thư mục /uploads tồn tại
+if (!is_dir($targetDir)) {
+    mkdir("../../uploads", 0777, true);
 }
 
 // upload file
-if (move_uploaded_file($_FILES['photo']['tmp_name'], "../". $targetDir . $filename)) {
+if (move_uploaded_file($_FILES['photo']['tmp_name'], "../" . $targetDir . $filename)) {
     echo "Tải ảnh thành công!";
 } else {
     die("Lỗi không di chuyển ảnh đến thư mục");

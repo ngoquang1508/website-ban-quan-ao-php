@@ -94,8 +94,7 @@ $i = 1;
                             <td style="white-space: nowrap"><?php echo number_format($row['price']); ?> đ</td>
                             <td><?php echo $row['stock']; ?></td>
                             <td class="main-product__description"><?php echo htmlspecialchars($row['description']); ?></td>
-                            <td style="white-space: nowrap"><?php echo date("d/m/Y H:i:s", strtotime($row['created_at']));
-                                                            ?></td>
+                            <td style="white-space: nowrap"><?php echo date("d/m/Y H:i:s", strtotime($row['created_at'])); ?></td>
                             <td>
                                 <?php if (!empty($row['url_image'])): ?>
                                     <img src="<?php echo $row['url_image']; ?>" alt="Ảnh sản phẩm" width="50">
@@ -115,9 +114,13 @@ $i = 1;
     <?php endif; ?>
 </div>
 
-
-<?php
-
-if (isset($_GET['action'])) {
-    echo "<script src='assets/js/product.js'></script>";
-}
+<script>
+    const deleteBtns = document.querySelectorAll('.main-product__btn-delete');
+    deleteBtns.forEach(deleteBtn=>{
+        deleteBtn.addEventListener("click", (e)=> {
+            if (!confirm("Xác nhận xóa sản phẩm này?")) {
+                e.preventDefault();
+            }
+        });
+    })
+</script>
