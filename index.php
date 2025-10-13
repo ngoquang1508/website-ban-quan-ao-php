@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "config/const.php";
+require_once "config/const.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,65 +17,26 @@ require "config/const.php";
 <body>
 
     <?php
-    $page = $_GET['page'] ?? 'trangchu';
-    $file = "pages/$page.php";
+    
+    $page = $_GET['page'] ?? "trangchu";
+    $file = "pages/$page" . ".php";
 
-    // HEADER CHUNG CHO PAGES
-    if ($page !== 'dangnhap' &&  $page !== 'dangky' && $page !== 'quenmatkhau' && $page !== 'doimatkhau') {
-        require_once __DIR__ . '/includes/header.php';
+    // Ẩn header các trang auth
+    if (!in_array($page, ['dangnhap', 'dangky', 'quenmatkhau', 'doimatkhau'])) {
+        require_once 'includes/header.php';
     }
 
-    // ROUTER
-    switch ($page) {
-        case 'trangchu':
-            require __DIR__ . '/pages/trangchu.php';
-            break;
-        case 'ao':
-            require __DIR__ . '/pages/ao.php';
-            break;
-
-        case 'quan':
-            require __DIR__ . '/pages/quan.php';
-            break;
-
-        case 'phukien':
-            require __DIR__ . '/pages/phukien.php';
-            break;
-
-        case 'tintuc':
-            require __DIR__ . '/pages/tintuc.php';
-            break;
-
-        case 'lienhe':
-            require __DIR__ . '/pages/lienhe.php';
-            break;
-
-        case 'dangnhap':
-            require __DIR__ . '/pages/dangnhap.php';
-            break;
-
-        case 'dangky':
-            require __DIR__ . '/pages/dangky.php';
-            break;
-
-        case 'quenmatkhau':
-            require __DIR__ . '/pages/quenmatkhau.php';
-            break;
-
-        case 'doimatkhau':
-            require __DIR__ . '/pages/doimatkhau.php';
-            break;
-
-        default:
-            require __DIR__ . '/pages/404.php';
-            break;
+    if (file_exists($file)) {
+        require $file;
+    } else {
+        require 'pages/404.php';
     }
 
-    // FOOTER CHUNG CHO PAGES
-    if ($page !== 'dangnhap' && $page !== 'dangky' && $page !== 'quenmatkhau' && $page !== 'doimatkhau') {
-        require_once __DIR__ . '/includes/footer.php';
+    // Ẩn footer các trang auth
+    if (!in_array($page, ['dangnhap', 'dangky', 'quenmatkhau', 'doimatkhau'])) {
+        require_once 'includes/footer.php';
     }
-
+    
     ?>
 </body>
 
