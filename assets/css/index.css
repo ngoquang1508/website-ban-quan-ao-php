@@ -10,6 +10,14 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body a {
+  text-decoration: none;
+}
+
+body ul {
+  list-style: none;
+}
+
 /* =================
    Header base
 ================= */
@@ -49,13 +57,17 @@ main {
 
 /* Desktop mặc định ẩn */
 .header__desktop-nav,
-.header__desktop-login-btn {
+.header__desktop-logout-btn {
   display: none;
 }
 
 /* =================
    Mobile & Tablet
 ================= */
+.header__account {
+  display: none;
+}
+
 .header__mobile-nav {
   display: block;
   position: relative;
@@ -104,7 +116,6 @@ main {
 
 .bread-crumb {
 }
-
 
 /*===========================
 * FOOTER PAGE
@@ -155,6 +166,77 @@ footer p {
     font-weight: 600;
   }
 
+  .header__account {
+  position: relative;
+  display: inline-block;
+}
+
+.header__account .fa-user {
+  font-size: 2.4rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.header__account .fa-user:hover {
+  color: #000;
+}
+
+/* tạo vùng hover mở rộng để không bị mất hover */
+.header__account::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  width: 100%;
+  height: 1rem;
+}
+
+/* menu chính */
+.header__account-list {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  width: 14rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.2s ease;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+/* Hover vào icon user → hiện menu */
+.header__account:hover .header__account-list {
+  transform: translateX(-50%) scaleY(1);
+  opacity: 1;
+}
+
+/* item bên trong */
+.header__account-item {
+  display: block;
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.header__account-item:hover {
+  background: #f2f2f2;
+  color: #000;
+}
+
+
   .header__desktop-nav a {
     text-decoration: none;
     color: #000;
@@ -164,7 +246,7 @@ footer p {
     text-decoration: underline;
   }
 
-  .header__desktop-login-btn {
+  .header__desktop-logout-btn {
     display: block;
     padding: 0.6rem 1.2rem;
     border: 1px solid gray;
@@ -175,7 +257,7 @@ footer p {
     transition: box-shadow 0.15s ease;
   }
 
-  .header__desktop-login-btn:hover {
+  .header__desktop-logout-btn:hover {
     box-shadow: 1px 1px 6px gray;
   }
 }
