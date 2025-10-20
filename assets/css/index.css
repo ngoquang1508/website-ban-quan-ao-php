@@ -458,12 +458,4 @@ ul {
 /* =====================================
    FOOTER
 ===================================== */
-footer {
-  width: 100%;
-  background: gray;
-  padding: 0.6rem 0;
-}
-footer p {
-  text-align: center;
-  font-size: 1.4rem;
-}
+
