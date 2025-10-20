@@ -47,7 +47,6 @@ $stock = $_POST['stock'];
 $type = $_POST['type'];
 $url = $targetDir . $filename;
 
-echo $type;
 
 $sql_add_product = "INSERT INTO products(name, description, price, stock, type, url_image) VALUES(?,?,?,?,?,?)";
 $stmt = $conn->prepare($sql_add_product);
