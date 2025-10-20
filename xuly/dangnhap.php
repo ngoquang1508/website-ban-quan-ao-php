@@ -47,6 +47,5 @@ $_SESSION['user'] = [
 
 // Chuyển trang theo role
 $redirect = ($user['role'] === 'admin') ? "../admin/index.php" : "../index.php?page=trangchu";
-
 header("Location: $redirect");
 exit;
