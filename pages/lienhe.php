@@ -1,4 +1,1 @@
-<main>
-    <p>Lien he page</p>
-
-</main>
+    <h1>Lien he page</h1>

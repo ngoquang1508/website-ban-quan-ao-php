@@ -22,12 +22,20 @@ session_start();
 
     // header chung
     require_once 'includes/header.php';
+    ?>
 
-    if (file_exists($file)) {
-        require $file;
-    } else {
-        require 'pages/404.php';
-    }
+    <!-- Nội dung chính -->
+    <main>
+        <?php
+        if (file_exists($file)) {
+            require $file;
+        } else {
+            require 'pages/404.php';
+        }
+        ?>
+    </main>
+
+    <?php
 
     // footer chung
     // require_once 'includes/footer.php';
