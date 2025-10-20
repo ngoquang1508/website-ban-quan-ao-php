@@ -220,41 +220,61 @@
 </script>
 
 <script>
-    const hamburger = document.querySelector('.header__hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const overlay = document.querySelector('.overlay');
+  const hamburger = document.querySelector('.header__hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  const overlay = document.querySelector('.overlay');
 
-    document.querySelectorAll('.has-submenu > a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
+  // Toggle mở/đóng menu mobile
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    navMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+  });
 
-            const icon = link.querySelector('.fa-caret-down');
-            const submenu = link.nextElementSibling;
+  // Click overlay → đóng menu
+  overlay.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    overlay.classList.remove('active');
+  });
 
-            // đóng các submenu khác
-            document.querySelectorAll('.submenu').forEach(menu => {
-                if (menu !== submenu) {
-                    menu.classList.remove('open');
-                    menu.previousElementSibling.querySelector('i').classList.remove('active');
-                }
-            });
+  // Toggle submenu (Nữ / Nam)
+  document.querySelectorAll('.has-submenu > a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
 
-            // toggle submenu hiện tại
-            submenu.classList.toggle('open');
-            icon.classList.toggle('active');
-        });
+      const icon = link.querySelector('.fa-caret-down');
+      const submenu = link.nextElementSibling;
+
+      // Đóng các submenu khác
+      document.querySelectorAll('.submenu').forEach(menu => {
+        if (menu !== submenu) {
+          menu.classList.remove('open');
+          const otherIcon = menu.previousElementSibling.querySelector('.fa-caret-down');
+          if (otherIcon) otherIcon.classList.remove('active');
+        }
+      });
+
+      // Toggle submenu hiện tại
+      submenu.classList.toggle('open');
+      icon.classList.toggle('active');
     });
+  });
 
+  // Khi resize cửa sổ → reset trạng thái menu về mặc định
+  window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    if (width > 768) {
+      // Ẩn menu mobile khi chuyển sang desktop
+      navMenu.classList.remove('active');
+      overlay.classList.remove('active');
 
-
-    hamburger.addEventListener('click', (e) => {
-        e.preventDefault();
-        navMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
-    });
-
-    overlay.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        overlay.classList.remove('active');
-    });
+      // Đóng submenu & reset icon
+      document.querySelectorAll('.submenu').forEach(menu => {
+        menu.classList.remove('open');
+      });
+      document.querySelectorAll('.fa-caret-down').forEach(icon => {
+        icon.classList.remove('active');
+      });
+    }
+  });
 </script>
