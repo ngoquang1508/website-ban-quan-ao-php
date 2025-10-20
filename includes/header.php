@@ -1,4 +1,44 @@
 <header class="header">
+    <div class="nav-menu">
+        <div class="menu-head">
+            <div class="menu-title">Menu</div>
+        </div>
+        <ul class="menu-body">
+            <li><a href="">Trang chủ</a></li>
+
+            <li class="has-submenu">
+                <a href="">
+                    Nữ
+                    <i class="fa-solid fa-caret-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">Áo nữ</a></li>
+                    <li><a href="#">Quần nữ</a></li>
+                    <li><a href="#">Đầm nữ</a></li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="">
+                    Nam
+                    <i class="fa-solid fa-caret-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">Áo nam</a></li>
+                    <li><a href="#">Quần nam</a></li>
+                    <li><a href="#">Giày nam</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">Tin tức</a></li>
+            <li><a href="">Liên hệ</a></li>
+            <li><a href="">Hệ thống cửa hàng</a></li>
+        </ul>
+
+
+    </div>
+    <div class="overlay"></div>
+
     <div class="header__topbar">
         <div class="header__topbar-container">
             <div class="swiper-wrapper">
@@ -36,6 +76,15 @@
             </form>
         </div>
         <div class="header__menu-bar">
+            <div class="header__menu-item header__hamburger">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                        <path d="M1.43652 7H17.9365M1.43652 1.5H17.9365M1.43652 12.5H17.9365" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    Menu
+                </a>
+            </div>
+
             <div class="header__menu-item header__wishlist">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -169,18 +218,43 @@
     // Gọi lần đầu khi load
     updateButtons();
 </script>
-<script>
-    const nav = document.querySelector('.header__nav');
-    const menuBar = document.querySelector('.header__menu-bar');
-    const header = document.querySelector('.header');
 
-    function moveNav() {
-        if (window.innerWidth < 768) {
-            if (!menuBar.contains(nav)) menuBar.appendChild(nav);
-        } else {
-            if (!header.contains(nav)) header.appendChild(nav);
-        }
-    }
-    window.addEventListener('resize', moveNav);
-    moveNav();
+<script>
+    const hamburger = document.querySelector('.header__hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const overlay = document.querySelector('.overlay');
+
+    document.querySelectorAll('.has-submenu > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const icon = link.querySelector('.fa-caret-down');
+            const submenu = link.nextElementSibling;
+
+            // đóng các submenu khác
+            document.querySelectorAll('.submenu').forEach(menu => {
+                if (menu !== submenu) {
+                    menu.classList.remove('open');
+                    menu.previousElementSibling.querySelector('i').classList.remove('active');
+                }
+            });
+
+            // toggle submenu hiện tại
+            submenu.classList.toggle('open');
+            icon.classList.toggle('active');
+        });
+    });
+
+
+
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+    });
 </script>
