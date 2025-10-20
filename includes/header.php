@@ -154,7 +154,7 @@
             </li>
             <li class="header__nav-link"><a href="index.php?page=tintuc">Tin tức</a></li>
             <li class="header__nav-link"><a href="index.php?page=lienhe">Liên hệ</a></li>
-            <li class="header__nav-link"><a href="index.php?page=hethongcuahang">Hệ thống cửa hàng</a></li>
+            <li class="header__nav-link"><a href="index.php?page=">Hệ thống cửa hàng</a></li>
         </ul>
     </div>
 </header>
