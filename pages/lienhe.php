@@ -1,9 +1,19 @@
 <?php
-
 function breadCrumb() {
     $root = '<a href="/index.php">Trang chủ</a>';
-    $page = isset($_GET['page']) ? htmlspecialchars($_GET['page'], ENT_QUOTES, 'UTF-8') : 'Liên hệ';
     return "<span class='bread-crumb'>$root > Liên hệ</span>";
+}
+
+$successMessage = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $message = $_POST['message'] ?? '';
+
+    if ($name && $email && $phone && $message) {
+        $successMessage = 'Cảm ơn quý khách đã tin tưởng và gửi thông tin. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất để hỗ trợ. Chúc quý khách một ngày tốt lành!';
+    }
 }
 ?>
 
@@ -11,124 +21,144 @@ function breadCrumb() {
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Thêm responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liên hệ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Google Fonts cho typography đẹp hơn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
-        body {
+        /* ---------------------------- */
+        /* CSS cô lập chỉ cho trang liên hệ */
+        /* ---------------------------- */
+        .contact-page {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f8f9fa; /* Nền nhẹ hơn, không trắng chói */
+            background: #f8f9fa;
             color: #333;
             line-height: 1.6;
+            padding: 40px 0 60px;
         }
-        .container {
+
+        .contact-page .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px; /* Tăng padding cho thoáng hơn */
+            padding: 0 20px;
         }
-        .bread-crumb {
+
+        /* Breadcrumb */
+        .contact-page .bread-crumb {
             display: block;
             margin: 20px 0;
-            font-size: 16px; /* Tăng size chữ */
+            font-size: 16px;
             color: #6c757d;
         }
-        .bread-crumb a {
+        .contact-page .bread-crumb a {
             text-decoration: none;
             color: #007bff;
-            transition: color 0.3s ease; /* Hover effect */
+            transition: color 0.3s ease;
         }
-        .bread-crumb a:hover {
+        .contact-page .bread-crumb a:hover {
             color: #0056b3;
         }
-        h1 {
+
+        /* Tiêu đề */
+        .contact-page h1 {
             text-align: center;
-            font-size: 32px; /* Tăng size tiêu đề */
+            font-size: 32px;
             margin: 20px 0;
             font-weight: 700;
             color: #212529;
         }
-        p.description {
+        .contact-page p.description {
             text-align: center;
             color: #6c757d;
-            font-size: 18px; /* Tăng size */
+            font-size: 18px;
             margin-bottom: 40px;
         }
-        .contact-info {
+
+        /* Khối thông tin liên hệ */
+        .contact-page .contact-info {
             display: flex;
             justify-content: space-between;
             margin-bottom: 50px;
-            gap: 20px; /* Khoảng cách giữa blocks */
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .contact-block {
+        .contact-page .contact-block {
             text-align: center;
-            background: #ffffff; /* Nền trắng sạch */
-            padding: 30px; /* Tăng padding */
+            background: #ffffff;
+            padding: 30px;
             border-radius: 12px;
-            width: 32%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Thêm shadow cho chiều sâu */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation hover */
+            flex: 1;
+            min-width: 260px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .contact-block:hover {
-            transform: translateY(-5px);
+        .contact-page .contact-block:hover {
+            transform: translateY(-4px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
-        .contact-block i {
-            font-size: 45px; /* Tăng size icon */
+        .contact-page .contact-block i {
+            font-size: 45px;
             color: #ff5722;
             margin-bottom: 15px;
         }
-        .contact-block p {
+        .contact-page .contact-block p {
             margin: 5px 0;
             font-size: 16px;
         }
-        .contact-block p.title {
+        .contact-page .contact-block p.title {
             font-weight: 500;
             font-size: 18px;
         }
-        .row {
+
+        /* Bố cục map + form */
+        .contact-page .row {
             display: flex;
             justify-content: space-between;
-            gap: 30px; /* Khoảng cách giữa map và form */
+            gap: 30px;
+            flex-wrap: wrap;
         }
-        .col-left {
-            width: 60%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow cho map */
+        .contact-page .col-left {
+            flex: 1 1 60%;
             border-radius: 12px;
-            overflow: hidden; /* Để border-radius áp dụng cho iframe */
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        .col-right {
-            width: 35%;
+        .contact-page .col-right {
+            flex: 1 1 35%;
             background: #ffffff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        iframe {
+        .contact-page iframe {
             width: 100%;
-            height: 450px; /* Tăng height map */
+            height: 450px;
             border: 0;
+            display: block;
         }
-        form {
+
+        /* Form liên hệ */
+        .contact-page form {
             display: flex;
             flex-direction: column;
         }
-        input, textarea {
-            margin-bottom: 20px; /* Tăng khoảng cách */
+        .contact-page input,
+        .contact-page textarea {
+            margin-bottom: 18px;
             padding: 12px;
             border: 1px solid #ced4da;
             border-radius: 6px;
             font-size: 16px;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        input:focus, textarea:focus {
+        .contact-page input:focus,
+        .contact-page textarea:focus {
             border-color: #ff5722;
-            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.25); /* Focus effect đẹp */
+            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.25);
             outline: none;
         }
-        button {
+        .contact-page button {
             background: #ff5722;
             color: white;
             border: none;
@@ -138,65 +168,103 @@ function breadCrumb() {
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
         }
-        button:hover {
+        .contact-page button:hover {
             background: #e64a19;
             transform: translateY(-2px);
         }
-        .social-icons {
+
+        /* Social icons */
+        .contact-page .social-icons {
             margin-top: 25px;
             text-align: right;
         }
-        .social-icons a {
+        .contact-page .social-icons a {
             margin-left: 15px;
-            transition: color 0.3s ease;
+            text-decoration: none;
         }
-        .social-icons i {
+        .contact-page .social-icons i {
             font-size: 32px;
             color: #ff5722;
+            transition: color 0.3s ease;
         }
-        .social-icons a:hover i {
+        .contact-page .social-icons a:hover i {
             color: #e64a19;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .contact-info {
-                flex-direction: column;
-            }
-            .contact-block {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            .row {
-                flex-direction: column;
-            }
-            .col-left, .col-right {
-                width: 100%;
-            }
-            .col-right {
-                margin-top: 30px;
-            }
+        /* Modal thông báo */
+        .contact-page .success-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-in;
+        }
+        .contact-page .success-content {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .contact-page .success-content h2 {
+            color: #ff5722;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .contact-page .success-content p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .contact-page .success-content button {
+            background: linear-gradient(90deg, #ff5722 0%, #e64a19 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .contact-page .success-content button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(90deg, #e64a19 0%, #ff5722 100%);
         }
 
-        /* Style cho footer nếu cần (giả sử footer.php có class footer) */
-        .footer {
-            background: #ff5722;
-            color: white;
-            padding: 40px 20px;
-            border-top-left-radius: 50px; /* Rounded top như ảnh */
-            border-top-right-radius: 50px;
-            margin-top: 50px;
-            text-align: center;
-        }
-        .footer a {
-            color: white;
-            text-decoration: none;
+        /* Animation */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-page .contact-info {
+                flex-direction: column;
+            }
+            .contact-page .row {
+                flex-direction: column;
+            }
+            .contact-page .col-left,
+            .contact-page .col-right {
+                width: 100%;
+            }
+            .contact-page .col-right {
+                margin-top: 30px;
+            }
+            .contact-page .success-content {
+                max-width: 90%;
+                padding: 20px 25px;
+            }
         }
     </style>
 </head>
+
 <body>
-
-
+<div class="contact-page">
     <div class="container">
         <?php echo breadCrumb(); ?>
 
@@ -223,9 +291,10 @@ function breadCrumb() {
 
         <div class="row">
             <div class="col-left">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3529.9585518338185!2d105.81382491057396!3d21.0361940805342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab128faefb3b%3A0x8c585f41f8238286!2zMjY2IMSQ4buZaSBD4bqlbiwgTGnhu4V1IEdpYWksIEJhIMSQw6xuaCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e1!3m2!1svi!2s!4v1760931163768!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3529.9585518338185!2d105.81382491057396!3d21.0361940805342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab128faefb3b%3A0x8c585f41f8238286!2zMjY2IMSQ4buZaSBD4bqlbiwgTGnhu4V1IEdpYWksIEJhIMSQw6xuaCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e1!3m2!1svi!2s!4v1760931163768!5m2!1svi!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
             <div class="col-right">
-                <form action="submit_contact.php" method="post">
+                <form action="" method="post" id="contactForm">
                     <input type="text" name="name" placeholder="Họ và tên" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="tel" name="phone" placeholder="Điện thoại" required>
@@ -240,6 +309,41 @@ function breadCrumb() {
         </div>
     </div>
 
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <h2>Quý khách đã gửi phản hồi thành công! Chúc quý khách một ngày tốt lành</h2>
+            <p><?php echo htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8'); ?></p>
+            <button onclick="closeModal()">Đóng</button>
+        </div>
+    </div>
+</div>
 
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch('', { method: 'POST', body: formData })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('successModal').style.display = 'flex';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    function closeModal() {
+        const modal = document.getElementById('successModal');
+        modal.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.style.animation = 'fadeIn 0.3s ease-in';
+        }, 300);
+    }
+
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('successModal');
+        if (event.target === modal) closeModal();
+    });
+</script>
 </body>
 </html>
