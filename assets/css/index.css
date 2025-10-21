@@ -593,15 +593,168 @@ ul {
   }
 }
 
-/* =====================================
-   FOOTER
-===================================== */
-footer {
+/* ---------------------------
+          FOOTER
+----------------------------- */
+
+/* --- Mặc định (Mobile) --- */
+footer.footer {
   width: 100%;
-  background: gray;
-  padding: 0.6rem 0;
 }
-footer p {
+
+.footer__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  border-top: 1px solid #ff6347;
+  padding: 0 1rem;
+  margin-bottom: 6rem;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+/* --- Footer top --- */
+.footer__top {
+  width: 100%;
+  max-width: 51.2rem;
+  background: #ff6347;
+  text-align: center;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  margin-top: 0;
+}
+
+.footer__logo {
+  width: 100%;
+  padding: 2rem 0;
+  border-bottom: 2px dashed #fff;
+}
+
+.footer__logo img {
+  width: 16rem;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer__social {
+  padding: 2rem 0;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.footer__social-title {
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.footer__social-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2.2rem;
+}
+
+.footer__social-list li a {
+  transition: opacity 0.15s ease;
+}
+
+.footer__social-list li a:hover {
+  opacity: 0.6;
+}
+
+/* --- Footer middle --- */
+.footer__middle {
+  width: 100%;
+  max-width: 51.2rem;
+  margin: 0 auto;
+}
+
+.footer__col {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+}
+
+.footer__col-title {
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+.footer__links li a {
+  transition: color 0.15s ease;
+}
+
+.footer__links li a:hover {
+  color: #ff6347;
+}
+
+/* --- Footer bottom --- */
+.footer__bottom {
+  grid-column: 1 / -1;
+  width: 100%;
   text-align: center;
   font-size: 1.4rem;
+  padding: 0.8rem 0;
+  border-top: 1px dashed #ff6347;
+  margin-top: 1rem;
 }
+
+/* --- ≥ 768px (Tablet) --- */
+@media (min-width: 768px) {
+  .footer__container {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+
+  .footer__top,
+  .footer__middle {
+    max-width: 80%;
+  }
+
+  .footer__middle {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .footer__col {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+/* --- ≥ 992px (Laptop) --- */
+@media (min-width: 992px) {
+  .footer__container {
+    grid-template-columns: 260px 1fr;
+    justify-items: stretch;
+    align-items: start;
+    padding: 0 4rem;
+    gap: 3rem;
+  }
+
+  .footer__top {
+    max-width: 100%;
+    margin-top: 0; 
+  }
+
+  .footer__middle {
+    gap: 6rem;
+  }
+
+  .footer__col {
+    line-height: 3rem;
+  }
+
+  .footer__bottom {
+    grid-column: 1 / -1; /* full width */
+  }
+}
+
+/* --- ≥ 1200px (Desktop lớn) --- */
+@media (min-width: 1200px) {
+  .footer__container {
+    grid-template-columns: 340px 1fr;
+  }
+}
+
