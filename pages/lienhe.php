@@ -1,11 +1,9 @@
-
 <?php
-include "../includes/header.php";
 
 function breadCrumb() {
-    $root = '<a href="../index.php">Trang chủ</a>';
+    $root = '<a href="/index.php">Trang chủ</a>';
     $page = isset($_GET['page']) ? htmlspecialchars($_GET['page'], ENT_QUOTES, 'UTF-8') : 'Liên hệ';
-    return "<span class='bread-crumb'>$root > $page</span>";
+    return "<span class='bread-crumb'>$root > Liên hệ</span>";
 }
 ?>
 
@@ -197,6 +195,8 @@ function breadCrumb() {
     </style>
 </head>
 <body>
+
+
     <div class="container">
         <?php echo breadCrumb(); ?>
 
@@ -240,6 +240,6 @@ function breadCrumb() {
         </div>
     </div>
 
-    <?php include '../includes/footer.php'; ?>
+
 </body>
 </html>

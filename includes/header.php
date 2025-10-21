@@ -5,7 +5,6 @@
         </div>
         <ul class="menu-body">
             <li><a href="/">Trang chủ</a></li>
-
             <li class="has-submenu">
                 <a href="#">
                     Nữ
@@ -18,7 +17,6 @@
                     <li><a href="index.php?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
                 </ul>
             </li>
-
             <li class="has-submenu">
                 <a href="#">
                     Nam
@@ -31,13 +29,10 @@
                     <li><a href="index.php?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
                 </ul>
             </li>
-
             <li><a href="index.php?page=tintuc">Tin tức</a></li>
             <li><a href="index.php?page=lienhe">Liên hệ</a></li>
             <li><a href="index.php?page=hethongcuahang">Hệ thống cửa hàng</a></li>
         </ul>
-
-
     </div>
     <div class="overlay"></div>
 
@@ -86,7 +81,6 @@
                     Menu
                 </a>
             </div>
-
             <div class="header__menu-item header__wishlist">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -95,7 +89,6 @@
                     Yêu thích
                 </a>
             </div>
-
             <div class="header__menu-item header__account">
                 <a href="?page=dangnhap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
@@ -103,15 +96,12 @@
                     </svg>
                     Tài khoản
                 </a>
-
                 <div class="header__account-dropdown">
                     <a href="?page=dangnhap" class="header__account-item">Đăng nhập</a>
                     <a href="?page=dangky" class="header__account-item">Đăng ký</a>
                 </div>
             </div>
-
             <div class="header__menu-item header__cart">
-                <!-- php count item -->
                 <a href="">
                     <span class="count-item">9</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
@@ -154,11 +144,66 @@
             </li>
             <li class="header__nav-link"><a href="index.php?page=tintuc">Tin tức</a></li>
             <li class="header__nav-link"><a href="index.php?page=lienhe">Liên hệ</a></li>
-            <li class="header__nav-link"><a href="index.php?page=">Hệ thống cửa hàng</a></li>
+            <li class="header__nav-link"><a href="index.php?page=hethongcuahang">Hệ thống cửa hàng</a></li>
         </ul>
     </div>
 </header>
 
+<style>
+    /* Ẩn/hiển thị menu theo kích thước màn hình */
+    .nav-menu {
+        display: none; /* Ẩn mặc định trên desktop */
+    }
+
+    .header__nav {
+        display: block; /* Hiển thị mặc định trên desktop */
+    }
+
+    /* Responsive: Hiển thị menu mobile dưới 768px */
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: block; /* Hiển thị menu mobile */
+        }
+        .header__nav {
+            display: none; /* Ẩn menu desktop */
+        }
+    }
+
+    /* Style cho overlay */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    /* Style cho submenu */
+    .submenu {
+        display: none;
+        position: absolute;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+        z-index: 1000;
+    }
+
+    .submenu.open {
+        display: block;
+    }
+
+    .fa-caret-down.active {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+</style>
 
 <script>
     const wrapper = document.querySelector('.swiper-wrapper');
@@ -177,14 +222,12 @@
     }
 
     function updateButtons() {
-        // Nếu đang ở slide đầu tiên → disable Prev
         if (currentIndex === 0) {
             btnPrev.classList.add('disabled');
         } else {
             btnPrev.classList.remove('disabled');
         }
 
-        // Nếu đang ở slide cuối cùng → disable Next
         if (currentIndex === slides.length - 1) {
             btnNext.classList.add('disabled');
         } else {
@@ -192,7 +235,6 @@
         }
     }
 
-    // Nút Next
     btnNext.addEventListener('click', () => {
         if (currentIndex < slides.length - 1) {
             currentIndex++;
@@ -201,7 +243,6 @@
         }
     });
 
-    // Nút Prev
     btnPrev.addEventListener('click', () => {
         if (currentIndex > 0) {
             currentIndex--;
@@ -210,73 +251,63 @@
         }
     });
 
-    // Khi người dùng cuộn bằng tay → cập nhật nút
     wrapper.addEventListener('scroll', () => {
         const slideWidth = slides[0].offsetWidth;
         currentIndex = Math.round(wrapper.scrollLeft / slideWidth);
         updateButtons();
     });
 
-    // Gọi lần đầu khi load
     updateButtons();
 </script>
 
 <script>
-  const hamburger = document.querySelector('.header__hamburger');
-  const navMenu = document.querySelector('.nav-menu');
-  const overlay = document.querySelector('.overlay');
+    const hamburger = document.querySelector('.header__hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const overlay = document.querySelector('.overlay');
 
-  // Toggle mở/đóng menu mobile
-  hamburger.addEventListener('click', (e) => {
-    e.preventDefault();
-    navMenu.classList.toggle('active');
-    overlay.classList.toggle('active');
-  });
-
-  // Click overlay → đóng menu
-  overlay.addEventListener('click', () => {
-    navMenu.classList.remove('active');
-    overlay.classList.remove('active');
-  });
-
-  // Toggle submenu (Nữ / Nam)
-  document.querySelectorAll('.has-submenu > a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      const icon = link.querySelector('.fa-caret-down');
-      const submenu = link.nextElementSibling;
-
-      // Đóng các submenu khác
-      document.querySelectorAll('.submenu').forEach(menu => {
-        if (menu !== submenu) {
-          menu.classList.remove('open');
-          const otherIcon = menu.previousElementSibling.querySelector('.fa-caret-down');
-          if (otherIcon) otherIcon.classList.remove('active');
-        }
-      });
-
-      // Toggle submenu hiện tại
-      submenu.classList.toggle('open');
-      icon.classList.toggle('active');
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
     });
-  });
 
-  // Khi resize cửa sổ → reset trạng thái menu về mặc định
-  window.addEventListener('resize', () => {
-    const width = window.innerWidth;
-    if (width > 768) {
-      // Ẩn menu mobile khi chuyển sang desktop
-      navMenu.classList.remove('active');
-      overlay.classList.remove('active');
+    overlay.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+    });
 
-      // Đóng submenu & reset icon
-      document.querySelectorAll('.submenu').forEach(menu => {
-        menu.classList.remove('open');
-      });
-      document.querySelectorAll('.fa-caret-down').forEach(icon => {
-        icon.classList.remove('active');
-      });
-    }
-  });
+    document.querySelectorAll('.has-submenu > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const icon = link.querySelector('.fa-caret-down');
+            const submenu = link.nextElementSibling;
+
+            document.querySelectorAll('.submenu').forEach(menu => {
+                if (menu !== submenu) {
+                    menu.classList.remove('open');
+                    const otherIcon = menu.previousElementSibling.querySelector('.fa-caret-down');
+                    if (otherIcon) otherIcon.classList.remove('active');
+                }
+            });
+
+            submenu.classList.toggle('open');
+            icon.classList.toggle('active');
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        if (width > 768) {
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+
+            document.querySelectorAll('.submenu').forEach(menu => {
+                menu.classList.remove('open');
+            });
+            document.querySelectorAll('.fa-caret-down').forEach(icon => {
+                icon.classList.remove('active');
+            });
+        }
+    });
 </script>
