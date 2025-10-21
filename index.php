@@ -24,7 +24,7 @@ session_start();
     ?>
 
     <!-- Nội dung chính -->
-    <main style="padding-bottom: 50rem">
+    <main>
         <?php
         if (file_exists($file)) {
             require $file;
