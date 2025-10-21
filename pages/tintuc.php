@@ -1,4 +1,2 @@
-<main>
 
-    <p>tin tuc</p>
-</main>
+    <h1>tin tuc</h1>
