@@ -35,11 +35,7 @@ session_start();
     </main>
 
     <?php
-
-<<<<<<< HEAD
-=======
     // footer chung
->>>>>>> dba01cd41d2dc9cc085981e40ed6ac22b435bee4
     require_once 'includes/footer.php';
 
     ?>
