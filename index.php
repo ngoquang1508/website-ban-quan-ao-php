@@ -30,7 +30,7 @@ session_start();
     }
 
     // footer chung
-    // require_once 'includes/footer.php';
+    require_once 'includes/footer.php';
 
     ?>
 </body>
