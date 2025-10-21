@@ -1,3 +1,8 @@
-<main>
+<div>
+    <?php
+    include "includes/banner.php";
+    ?>
     
-</main>
+    <h1>trang chủ</h1>
+
+</div>

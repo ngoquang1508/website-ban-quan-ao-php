@@ -9,8 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/pages/trangchu.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 
 <body>
@@ -22,12 +21,20 @@ session_start();
 
     // header chung
     require_once 'includes/header.php';
+    ?>
 
-    if (file_exists($file)) {
-        require $file;
-    } else {
-        require 'pages/404.php';
-    }
+    <!-- Nội dung chính -->
+    <main style="padding-bottom: 50rem">
+        <?php
+        if (file_exists($file)) {
+            require $file;
+        } else {
+            require 'pages/404.php';
+        }
+        ?>
+    </main>
+
+    <?php
 
     // footer chung
     require_once 'includes/footer.php';

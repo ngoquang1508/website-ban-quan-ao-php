@@ -1,4 +1,5 @@
 <header class="header">
+    
     <div class="header__topbar">
         <div class="header__topbar-container">
             <div class="swiper-wrapper">
@@ -20,10 +21,51 @@
             </div>
         </div>
     </div>
+    <div class="nav-menu">
+        <div class="menu-head">
+            <div class="menu-title">Menu</div>
+        </div>
+        <ul class="menu-body">
+            <li><a href="/">Trang chủ</a></li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    Nữ
+                    <i class="fa-solid fa-caret-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="index.php?page=nu#tat-ca">Tất cả</a></li>
+                    <li><a href="index.php?page=nu#ao-nu">Áo nữ</a></li>
+                    <li><a href="index.php?page=nu#quan-nu">Quần nữ</a></li>
+                    <li><a href="index.php?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    Nam
+                    <i class="fa-solid fa-caret-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="index.php?page=nam#tat-ca">Tất cả</a></li>
+                    <li><a href="index.php?page=nam#ao-nam">Áo nam</a></li>
+                    <li><a href="index.php?page=nam#quan-nam">Quần nam</a></li>
+                    <li><a href="index.php?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
+                </ul>
+            </li>
+
+            <li><a href="index.php?page=tintuc">Tin tức</a></li>
+            <li><a href="index.php?page=lienhe">Liên hệ</a></li>
+            <li><a href="index.php?page=hethongcuahang">Hệ thống cửa hàng</a></li>
+        </ul>
+
+
+    </div>
+    <div class="overlay"></div>
 
     <div class="header__middle">
         <div class="header__logo">
-            <a class="header__logo-wrapper" href="?index.php">
+            <a class="header__logo-wrapper" href="/">
                 <img src="/assets/images/logo.webp" alt="logo">
             </a>
         </div>
@@ -36,6 +78,15 @@
             </form>
         </div>
         <div class="header__menu-bar">
+            <div class="header__menu-item header__hamburger">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                        <path d="M1.43652 7H17.9365M1.43652 1.5H17.9365M1.43652 12.5H17.9365" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    Menu
+                </a>
+            </div>
+
             <div class="header__menu-item header__wishlist">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -74,36 +125,36 @@
 
     <div class="header__nav">
         <ul class="header__nav-links">
-            <li class="header__nav-link"><a href="">Trang chủ</a></li>
+            <li class="header__nav-link"><a href="/">Trang chủ</a></li>
             <li class="header__nav-link dropdown">
-                <a href="">
+                <a href="index.php?page=nu#tat-ca">
                     Nữ
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <div class="nav-content">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="">Áo nữ</a></li>
-                        <li class="nav-item"><a href="">Quần nữ</a></li>
-                        <li class="nav-item"><a href="">Phụ kiện nữ</a></li>
+                        <li class="nav-item"><a href="index.php?page=nu#ao-nu">Áo nữ</a></li>
+                        <li class="nav-item"><a href="index.php?page=nu#quan-nu">Quần nữ</a></li>
+                        <li class="nav-item"><a href="index.php?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
                     </ul>
                 </div>
             </li>
             <li class="header__nav-link dropdown">
-                <a href="">
+                <a href="index.php?page=nam#tat-ca">
                     Nam
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <div class="nav-content">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="">Áo nam</a></li>
-                        <li class="nav-item"><a href="">Quần nam</a></li>
-                        <li class="nav-item"><a href="">Phụ kiện nam</a></li>
+                        <li class="nav-item"><a href="index.php?page=nam#ao-nam">Áo nam</a></li>
+                        <li class="nav-item"><a href="index.php?page=nam#quan-nam">Quần nam</a></li>
+                        <li class="nav-item"><a href="index.php?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
                     </ul>
                 </div>
             </li>
-            <li class="header__nav-link"><a href="">Tin tức</a></li>
-            <li class="header__nav-link"><a href="">Liên hệ</a></li>
-            <li class="header__nav-link"><a href="">Hệ thống cửa hàng</a></li>
+            <li class="header__nav-link"><a href="index.php?page=tintuc">Tin tức</a></li>
+            <li class="header__nav-link"><a href="index.php?page=lienhe">Liên hệ</a></li>
+            <li class="header__nav-link"><a href="index.php?page=">Hệ thống cửa hàng</a></li>
         </ul>
     </div>
 </header>
@@ -169,18 +220,63 @@
     // Gọi lần đầu khi load
     updateButtons();
 </script>
-<script>
-    const nav = document.querySelector('.header__nav');
-    const menuBar = document.querySelector('.header__menu-bar');
-    const header = document.querySelector('.header');
 
-    function moveNav() {
-        if (window.innerWidth < 768) {
-            if (!menuBar.contains(nav)) menuBar.appendChild(nav);
-        } else {
-            if (!header.contains(nav)) header.appendChild(nav);
+<script>
+  const hamburger = document.querySelector('.header__hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  const overlay = document.querySelector('.overlay');
+
+  // Toggle mở/đóng menu mobile
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    navMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+  });
+
+  // Click overlay → đóng menu
+  overlay.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+
+  // Toggle submenu (Nữ / Nam)
+  document.querySelectorAll('.has-submenu > a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const icon = link.querySelector('.fa-caret-down');
+      const submenu = link.nextElementSibling;
+
+      // Đóng các submenu khác
+      document.querySelectorAll('.submenu').forEach(menu => {
+        if (menu !== submenu) {
+          menu.classList.remove('open');
+          const otherIcon = menu.previousElementSibling.querySelector('.fa-caret-down');
+          if (otherIcon) otherIcon.classList.remove('active');
         }
+      });
+
+      // Toggle submenu hiện tại
+      submenu.classList.toggle('open');
+      icon.classList.toggle('active');
+    });
+  });
+
+  // Khi resize cửa sổ → reset trạng thái menu về mặc định
+  window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    if (width > 768) {
+      // Ẩn menu mobile khi chuyển sang desktop
+      navMenu.classList.remove('active');
+      overlay.classList.remove('active');
+
+      // Đóng submenu & reset icon
+      document.querySelectorAll('.submenu').forEach(menu => {
+        menu.classList.remove('open');
+      });
+      document.querySelectorAll('.fa-caret-down').forEach(icon => {
+        icon.classList.remove('active');
+      });
     }
-    window.addEventListener('resize', moveNav);
-    moveNav();
+  });
 </script>
