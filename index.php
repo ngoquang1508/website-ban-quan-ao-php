@@ -10,7 +10,6 @@ session_start();
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/index.css">
-    <link rel="stylesheet" href="/assets/css/pages/trangchu.css">
 </head>
 
 <body>
@@ -25,7 +24,7 @@ session_start();
     ?>
 
     <!-- Nội dung chính -->
-    <main>
+    <main style="padding-bottom: 50rem">
         <?php
         if (file_exists($file)) {
             require $file;
