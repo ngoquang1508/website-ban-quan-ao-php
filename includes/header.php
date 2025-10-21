@@ -1,4 +1,26 @@
 <header class="header">
+    
+    <div class="header__topbar">
+        <div class="header__topbar-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">Chào đón bộ sưu tập thu đông 2025</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">Phái đẹp để yêu, vạn deal cưng chiều</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">đồ mặc cả nhà, êm ái cả ngày</a>
+                </div>
+            </div>
+            <div class="header__topbar-btn-prev">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="header__topbar-btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
     <div class="nav-menu">
         <div class="menu-head">
             <div class="menu-title">Menu</div>
@@ -35,28 +57,6 @@
         </ul>
     </div>
     <div class="overlay"></div>
-
-    <div class="header__topbar">
-        <div class="header__topbar-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#">Chào đón bộ sưu tập thu đông 2025</a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">Phái đẹp để yêu, vạn deal cưng chiều</a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">đồ mặc cả nhà, êm ái cả ngày</a>
-                </div>
-            </div>
-            <div class="header__topbar-btn-prev">
-                <i class="fa-solid fa-chevron-left"></i>
-            </div>
-            <div class="header__topbar-btn-next">
-                <i class="fa-solid fa-chevron-right"></i>
-            </div>
-        </div>
-    </div>
 
     <div class="header__middle">
         <div class="header__logo">
