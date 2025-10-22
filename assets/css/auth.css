@@ -213,6 +213,22 @@
   text-decoration: underline;
 }
 
+/* =======================
+  NÚT QUAY LẠI LOGIN
+======================== */
+.auth__prev-login {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  transition: all .15s ease;
+}
+
+.auth__prev-login:hover {
+  text-decoration: underline;
+  color: #ff6347;
+}
+
+
 /* =============================
   RESPONSIVE
 ============================= */
