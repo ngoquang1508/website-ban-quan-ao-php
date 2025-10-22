@@ -17,7 +17,7 @@
             </div>
 
             <button type="submit" name="submit">Đổi mật khẩu</button>
-            <a class="auth__prev-login" href="index.php?page=dangnhap">Quay lại trang đăng nhập</a>
+            <a class="auth__prev-login" href="?page=dangnhap">Quay lại trang đăng nhập</a>
         </form>
     </div>
 </div>

@@ -10,7 +10,7 @@ $i = 1;
     <div class="main-product__head">
         <h1 class="main-product__head-title">Danh sách sản phẩm</h1>
 
-        <a class="main-product__head-add-btn" href="index.php?page=products&action=add">
+        <a class="main-product__head-add-btn" href="?page=products&action=add">
             <i class="fa-solid fa-plus"></i>
             <span>Thêm</span>
         </a>
@@ -56,7 +56,7 @@ $i = 1;
                                 <?php endif; ?>
                             </td>
                             <td class="main-product__btn">
-                                <a class="main-product__btn-edit" href="index.php?page=products&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
+                                <a class="main-product__btn-edit" href="?page=products&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
                                 <a class="main-product__btn-delete" href="xuly/delete-product.php?id=<?php echo $row['id'] ?>">Xóa</a>
                             </td>
                         </tr>
@@ -103,7 +103,7 @@ $i = 1;
                                 <?php endif; ?>
                             </td>
                             <td class="main-product__btn">
-                                <a class="main-product__btn-edit" href="index.php?page=products&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
+                                <a class="main-product__btn-edit" href="?page=products&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
                                 <a class="main-product__btn-delete" href="xuly/delete-product.php?id=<?php echo $row['id'] ?>">Xóa</a>
                             </td>
                         </tr>

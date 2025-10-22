@@ -42,7 +42,7 @@ $stmt->bind_param("sssssi", $name, $description, $price, $stock, $type, $product
 
 if ($stmt->execute()) {
     echo "Cập nhật sản phẩm thành công";
-    header("Location: ../index.php?page=products");
+    header("Location: ../?page=products");
     exit;
 } else {
     die("Cập nhật không thành công");

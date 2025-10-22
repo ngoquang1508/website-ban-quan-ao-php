@@ -14,7 +14,7 @@ if (isset($_POST['save'])) {
     $stmt->bind_param("sssi", $username, $email, $status, $id);
 
     if ($stmt->execute()) {
-        header("Location: ../index.php?page=users");
+        header("Location: ../?page=users");
         exit;
     } else {
         echo "<span>Cập nhật thất bại!</span>";

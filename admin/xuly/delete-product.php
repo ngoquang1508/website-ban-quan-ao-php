@@ -30,6 +30,6 @@ unlink($target_file_uploads);
 
 $stmt_file->close();
 $stmt->close();
-header("Location: ../index.php?page=products");
+header("Location: ../?page=products");
 exit;
 

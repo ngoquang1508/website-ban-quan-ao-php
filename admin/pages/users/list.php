@@ -46,7 +46,7 @@ $i = 1;
                                 <?php echo $row['status'] === 'unlock' ? "Hoạt động" : "Bị khóa"; ?>
                             </td>
                             <td class="main-user__btn">
-                                <a class="main-user__btn-edit" href="index.php?page=users&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
+                                <a class="main-user__btn-edit" href="?page=users&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
                                 <a class="main-user__btn-delete" href="xuly/delete-user.php?id=<?php echo $row['id'] ?>">Xóa</a>
                             </td>
                         </tr>
@@ -82,7 +82,7 @@ $i = 1;
                                     <?php echo $row['status'] === 'unlock' ? "Hoạt động" : "Bị khóa"; ?>
                                 </td>
                                 <td class="main-user__btn">
-                                    <a class="main-user__btn-edit" href="index.php?page=users&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
+                                    <a class="main-user__btn-edit" href="?page=users&action=edit&id=<?php echo $row['id'] ?>">Sửa</a>
                                     <a class="main-user__btn-delete" href="xuly/delete-user.php?id=<?php echo $row['id'] ?>">Xóa</a>
                                 </td>
                             </tr>

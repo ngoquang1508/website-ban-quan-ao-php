@@ -44,6 +44,6 @@
             </ul>
         </div>
 
-        <p>Bạn đã có tài khoản? <a href="index.php?page=dangnhap">Đăng nhập</a></p>
+        <p>Bạn đã có tài khoản? <a href="?page=dangnhap">Đăng nhập</a></p>
     </div>
 </div>

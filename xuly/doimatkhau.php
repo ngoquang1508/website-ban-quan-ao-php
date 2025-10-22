@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $stmt->bind_param("ss", $pass_hash, $email);
 
     if ($stmt->execute()) {
-        header("Location: ../index.php?page=dangnhap&success=" . urlencode("Đổi mật khẩu thành công, vui lòng đăng nhập"));
+        header("Location: ../?page=dangnhap&success=" . urlencode("Đổi mật khẩu thành công, vui lòng đăng nhập"));
         exit;
     } else {
-        header("Location: ../index.php?page=doimatkhaumoi&email=" . urlencode($email) . "&error=" . urlencode("Có lỗi xảy ra, vui lòng thử lại"));
+        header("Location: ../?page=doimatkhaumoi&email=" . urlencode($email) . "&error=" . urlencode("Có lỗi xảy ra, vui lòng thử lại"));
         exit;
     }
 }

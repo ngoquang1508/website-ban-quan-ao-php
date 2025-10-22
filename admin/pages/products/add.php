@@ -1,5 +1,5 @@
 <div class="add-product__wrapper">
-    <a class="add-product__go-back" href="index.php?page=products">Quay lại</a>
+    <a class="add-product__go-back" href="?page=products">Quay lại</a>
 
     <div class="add-product__container">
         <h2>Thêm sản phẩm</h2>

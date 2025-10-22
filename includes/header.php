@@ -34,10 +34,10 @@
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="index.php?page=nu#tat-ca">Tất cả</a></li>
-                    <li><a href="index.php?page=nu#ao-nu">Áo nữ</a></li>
-                    <li><a href="index.php?page=nu#quan-nu">Quần nữ</a></li>
-                    <li><a href="index.php?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
+                    <li><a href="?page=nu#tat-ca">Tất cả</a></li>
+                    <li><a href="?page=nu#ao-nu">Áo nữ</a></li>
+                    <li><a href="?page=nu#quan-nu">Quần nữ</a></li>
+                    <li><a href="?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
                 </ul>
             </li>
 
@@ -47,16 +47,16 @@
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="index.php?page=nam#tat-ca">Tất cả</a></li>
-                    <li><a href="index.php?page=nam#ao-nam">Áo nam</a></li>
-                    <li><a href="index.php?page=nam#quan-nam">Quần nam</a></li>
-                    <li><a href="index.php?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
+                    <li><a href="?page=nam#tat-ca">Tất cả</a></li>
+                    <li><a href="?page=nam#ao-nam">Áo nam</a></li>
+                    <li><a href="?page=nam#quan-nam">Quần nam</a></li>
+                    <li><a href="?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
                 </ul>
             </li>
 
-            <li><a href="index.php?page=tintuc">Tin tức</a></li>
-            <li><a href="index.php?page=lienhe">Liên hệ</a></li>
-            <li><a href="index.php?page=hethongcuahang">Hệ thống cửa hàng</a></li>
+            <li><a href="?page=tintuc">Tin tức</a></li>
+            <li><a href="?page=lienhe">Liên hệ</a></li>
+            <li><a href="?page=hethongcuahang">Hệ thống cửa hàng</a></li>
         </ul>
 
 
@@ -127,34 +127,34 @@
         <ul class="header__nav-links">
             <li class="header__nav-link"><a href="/">Trang chủ</a></li>
             <li class="header__nav-link dropdown">
-                <a href="index.php?page=nu#tat-ca">
+                <a href="?page=nu#tat-ca">
                     Nữ
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <div class="nav-content">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.php?page=nu#ao-nu">Áo nữ</a></li>
-                        <li class="nav-item"><a href="index.php?page=nu#quan-nu">Quần nữ</a></li>
-                        <li class="nav-item"><a href="index.php?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
+                        <li class="nav-item"><a href="?page=nu#ao-nu">Áo nữ</a></li>
+                        <li class="nav-item"><a href="?page=nu#quan-nu">Quần nữ</a></li>
+                        <li class="nav-item"><a href="?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
                     </ul>
                 </div>
             </li>
             <li class="header__nav-link dropdown">
-                <a href="index.php?page=nam#tat-ca">
+                <a href="?page=nam#tat-ca">
                     Nam
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <div class="nav-content">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.php?page=nam#ao-nam">Áo nam</a></li>
-                        <li class="nav-item"><a href="index.php?page=nam#quan-nam">Quần nam</a></li>
-                        <li class="nav-item"><a href="index.php?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
+                        <li class="nav-item"><a href="?page=nam#ao-nam">Áo nam</a></li>
+                        <li class="nav-item"><a href="?page=nam#quan-nam">Quần nam</a></li>
+                        <li class="nav-item"><a href="?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
                     </ul>
                 </div>
             </li>
-            <li class="header__nav-link"><a href="index.php?page=tintuc">Tin tức</a></li>
-            <li class="header__nav-link"><a href="index.php?page=lienhe">Liên hệ</a></li>
-            <li class="header__nav-link"><a href="index.php?page=hethongcuahang">Hệ thống cửa hàng</a></li>
+            <li class="header__nav-link"><a href="?page=tintuc">Tin tức</a></li>
+            <li class="header__nav-link"><a href="?page=lienhe">Liên hệ</a></li>
+            <li class="header__nav-link"><a href="?page=hethongcuahang">Hệ thống cửa hàng</a></li>
         </ul>
     </div>
 </header>

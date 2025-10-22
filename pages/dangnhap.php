@@ -13,7 +13,7 @@
             </div>
             <button type="submit" name="submit">Đăng nhập</button>
         </form>
-        <a class="auth__forgot-pass" href="index.php?page=quenmatkhau">Quên mật khẩu</a>
+        <a class="auth__forgot-pass" href="?page=quenmatkhau">Quên mật khẩu</a>
 
         <div class="auth__social">
             <span class="auth__social-or">hoặc</span>
@@ -34,7 +34,7 @@
             </ul>
         </div>
 
-        <p>Bạn chưa có tài khoản? <a href="index.php?page=dangky">Đăng ký</a></p>
+        <p>Bạn chưa có tài khoản? <a href="?page=dangky">Đăng ký</a></p>
     </div>
 </div>
 

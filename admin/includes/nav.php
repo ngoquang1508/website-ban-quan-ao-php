@@ -1,6 +1,6 @@
 <nav>
     <div class="nav__header">
-        <a href="index.php">
+        <a href="">
             <i class="fas fa-user-shield"></i>
             <span>Admin</span>
         </a>
@@ -9,19 +9,19 @@
     <div class="nav__main">
         <ul>
             <li>
-                <a class="nav_main-link <?php echo (!isset($_GET['page'])) ? 'active' : '' ?>" href="index.php">
+                <a class="nav_main-link <?php echo (!isset($_GET['page'])) ? 'active' : '' ?>" href="">
                     <i class="fa-solid fa-chart-column"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a class="nav_main-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'users') ? 'active' : '' ?>" href="index.php?page=users">
+                <a class="nav_main-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'users') ? 'active' : '' ?>" href="?page=users">
                     <i class="fa-solid fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li>
-                <a class="nav_main-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'products') ? 'active' : '' ?>" href="index.php?page=products">
+                <a class="nav_main-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'products') ? 'active' : '' ?>" href="?page=products">
                     <i class="fa-solid fa-box"></i>
                     <span>Products</span>
                 </a>
