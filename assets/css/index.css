@@ -758,3 +758,34 @@ footer.footer {
   }
 }
 
+main {
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 552px) {
+  main {
+    padding: 1rem 4rem;
+  }
+}
+
+/* ---------------------------
+/       bread crumb          /
+--------------------------- */
+
+.bread-crumb {
+  font-size: 1.5rem;
+  padding-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bread-crumb a {
+  transition: color .15s ease;
+}
+
+.bread-crumb a:hover {
+  color: #ff6347;
+}

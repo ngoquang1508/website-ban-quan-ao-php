@@ -1,26 +1,11 @@
-html {
-  font-size: 62.5%;
-}
-
-*,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.login__container {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+.auth__container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
 }
 
-.login__form {
+.auth__form {
   width: 90%;
   max-width: 380px;
   padding: 2rem 2.5rem;
@@ -44,7 +29,7 @@ body {
   }
 }
 
-.login__form-title {
+.auth__form-title {
   font-size: 2.4rem;
   text-transform: uppercase;
   text-align: center;
@@ -54,7 +39,7 @@ body {
   letter-spacing: 1px;
 }
 
-.login__form-main {
+.auth__form-main {
   display: flex;
   flex-direction: column;
 }
@@ -103,7 +88,7 @@ body {
   font-weight: 600;
 }
 
-.login__forgot-pass {
+.auth__forgot-pass {
   text-align: right;
   margin: 0 0 2rem 0;
   font-size: 1.3rem;
@@ -112,11 +97,11 @@ body {
   transition: 0.2s;
 }
 
-.login__forgot-pass:hover {
+.auth__forgot-pass:hover {
   text-decoration: underline;
 }
 
-.login__form-main button {
+.auth__form-main button {
   padding: 1.2rem 0;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   font-size: 1.5rem;
@@ -129,30 +114,30 @@ body {
   transition: all 0.2s ease;
 }
 
-.login__form-main button:hover {
+.auth__form-main button:hover {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
 }
 
-.login__form p {
+.auth__form p {
   text-align: center;
   margin-top: 2rem;
   font-size: 1.4rem;
   color: #475569;
 }
 
-.login__form p a {
+.auth__form p a {
   color: #2563eb;
   text-decoration: none;
   font-weight: 600;
   transition: 0.2s;
 }
 
-.login__form p a:hover {
+.auth__form p a:hover {
   text-decoration: underline;
 }
 
-.login__prev-login {
+.auth__prev-login {
     margin-top: 2rem;
     text-align: center;
     font-size: 1.4rem;
@@ -160,14 +145,14 @@ body {
     color: blue;
 }
 
-.login__prev-login:hover {
+.auth__prev-login:hover {
     text-decoration: underline;
 }
 
 /* --- Responsive --- */
 /* Mobile rất nhỏ (<360px) */
 @media (max-width: 360px) {
-  .login__form {
+  .auth__form {
     padding: 1.5rem;
   }
 
@@ -176,19 +161,19 @@ body {
     padding: 1rem;
   }
 
-  .login__form-main button {
+  .auth__form-main button {
     font-size: 1.3rem;
   }
 }
 
 /* Tablet (≥768px) */
 @media (min-width: 768px) {
-  .login__form {
+  .auth__form {
     max-width: 480px;
     padding: 3rem 4rem;
   }
 
-  .login__form-title {
+  .auth__form-title {
     font-size: 2.6rem;
   }
 
@@ -197,7 +182,7 @@ body {
     padding: 1.4rem 1.8rem;
   }
 
-  .login__form-main button {
+  .auth__form-main button {
     font-size: 1.5rem;
     padding: 1.3rem 0;
   }
@@ -205,12 +190,12 @@ body {
 
 /* Desktop (≥1024px) */
 @media (min-width: 1024px) {
-  .login__form {
+  .auth__form {
     max-width: 520px;
     padding: 3.5rem 5rem;
   }
 
-  .login__form-title {
+  .auth__form-title {
     font-size: 2.8rem;
   }
 
@@ -218,7 +203,7 @@ body {
     font-size: 1.7rem;
   }
 
-  .login__form-main button {
+  .auth__form-main button {
     font-size: 1.6rem;
   }
 }

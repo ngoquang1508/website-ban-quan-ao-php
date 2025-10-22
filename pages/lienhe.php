@@ -1,9 +1,4 @@
 <?php
-function breadCrumb() {
-    $root = '<a href="/index.php">Trang chủ</a>';
-    return "<span class='bread-crumb'>$root > Liên hệ</span>";
-}
-
 $successMessage = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
@@ -266,7 +261,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="contact-page">
     <div class="container">
-        <?php echo breadCrumb(); ?>
 
         <h1>Thông tin liên hệ</h1>
         <p class="description">Chúng tôi luôn sẵn sàng và có cơ hội đồng hành với hơn 10.000 khách hàng trên khắp thế giới.</p>

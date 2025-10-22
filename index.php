@@ -10,6 +10,7 @@ session_start();
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/auth.css">
 </head>
 
 <body>
@@ -25,6 +26,14 @@ session_start();
 
     <!-- Nội dung chính -->
     <main>
+        <!-- bread crumb -->
+        <?php
+        require "includes/functions.php";
+        if ($page !== "trangchu") {
+            echo breadCrumb($page);
+        }
+        ?>
+
         <?php
         if (file_exists($file)) {
             require $file;
