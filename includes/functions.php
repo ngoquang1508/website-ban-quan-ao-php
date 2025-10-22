@@ -24,6 +24,9 @@ function breadCrumb($page)
         "dangnhap" => [
             "title" => "Đăng nhập tài khoản",
         ],
+        "dangky" => [
+            "title" => "Đăng ký tài khoản",
+        ],
         "quenmatkhau" => [
             "title" => "Quên mật khẩu",
         ],

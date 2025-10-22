@@ -776,7 +776,7 @@ main {
 
 .bread-crumb {
   font-size: 1.5rem;
-  padding-bottom: 4rem;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -787,5 +787,9 @@ main {
 }
 
 .bread-crumb a:hover {
+  color: #ff6347;
+}
+
+.bread-crumb strong {
   color: #ff6347;
 }

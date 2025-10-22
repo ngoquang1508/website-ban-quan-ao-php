@@ -1,44 +1,38 @@
+/* =============================
+  AUTH FORM LAYOUT
+============================= */
 .auth__container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
 }
 
 .auth__form {
   width: 90%;
   max-width: 380px;
-  padding: 2rem 2.5rem;
-  border-radius: 12px;
-  background: #fff;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  animation: fadeIn 0.4s ease;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* =============================
+  TITLE
+============================= */
 .auth__form-title {
-  font-size: 2.4rem;
-  text-transform: uppercase;
-  text-align: center;
   margin-bottom: 2.4rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  font-weight: 500;
   color: #1e293b;
-  font-weight: 700;
   letter-spacing: 1px;
 }
 
+/* =============================
+  INPUT GROUP
+============================= */
 .auth__form-main {
   display: flex;
   flex-direction: column;
@@ -47,22 +41,22 @@
 .input-box {
   position: relative;
   width: 100%;
-  margin-bottom: 2.8rem;
+  margin-bottom: 2rem;
 }
 
 .input-box input {
   width: 100%;
   padding: 1.2rem 1.6rem;
   font-size: 1.5rem;
-  outline: none;
   border: 1.5px solid #cbd5e1;
   border-radius: 8px;
   background: #f8fafc;
+  outline: none;
   transition: border 0.2s, background 0.2s;
 }
 
 .input-box input:focus {
-  border-color: #3b82f6;
+  border-color: #ff6347;
   background: #fff;
 }
 
@@ -79,57 +73,139 @@
 
 .input-box input:focus + span,
 .input-box input:not(:placeholder-shown) + span {
-  top: -0.6rem;
+  top: 0;
   left: 1rem;
   font-size: 1.2rem;
-  color: #2563eb;
+  color: #ff6347;
   background: #fff;
   padding: 0 0.4rem;
   font-weight: 600;
 }
 
+/* =============================
+  FORGOT PASSWORD LINK
+============================= */
 .auth__forgot-pass {
-  text-align: right;
-  margin: 0 0 2rem 0;
+  align-self: flex-start;
+  margin: 2rem 0 1rem;
   font-size: 1.3rem;
-  color: #2563eb;
+  color: #1e293b;
   text-decoration: none;
-  transition: 0.2s;
+  transition: all 0.15s ease;
 }
 
 .auth__forgot-pass:hover {
+  color: #ff6347;
   text-decoration: underline;
 }
 
+/* =============================
+  SUBMIT BUTTON
+============================= */
 .auth__form-main button {
   padding: 1.2rem 0;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
   font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
   text-transform: uppercase;
+  border: 1px solid transparent;
   border-radius: 8px;
-  border: none;
+  background: #ff6347;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s linear;
 }
 
 .auth__form-main button:hover {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+  background: none;
+  color: #ff6347;
+  border-color: #ff6347;
 }
 
+/* =============================
+  SOCIAL AUTH
+============================= */
+.auth__social {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+.auth__social::after {
+  content: "";
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  width: 100%;
+  border: 1px dashed #475569;
+}
+
+.auth__social .auth__social-or {
+  margin-bottom: 1rem;
+  padding: 0 0.6rem;
+  text-transform: uppercase;
+  color: #475569;
+  background: #fff;
+  z-index: 50;
+}
+
+.auth__social-title {
+  margin-bottom: 2rem;
+}
+
+.auth__social-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.auth__social-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.auth__social-item a i {
+  font-size: 1.8rem;
+}
+
+.auth__social-item a.fb {
+  background: #3654fd;
+}
+
+.auth__social-item a.gg {
+  background: #ff6347;
+}
+
+.auth__social-item a:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* =============================
+  FOOTER LINK (SIGNUP / LOGIN)
+============================= */
 .auth__form p {
-  text-align: center;
   margin-top: 2rem;
+  text-align: center;
   font-size: 1.4rem;
   color: #475569;
 }
 
 .auth__form p a {
-  color: #2563eb;
-  text-decoration: none;
+  color: #ff6347;
   font-weight: 600;
+  text-decoration: none;
   transition: 0.2s;
 }
 
@@ -137,21 +213,12 @@
   text-decoration: underline;
 }
 
-.auth__prev-login {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 1.4rem;
-    text-decoration: none;
-    color: blue;
-}
+/* =============================
+  RESPONSIVE
+============================= */
 
-.auth__prev-login:hover {
-    text-decoration: underline;
-}
-
-/* --- Responsive --- */
-/* Mobile rất nhỏ (<360px) */
-@media (max-width: 360px) {
+/* Mobile nhỏ (<480px) */
+@media (max-width: 480px) {
   .auth__form {
     padding: 1.5rem;
   }
@@ -207,4 +274,3 @@
     font-size: 1.6rem;
   }
 }
-

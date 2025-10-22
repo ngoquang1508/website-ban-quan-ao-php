@@ -24,6 +24,25 @@
 
             <button type="submit" name="submit">Đăng Ký</button>
         </form>
+        
+        <div class="auth__social">
+            <span class="auth__social-or">hoặc</span>
+            <span class="auth__social-title">Đăng nhập bằng</span>
+            <ul class="auth__social-list">
+                <li class="auth__social-item">
+                    <a class="fb" href="javascript:void(0)">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                </li>
+                <li class="auth__social-item">
+                    <a class="gg" href="javascript:void(0)">
+                        <i class="fa-brands fa-google"></i>
+                        <span>Google</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <p>Bạn đã có tài khoản? <a href="index.php?page=dangnhap">Đăng nhập</a></p>
     </div>
