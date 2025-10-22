@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* Social icons */
         .contact-page .social-icons {
             margin-top: 25px;
-            text-align: right;
+            text-align: center;
         }
         .contact-page .social-icons a {
             margin-left: 15px;
