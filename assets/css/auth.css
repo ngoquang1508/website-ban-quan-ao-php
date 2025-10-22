@@ -1,0 +1,276 @@
+/* =============================
+  AUTH FORM LAYOUT
+============================= */
+.auth__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth__form {
+  width: 90%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* =============================
+  TITLE
+============================= */
+.auth__form-title {
+  margin-bottom: 2.4rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #1e293b;
+  letter-spacing: 1px;
+}
+
+/* =============================
+  INPUT GROUP
+============================= */
+.auth__form-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.5rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  outline: none;
+  transition: border 0.2s, background 0.2s;
+}
+
+.input-box input:focus {
+  border-color: #ff6347;
+  background: #fff;
+}
+
+.input-box span {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.input-box input:focus + span,
+.input-box input:not(:placeholder-shown) + span {
+  top: 0;
+  left: 1rem;
+  font-size: 1.2rem;
+  color: #ff6347;
+  background: #fff;
+  padding: 0 0.4rem;
+  font-weight: 600;
+}
+
+/* =============================
+  FORGOT PASSWORD LINK
+============================= */
+.auth__forgot-pass {
+  align-self: flex-start;
+  margin: 2rem 0 1rem;
+  font-size: 1.3rem;
+  color: #1e293b;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.auth__forgot-pass:hover {
+  color: #ff6347;
+  text-decoration: underline;
+}
+
+/* =============================
+  SUBMIT BUTTON
+============================= */
+.auth__form-main button {
+  padding: 1.2rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #ff6347;
+  cursor: pointer;
+  transition: all 0.15s linear;
+}
+
+.auth__form-main button:hover {
+  background: none;
+  color: #ff6347;
+  border-color: #ff6347;
+}
+
+/* =============================
+  SOCIAL AUTH
+============================= */
+.auth__social {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+.auth__social::after {
+  content: "";
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  width: 100%;
+  border: 1px dashed #475569;
+}
+
+.auth__social .auth__social-or {
+  margin-bottom: 1rem;
+  padding: 0 0.6rem;
+  text-transform: uppercase;
+  color: #475569;
+  background: #fff;
+  z-index: 50;
+}
+
+.auth__social-title {
+  margin-bottom: 2rem;
+}
+
+.auth__social-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.auth__social-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.auth__social-item a i {
+  font-size: 1.8rem;
+}
+
+.auth__social-item a.fb {
+  background: #3654fd;
+}
+
+.auth__social-item a.gg {
+  background: #ff6347;
+}
+
+.auth__social-item a:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* =============================
+  FOOTER LINK (SIGNUP / LOGIN)
+============================= */
+.auth__form p {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #475569;
+}
+
+.auth__form p a {
+  color: #ff6347;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.auth__form p a:hover {
+  text-decoration: underline;
+}
+
+/* =============================
+  RESPONSIVE
+============================= */
+
+/* Mobile nhỏ (<480px) */
+@media (max-width: 480px) {
+  .auth__form {
+    padding: 1.5rem;
+  }
+
+  .input-box input {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+
+  .auth__form-main button {
+    font-size: 1.3rem;
+  }
+}
+
+/* Tablet (≥768px) */
+@media (min-width: 768px) {
+  .auth__form {
+    max-width: 480px;
+    padding: 3rem 4rem;
+  }
+
+  .auth__form-title {
+    font-size: 2.6rem;
+  }
+
+  .input-box input {
+    font-size: 1.6rem;
+    padding: 1.4rem 1.8rem;
+  }
+
+  .auth__form-main button {
+    font-size: 1.5rem;
+    padding: 1.3rem 0;
+  }
+}
+
+/* Desktop (≥1024px) */
+@media (min-width: 1024px) {
+  .auth__form {
+    max-width: 520px;
+    padding: 3.5rem 5rem;
+  }
+
+  .auth__form-title {
+    font-size: 2.8rem;
+  }
+
+  .input-box input {
+    font-size: 1.7rem;
+  }
+
+  .auth__form-main button {
+    font-size: 1.6rem;
+  }
+}

@@ -1,34 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="auth__container">
+    <div class="auth__form">
+        <h1 class="auth__form-title">Đăng nhập</h1>
+        <form class="auth__form-main" action="xuly/dangnhap.php" method="post">
+            <div class="input-box">
+                <input type="text" name="email" placeholder=" " required>
+                <span>Email</span>
+            </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
-    <link rel="stylesheet" href="assets/css/pages/dangnhap.css">
-</head>
+            <div class="input-box">
+                <input type="password" name="password" placeholder=" " required>
+                <span>Mật khẩu</span>
+            </div>
+            <button type="submit" name="submit">Đăng nhập</button>
+        </form>
+        <a class="auth__forgot-pass" href="?page=quenmatkhau">Quên mật khẩu</a>
 
-<body>
-    <div class="login__container">
-        <div class="login__form">
-            <h1 class="login__form-title">Đăng nhập</h1>
-            <form class="login__form-main" action="xuly/dangnhap.php" method="post">
-                <div class="input-box">
-                    <input type="text" name="email" placeholder=" " required>
-                    <span>Email</span>
-                </div>
-
-                <div class="input-box">
-                    <input type="password" name="password" placeholder=" " required>
-                    <span>Mật khẩu</span>
-                </div>
-                <a class="login__forgot-pass" href="index.php?page=quenmatkhau">Quên mật khẩu</a>
-                <button type="submit" name="submit">Đăng nhập</button>
-            </form>
-
-            <p>Bạn chưa có tài khoản? <a href="index.php?page=dangky">Đăng ký</a></p>
+        <div class="auth__social">
+            <span class="auth__social-or">hoặc</span>
+            <span class="auth__social-title">Đăng nhập bằng</span>
+            <ul class="auth__social-list">
+                <li class="auth__social-item">
+                    <a class="fb" href="javascript:void(0)">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                </li>
+                <li class="auth__social-item">
+                    <a class="gg" href="javascript:void(0)">
+                        <i class="fa-brands fa-google"></i>
+                        <span>Google</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
-</body>
 
-</html>
+        <p>Bạn chưa có tài khoản? <a href="?page=dangky">Đăng ký</a></p>
+    </div>
+</div>
+

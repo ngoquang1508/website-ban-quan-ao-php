@@ -16,5 +16,5 @@ if (!$stmt->execute()) {
 
 $stmt->close();
 
-header("Location: ../index.php?page=users");
+header("Location: ../?page=users");
 exit;

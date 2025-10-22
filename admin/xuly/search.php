@@ -12,11 +12,11 @@ if (!empty($action)) {
     echo "Lỗi tìm kiếm tồn tại action";
 
     if (isset($_POST['id'])) {
-        header("Location: ../index.php?page=" . $page . "&action=" . $action . "&id=" . $_POST['id']);
+        header("Location: ../?page=" . $page . "&action=" . $action . "&id=" . $_POST['id']);
         exit;
     }
 
-    header("Location: ../index.php?page=" . $page . "&action=" . $action);
+    header("Location: ../?page=" . $page . "&action=" . $action);
     exit;
 }
 
@@ -49,5 +49,5 @@ if ($page === "users") {
     $stmt->close();
 }
 
-header("Location: ../index.php?page=" . $page);
+header("Location: ../?page=" . $page);
 exit;

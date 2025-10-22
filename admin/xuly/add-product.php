@@ -53,7 +53,7 @@ $stmt = $conn->prepare($sql_add_product);
 $stmt->bind_param("ssssss", $name, $description, $price, $stock, $type, $url);
 if($stmt->execute()) {
     echo "Thêm sản phẩm thành công";
-    header("Location: ../index.php?page=products");
+    header("Location: ../?page=products");
     exit;
 } else {
     die("Thêm sản phẩm thất bại");

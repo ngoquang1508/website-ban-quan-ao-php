@@ -5,7 +5,7 @@ include __DIR__ . "/../../../config/db.php";
 $id_product = $_GET["id"] ?? null;
 
 if (!$id_product || !is_numeric($id_product)) {
-    header("Location: index.php?page=products");
+    header("Location: .. ?page=products");
     exit;
 }
 
@@ -18,7 +18,7 @@ $product = $result->fetch_assoc();
 
 // Nếu không có id user nào khớp -> chặn
 if (!$product) {
-    header("Location: index.php?page=products");
+    header("Location: .. ?page=products");
     exit;
 }
 $stmt->close();
@@ -26,7 +26,7 @@ $stmt->close();
 ?>
 
 <div class="edit-product__wrapper">
-    <a class="edit-product__go-back" href="index.php?page=products">Quay lại</a>
+    <a class="edit-product__go-back" href="?page=products">Quay lại</a>
 
     <div class="edit-product__container">
         <h2>Sửa sản phẩm có id = <?php echo $product['id'] ?></h2>
