@@ -89,20 +89,7 @@
                     Yêu thích
                 </a>
             </div>
-<<<<<<< HEAD
-            <div class="header__menu-item header__account">
-                <a href="?page=dangnhap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
-                        <path d="M4.3163 18.9238C4.92462 17.4906 6.34492 16.4854 8 16.4854H14C15.6551 16.4854 17.0754 17.4906 17.6837 18.9238M15 8.98535C15 11.1945 13.2091 12.9854 11 12.9854C8.79086 12.9854 7 11.1945 7 8.98535C7 6.77621 8.79086 4.98535 11 4.98535C13.2091 4.98535 15 6.77621 15 8.98535ZM21 11.4854C21 17.0082 16.5228 21.4854 11 21.4854C5.47715 21.4854 1 17.0082 1 11.4854C1 5.9625 5.47715 1.48535 11 1.48535C16.5228 1.48535 21 5.9625 21 11.4854Z" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    Tài khoản
-                </a>
-                <div class="header__account-dropdown">
-                    <a href="?page=dangnhap" class="header__account-item">Đăng nhập</a>
-                    <a href="?page=dangky" class="header__account-item">Đăng ký</a>
-                </div>
-            </div>
-=======
+
 
             <!-- Nếu tồn tại session người dùng  -->
             <?php if (isset($_SESSION['user'])): ?> 
@@ -136,7 +123,7 @@
                 </div>
             <?php endif; ?>
 
->>>>>>> a89b844ea7654ba6c542edbaec8c12531b6762db
+
             <div class="header__menu-item header__cart">
                 <a href="">
                     <span class="count-item">9</span>
