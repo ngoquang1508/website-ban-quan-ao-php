@@ -275,6 +275,15 @@ ul {
   border-bottom: 1px solid #ccc;
 }
 
+/* ---------- ACCOUNT AVATAR ----------- */
+
+.header__account img {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /* ---------- CART COUNT ---------- */
 .count-item {
   position: absolute;
@@ -797,3 +806,46 @@ main {
 .bread-crumb strong {
   color: #ff6347;
 }
+
+
+/* ---------------------------
+/       TOAST         /
+--------------------------- */
+
+/* Hiển thị thông báo trên mobile */
+#toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 99999;
+}
+
+/* Toast item */
+.toast {
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #fff;
+  background: #2196F3;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity .3s ease, transform .3s ease;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* Khi được hiển thị */
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Khi biến mất */
+.toast.hide {
+  opacity: 0;
+  transform: translateX(30px);
+}
+

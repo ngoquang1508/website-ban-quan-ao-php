@@ -20,6 +20,11 @@ function breadCrumb($page)
             "title" => "Hệ thống cửa hàng",
         ],
 
+        // profile
+        "thongtincanhan" => [
+            "title" => "Thông tin cá nhân",
+        ],
+
         // auth
         "dangnhap" => [
             "title" => "Đăng nhập tài khoản",
