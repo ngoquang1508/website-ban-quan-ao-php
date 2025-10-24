@@ -42,7 +42,8 @@ $_SESSION['user'] = [
     'username' => $user['username'],
     'email'    => $user['email'],
     'role'     => $user['role'],
-    'status'   => $user['status']
+    'status'   => $user['status'],
+    'avatar'   => $user['avatar'],
 ];
 
 // Chuyển trang theo role
