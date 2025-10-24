@@ -1,13 +1,9 @@
+import { showToast } from "./toast.js";
+
 const select = document.getElementById('coso');
 const map = document.getElementById('map');
 const btnFindNear = document.getElementById('btnFindNear');
-const toast = document.getElementById('toast');
-
-function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2800);
-}
+const btnMyLocation = document.getElementById('btnMyLocation');
 
 const stores = {
     hn: { lat: 21.03619, lng: 105.81382, name: "Hà Nội", map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.863655820695!2d105.8116358154145!3d21.036194885994247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab7d7d8db4e7%3A0x78e7685e46d7e5b5!2zMjY2IMSQLiDEkOG7i2kgQ8OgbiwgQmEgxJDDrG5oLCBIw6AgTuG7mWksIFZpZXRuYW0!5e0!3m2!1svi!2s!4v1698222400000!5m2!1svi!2s" },
@@ -56,11 +52,11 @@ btnFindNear.addEventListener('click', () => {
             // Đổi map sang đúng vị trí cửa hàng gần nhất
             map.src = `https://www.google.com/maps?q=${stores[nearest].lat},${stores[nearest].lng}&z=15&output=embed`;
 
-            showToast(`Gần bạn nhất: ${stores[nearest].name} (${minDist.toFixed(1)} km)`);
+            showToast(`Gần bạn nhất: ${stores[nearest].name} (${minDist.toFixed(1)} km)`, "info");
             btnFindNear.classList.remove("btn-loading");
         },
         () => {
-            showToast("Không thể truy cập vị trí. Hãy bật GPS!");
+            showToast("Không thể truy cập vị trí. Hãy bật GPS!", "error");
             btnFindNear.classList.remove("btn-loading");
         }
     );
@@ -71,9 +67,11 @@ updateMap('hn');
 let userPos = null;
 
 // Vị trí của tôi
-document.getElementById('btnMyLocation').addEventListener('click', () => {
+btnMyLocation.addEventListener('click', () => {
+    btnMyLocation.classList.add('btn-loading');
     if (!navigator.geolocation) {
         showToast("Trình duyệt không hỗ trợ định vị!");
+        btnMyLocation.classList.remove('btn-loading');
         return;
     }
 
@@ -83,16 +81,18 @@ document.getElementById('btnMyLocation').addEventListener('click', () => {
 
         map.src = `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
 
-        showToast("Đã xác định vị trí của bạn");
+        showToast("Đã xác định vị trí của bạn", "success");
+        btnMyLocation.classList.remove('btn-loading');
     }, () => {
-        showToast("Không thể truy cập vị trí. Hãy bật GPS!");
+        showToast("Không thể truy cập vị trí. Hãy bật GPS!", "error");
+        btnMyLocation.classList.remove('btn-loading');
     });
 });
 
 // Chỉ đường từ vị trí của bạn → cơ sở đang chọn
 document.getElementById('btnDirection').addEventListener('click', () => {
     if (!userPos) {
-        showToast("Hãy nhấn 'Vị trí của tôi' trước!");
+        showToast("Hãy nhấn 'Vị trí của tôi' trước!", "warning");
         return;
     }
 
@@ -100,7 +100,7 @@ document.getElementById('btnDirection').addEventListener('click', () => {
     const store = stores[code];
 
     if (!store) {
-        showToast("Hãy chọn cơ sở!");
+        showToast("Hãy chọn cơ sở!", "warning");
         return;
     }
 

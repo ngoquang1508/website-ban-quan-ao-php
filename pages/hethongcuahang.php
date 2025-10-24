@@ -59,4 +59,4 @@
 
 
 
-<script src="/assets/js/storeMap.js"></script>
+<script src="/assets/js/storeMap.js" type="module"></script>
