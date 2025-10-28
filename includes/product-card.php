@@ -39,17 +39,19 @@ function ProductCard($id, $name, $price, $url_image)
         border-radius: 1.2rem;
         overflow: hidden;
         background: #fff;
-        transition: box-shadow 0.3s ease;
+        transition: all 0.3s ease;
     }
 
     .product-card:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
     }
 
     /* --- Image --- */
     .product-card__img {
         width: 100%;
-        height: 75%;
+        height: 70%;
+        min-height: 36rem;
         overflow: hidden;
         border-radius: 1.2rem;
     }
@@ -103,7 +105,7 @@ function ProductCard($id, $name, $price, $url_image)
     }
 
     .product-card:hover .product-card__detail {
-        bottom: 11rem;
+        bottom: 12.5rem;
         opacity: 1;
     }
 
@@ -160,15 +162,14 @@ function ProductCard($id, $name, $price, $url_image)
     }
 
     /* --- Responsive --- */
-    @media (max-width: 768px) {
+    @media (min-width: 450px) {
         .product-card {
-            width: 25rem;
+            flex: 0 0 42%;
         }
     }
-
-    @media (min-width: 769px) and (max-width: 1200px) {
+    @media (min-width: 768px) {
         .product-card {
-            width: 22rem;
+            flex: 0 0 31%;
         }
     }
 </style>
