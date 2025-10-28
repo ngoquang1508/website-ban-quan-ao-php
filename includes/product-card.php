@@ -1,8 +1,12 @@
 <?php
-function ProductCard($id, $name, $price, $url_image)
+function ProductCard($id, $name, $price, $url_image, $date)
 {
 ?>
-    <div class="product-card">
+    <div class="product-card"
+        data-price="<?= $price ?>"
+        data-date="<?= $date ?>"
+    >
+
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__img">
             <img src="<?= $url_image ?>" alt="<?= $name ?>">
         </a>
@@ -167,6 +171,7 @@ function ProductCard($id, $name, $price, $url_image)
             flex: 0 0 42%;
         }
     }
+
     @media (min-width: 768px) {
         .product-card {
             flex: 0 0 31%;

@@ -2,6 +2,7 @@
 require "config/db.php";
 require "includes/product-card.php";
 require "includes/sidebar.php";
+require "includes/sort-dropdown.php";
 
 $where = "sexual='Nữ'";
 
@@ -13,15 +14,20 @@ $result = $stmt_get_all->get_result();
 
 <div>
     <div class="product-container">
-        <div class="products">
-            <?php while ($row = $result->fetch_assoc()) {
-                echo ProductCard($row['id'], $row['name'], $row['price'], $row['url_image']);
-            } ?>
-
+        <!-- Cột chính -->
+        <div class="product-main">
+            <?= SortDropdown() ?>
+            <div class="products">
+                <?php while ($row = $result->fetch_assoc()) {
+                    echo ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at']);
+                } ?>
+            </div>
         </div>
-        <?php echo SidebarFilter() ?>
+
+        <?= SidebarFilter() ?>
     </div>
 </div>
+
 
 <style>
     /* ====== Layout chính ====== */
@@ -32,13 +38,32 @@ $result = $stmt_get_all->get_result();
         gap: 2.5rem;
     }
 
+    /* ====== Cột sản phẩm chính ====== */
+    .product-main {
+        flex: 0 0 75%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Sort dropdown hiển thị trên danh sách */
+    .sort-dropdown {
+        align-self: flex-end;
+        margin-bottom: 1.5rem;
+    }
+
     /* ====== Danh sách sản phẩm ====== */
     .products {
-        flex: 0 0 74%;
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         gap: 2rem;
-        justify-content: center;
+        width: 100%;
+        justify-items: start;
+    }
+
+    /* Giúp mỗi thẻ product-card chiếm toàn cột của nó */
+    .product-card {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* ====== Sidebar lọc ====== */
@@ -56,17 +81,6 @@ $result = $stmt_get_all->get_result();
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
         display: none;
-    }
-
-    /* Chỉ hiện sidebar khi màn hình đủ rộng */
-    @media (min-width: 1024px) {
-        .sidebar-filter__wrapper {
-            display: block;
-        }
-
-        .products {
-            flex: 0 0 76%;
-        }
     }
 
     /* ====== Tiêu đề Sidebar ====== */
@@ -108,10 +122,53 @@ $result = $stmt_get_all->get_result();
 
     /* ====== Checkbox ====== */
     .sidebar-filter__item input[type="checkbox"] {
-        transform: scale(1.5);
+        transform: scale(1.2);
         accent-color: #ff6347;
-        /* Màu chủ đạo */
         cursor: pointer;
+    }
+
+    /* ====== Sort drop down ====== */
+    .sort-dropdown__wrapper {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: .8rem;
+    }
+
+    .sort-dropdown__wrapper label {
+        font-size: 1.6rem;
+    }
+
+    .sort-dropdown__wrapper select {
+        appearance: none;
+        /* ẩn icon mặc định (Chrome, Edge, Safari) */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        padding: .8rem 3rem .8rem 1.2rem;
+        font-size: 1.6rem;
+        border: 1px solid #ccc;
+        border-radius: .6rem;
+        background-color: #fff;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='gray' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 1.6rem;
+        outline: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .sort-dropdown__wrapper select:hover {
+        border-color: #ff6347;
+    }
+    
+    /* ====== Desktop: hiện sidebar ====== */
+    @media (min-width: 1024px) {
+        .sidebar-filter__wrapper {
+            display: block;
+        }
     }
 
     /* ====== Responsive ====== */
@@ -123,11 +180,16 @@ $result = $stmt_get_all->get_result();
         .sidebar-filter__wrapper {
             display: none;
         }
-    }
 
-    @media (min-width: 450px) {
+        .product-main {
+            width: 100%;
+        }
+
+        /* Grid trên mobile: 1–2 cột tuỳ chiều rộng */
         .products {
-            justify-content: flex-start;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
     }
 </style>
+
+<script src="/assets/js/filterProducts.js"></script>
