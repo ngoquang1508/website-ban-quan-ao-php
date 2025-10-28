@@ -53,6 +53,7 @@ $result = $stmt_get_all->get_result();
 
     /* ====== Danh sách sản phẩm ====== */
     .products {
+        position: relative;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         gap: 2rem;
@@ -163,7 +164,21 @@ $result = $stmt_get_all->get_result();
     .sort-dropdown__wrapper select:hover {
         border-color: #ff6347;
     }
-    
+
+    /* ====== Sản phẩm trống ====== */
+    .empty-product {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem;
+        font-size: 1.8rem;
+        color: #664d03;
+        background-color: #fff3cd;
+        border-color: #ffecb5;
+        border-radius: .6rem;
+    }
+
     /* ====== Desktop: hiện sidebar ====== */
     @media (min-width: 1024px) {
         .sidebar-filter__wrapper {
