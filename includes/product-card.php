@@ -13,7 +13,7 @@ function ProductCard($id, $name, $price, $url_image, $date)
 
         <div class="product-card__info">
             <h2><?= $name ?></h2>
-            <span><?= $price ?> <u>đ</u></span>
+            <span><?= formatPrice($price) ?><u>đ</u></span>
         </div>
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__detail">Xem chi tiết</a>
 
