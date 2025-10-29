@@ -51,7 +51,7 @@
                     <li><a href="?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
                 </ul>
             </li>
-            <li><a href="?page=tintuc">Tin tức</a></li>
+
             <li><a href="?page=lienhe">Liên hệ</a></li>
             <li><a href="?page=hethongcuahang">Hệ thống cửa hàng</a></li>
         </ul>
@@ -74,7 +74,7 @@
         </div>
         <div class="header__menu-bar">
             <div class="header__menu-item header__hamburger">
-                <a href="#">
+                <a href="javascript:void(0)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M1.43652 7H17.9365M1.43652 1.5H17.9365M1.43652 12.5H17.9365" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
@@ -82,7 +82,7 @@
                 </a>
             </div>
             <div class="header__menu-item header__wishlist">
-                <a href="">
+                <a href="?page=yeuthich">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9932 5.44636C9.9938 3.10895 6.65975 2.48019 4.15469 4.62056C1.64964 6.76093 1.29697 10.3395 3.2642 12.8709C4.89982 14.9757 9.84977 19.4146 11.4721 20.8514C11.6536 21.0121 11.7444 21.0925 11.8502 21.1241C11.9426 21.1516 12.0437 21.1516 12.1361 21.1241C12.2419 21.0925 12.3327 21.0121 12.5142 20.8514C14.1365 19.4146 19.0865 14.9757 20.7221 12.8709C22.6893 10.3395 22.3797 6.73842 19.8316 4.62056C17.2835 2.5027 13.9925 3.10895 11.9932 5.44636Z" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
@@ -92,14 +92,13 @@
 
 
             <!-- Nếu tồn tại session người dùng  -->
-            <?php if (isset($_SESSION['user'])): ?> 
-                <div class="header__menu-item header__account">
-                    <a href="?page=dangnhap">
+            <?php if (isset($_SESSION['user'])): ?>
+                <div class="header__menu-item header__account avatar">
+                    <a href="?page=thongtincanhan">
                         <!-- Nếu người dùng chưa có avatar thì mặc định là avatar default -->
                         <img src="<?php echo $_SESSION['user']['avatar'] ?: '/assets/images/avatar-default.jpg' ?>" alt="avatar">
                         <?= $_SESSION['user']['username'] ?>
                     </a>
-
                     <div class="header__account-dropdown">
                         <a href="?page=thongtincanhan" class="header__account-item">Thông tin cá nhân</a>
                         <a href="xuly/dangxuat.php" class="header__account-item">Đăng xuất</a>
@@ -107,7 +106,7 @@
                 </div>
 
             <!-- Nếu không tồn tại session người dùng -->
-            <?php else: ?> 
+            <?php else: ?>
                 <div class="header__menu-item header__account">
                     <a href="?page=dangnhap">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -165,7 +164,6 @@
                     </ul>
                 </div>
             </li>
-            <li class="header__nav-link"><a href="?page=tintuc">Tin tức</a></li>
             <li class="header__nav-link"><a href="?page=lienhe">Liên hệ</a></li>
             <li class="header__nav-link"><a href="?page=hethongcuahang">Hệ thống cửa hàng</a></li>
         </ul>

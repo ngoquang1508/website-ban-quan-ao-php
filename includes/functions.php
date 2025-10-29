@@ -43,3 +43,8 @@ function breadCrumb($page)
 
     return "<span class='bread-crumb'>{$root} &gt; <strong>{$pages[$page]['title']}</strong></span>";
 }
+
+// hàm format price
+function formatPrice($price) {
+    return number_format($price, 0, ",", ".");
+}
