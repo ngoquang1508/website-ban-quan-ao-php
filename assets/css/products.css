@@ -158,7 +158,7 @@
   user-select: none;
 }
 
-.page-link {
+.page-link, .page-dots {
   display: flex;
   width: 3.5rem;
   height: 3.5rem;
@@ -188,12 +188,6 @@
 .page-link.disabled {
   opacity: 0.5;
   pointer-events: none;
-}
-
-.page-dots {
-  display: inline-block;
-  padding: 8px 10px;
-  color: #888;
 }
 
 /* ====== Desktop: hiện sidebar ====== */

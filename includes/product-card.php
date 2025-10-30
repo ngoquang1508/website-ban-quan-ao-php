@@ -36,7 +36,6 @@ function ProductCard($id, $name, $price, $url_image, $date)
     /* ===== PRODUCT CARD ===== */
     .product-card {
         position: relative;
-        width: 30rem;
         height: 48rem;
         display: flex;
         flex-direction: column;

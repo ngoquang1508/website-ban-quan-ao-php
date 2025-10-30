@@ -7,7 +7,7 @@ require_once "includes/sort-dropdown.php";
 require_once "includes/pagination.php";
 
 $where = "sexual='Nữ'";
-$limit = 6; 
+$limit = 12; 
 $currentPage = isset($_GET['p']) ? (int)$_GET['p'] : 1;
 
 // Đếm sản phẩm

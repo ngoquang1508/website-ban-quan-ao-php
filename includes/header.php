@@ -69,8 +69,9 @@
             </a>
         </div>
         <div class="header__search">
-            <form action="" method="post">
-                <input type="search" name="search" id="" placeholder="Tìm kiếm...">
+            <form action="" method="get" class="search-form">
+                <input type="hidden" name="page" value="tim-kiem">
+                <input type="search" name="query" placeholder="Tìm kiếm sản phẩm..." required>
                 <button type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -110,7 +111,7 @@
                     </div>
                 </div>
 
-            <!-- Nếu không tồn tại session người dùng -->
+                <!-- Nếu không tồn tại session người dùng -->
             <?php else: ?>
                 <div class="header__menu-item header__account">
                     <a href="?page=dangnhap">
