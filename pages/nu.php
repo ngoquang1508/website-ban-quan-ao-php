@@ -8,7 +8,7 @@ require "includes/sort-dropdown.php";
 $where = "sexual='Nữ'";
 
 // --- Cấu hình phân trang ---
-$limit = 1; // số sản phẩm mỗi trang
+$limit = 6; // số sản phẩm mỗi trang
 $currentPage = isset($_GET['p']) ? (int)$_GET['p'] : 1;
 if ($currentPage < 1) $currentPage = 1;
 
@@ -19,6 +19,9 @@ $totalRow = $result_count->fetch_assoc()['total'];
 
 // --- Tính toán vị trí bắt đầu và tổng số trang ---
 $totalPages = ceil($totalRow / $limit);
+if ($totalPages == 0) $currentPage = 1; // Tránh chia 0 nếu không có sản phẩm
+if ($currentPage > $totalPages) $currentPage = $totalPages; // Nếu người dùng nhập trang > tổng số trang thì đưa về trang cuối
+
 $start = ($currentPage - 1) * $limit;
 
 // --- Lấy danh sách sản phẩm ---
@@ -46,8 +49,7 @@ $result = $stmt->get_result();
             <!-- ====== PHÂN TRANG ====== -->
             <div class="pagination">
                 <?php
-                if ($totalPages > 1):
-                    $visible = 3; // số trang hiển thị liền kề nhau
+                if ($totalPages > 0):
                     $prevPage = max(1, $currentPage - 1);
                     $nextPage = min($totalPages, $currentPage + 1);
 
