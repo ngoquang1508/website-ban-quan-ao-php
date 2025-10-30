@@ -47,8 +47,7 @@ function ProductCard($id, $name, $price, $url_image, $date)
     }
 
     .product-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        transform: translateY(-3px);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
     }
 
     /* --- Image --- */
