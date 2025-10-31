@@ -17,7 +17,7 @@ session_start();
 <body>
     <?php
 
-    $page = $_GET['page'] ?? "trangchu";
+    $page = $_GET['page'] ?? "trang-chu";
     $file = "pages/$page" . ".php";
 
     // header chung
@@ -27,7 +27,7 @@ session_start();
     <!-- Nội dung chính -->
     <main>
         <?php
-        if ($page == "trangchu") {
+        if ($page == "trang-chu") {
             require "includes/banner.php";
         }
         ?>
@@ -36,7 +36,7 @@ session_start();
             <!-- bread crumb -->
             <?php
             require "includes/functions.php";
-            if ($page !== "trangchu") {
+            if ($page !== "trang-chu") {
                 echo breadCrumb($page);
             }
             ?>

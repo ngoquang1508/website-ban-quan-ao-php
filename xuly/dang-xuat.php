@@ -7,4 +7,4 @@ session_unset(); // Xóa biến session
 session_destroy(); // Hủy biến session hoàn toàn
 
 // Chuyển về trang đăng nhập
-header("Location: ../?page=dangnhap");
+header("Location: ../?page=dang-nhap");

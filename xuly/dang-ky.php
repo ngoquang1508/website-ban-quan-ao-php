@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
     if ($stmt->execute()) {
         echo "<p>Tạo tài khoản thành công</p>";
-        header("Location: ../?page=dangnhap");
+        header("Location: ../?page=dang-nhap");
         exit;
     } else {
         echo "Lỗi: " . $stmt->error;

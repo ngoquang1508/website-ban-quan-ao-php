@@ -3,7 +3,7 @@ session_start();
 
 // Check admin login
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../?page=dangnhap");
+    header("Location: ../?page=dang-nhap");
     exit;
 }
 

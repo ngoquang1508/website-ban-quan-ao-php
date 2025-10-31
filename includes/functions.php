@@ -13,10 +13,10 @@ function breadCrumb($page)
         "tintuc" => [
             "title" => "Tin tức",
         ],
-        "lienhe" => [
+        "lien-he" => [
             "title" => "Liên hệ",
         ],
-        "hethongcuahang" => [
+        "he-thong-cua-hang" => [
             "title" => "Hệ thống cửa hàng",
         ],
         "tim-kiem" => [
@@ -24,21 +24,21 @@ function breadCrumb($page)
         ],
 
         // profile
-        "thongtincanhan" => [
+        "thong-tin-ca-nhan" => [
             "title" => "Thông tin cá nhân",
         ],
 
         // auth
-        "dangnhap" => [
+        "dang-nhap" => [
             "title" => "Đăng nhập tài khoản",
         ],
-        "dangky" => [
+        "dang-ky" => [
             "title" => "Đăng ký tài khoản",
         ],
-        "quenmatkhau" => [
+        "quen-mat-khau" => [
             "title" => "Quên mật khẩu",
         ],
-        "doimatkhau" => [
+        "doi-mat-khau" => [
             "title" => "Đặt lại mật khẩu",
         ],
     ];

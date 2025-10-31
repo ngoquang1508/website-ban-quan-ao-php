@@ -3,7 +3,7 @@ session_start();
 include_once __DIR__ . "/../config/db.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: ../?page=dangnhap");
+    header("Location: ../?page=dang-nhap");
     exit;
 }
 
@@ -47,6 +47,6 @@ $_SESSION['user'] = [
 ];
 
 // Chuyển trang theo role
-$redirect = ($user['role'] === 'admin') ? "../admin/" : "../?page=trangchu";
+$redirect = ($user['role'] === 'admin') ? "../admin/" : "../?page=trang-chu";
 header("Location: $redirect");
 exit;

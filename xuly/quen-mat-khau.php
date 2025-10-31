@@ -20,5 +20,5 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 $stmt->close();
 $conn->close();
 
-header("Location: ../?page=doimatkhau&email=" . urlencode($email));
+header("Location: ../?page=doi-mat-khau&email=" . urlencode($email));
 exit;

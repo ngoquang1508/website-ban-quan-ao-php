@@ -1,7 +1,7 @@
 <div class="auth__container">
     <div class="auth__form">
         <h1 class="auth__form-title">Đăng Ký</h1>
-        <form class="auth__form-main" action="xuly/dangky.php" method="post">
+        <form class="auth__form-main" action="xuly/dang-ky.php" method="post">
             <div class="input-box">
                 <input type="text" name="hoten" placeholder=" " required>
                 <span>Họ tên</span>
@@ -44,6 +44,6 @@
             </ul>
         </div>
 
-        <p>Bạn đã có tài khoản? <a href="?page=dangnhap">Đăng nhập</a></p>
+        <p>Bạn đã có tài khoản? <a href="?page=dang-nhap">Đăng nhập</a></p>
     </div>
 </div>

@@ -2,7 +2,7 @@
     <div class="auth__form">
         <h1 class="auth__form-title">Đặt lại mật khẩu</h1>
 
-        <form class="auth__form-main" action="xuly/doimatkhau.php" method="post">
+        <form class="auth__form-main" action="xuly/doi-mat-khau.php" method="post">
             <!-- Ẩn email để biết user nào cần đổi -->
             <input type="hidden" name="email" value="<?= htmlspecialchars($_GET['email'] ?? '') ?>">
 
@@ -17,7 +17,7 @@
             </div>
 
             <button type="submit" name="submit">Đổi mật khẩu</button>
-            <a class="auth__prev-login" href="?page=dangnhap">Quay lại trang đăng nhập</a>
+            <a class="auth__prev-login" href="?page=dang-nhap">Quay lại trang đăng nhập</a>
         </form>
     </div>
 </div>
