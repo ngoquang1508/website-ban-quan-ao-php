@@ -30,6 +30,16 @@ $result = getProducts($where, $pagination['start'], $limit);
 
 $currentPage = $pagination['currentPage'];
 $totalPages = $pagination['totalPages'];
+
+$user_id = $_SESSION['user']['id'] ?? null;
+$favorites = [];
+
+if ($user_id) {
+    $favResult = $conn->query("SELECT product_id FROM favorites WHERE user_id = $user_id");
+    while ($row = $favResult->fetch_assoc()) {
+        $favorites[] = $row['product_id'];
+    }
+}
 ?>
 
 <div>
@@ -48,13 +58,15 @@ $totalPages = $pagination['totalPages'];
     <div class="search-products">
         <?php if ($result && $result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
-                <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at']) ?>
+                <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites) ?>
             <?php endwhile; ?>
         <?php endif; ?>
     </div>
 
     <?php Pagination($currentPage, $totalPages, "tim-kiem&query=" . urlencode($keyword)); ?>
 </div>
+
+<script type="module" src="/assets/js/favorite.js"></script>
 
 <style>
     .search-products {

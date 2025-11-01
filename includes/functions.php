@@ -22,6 +22,9 @@ function breadCrumb($page)
         "tim-kiem" => [
             "title" => "Tìm kiếm",
         ],
+        "yeu-thich" => [
+            "title" => "Yêu thích",
+        ],
 
         // profile
         "thong-tin-ca-nhan" => [
