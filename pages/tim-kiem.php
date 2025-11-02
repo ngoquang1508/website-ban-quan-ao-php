@@ -14,7 +14,7 @@ if ($keyword !== '') {
 }
 
 // --- Phân trang ---
-$limit = 6;
+$limit = 12;
 $currentPage = isset($_GET['p']) ? (int)$_GET['p'] : 1;
 if ($currentPage < 1) $currentPage = 1;
 
