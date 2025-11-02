@@ -15,7 +15,11 @@ $favorites = getUserFavorites($conn, $user_id);
 
 <div class="yeu-thich-container">
     <?php if (!$user_id): ?>
-        <p>Đăng nhập để thêm vào danh sách yêu thích. <a href="?page=dang-nhap">Đăng nhập ngay</a></p>
+
+        <p>Đăng nhập để thêm vào danh sách yêu thích.
+            <a href="?page=dang-nhap&redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>">Đăng nhập ngay</a>
+        </p>
+
     <?php elseif ($result->num_rows == 0): ?>
         <p>Chưa có sản phẩm yêu thích nào, Hãy thêm vào nhé!</p>
     <?php else: ?>
@@ -35,6 +39,7 @@ $favorites = getUserFavorites($conn, $user_id);
     .yeu-thich-container {
         font-size: 1.6rem;
     }
+
     .yeu-thich-container p a {
         color: #1a73e8;
         font-weight: 600;
@@ -44,6 +49,7 @@ $favorites = getUserFavorites($conn, $user_id);
         color: #ff6347;
         text-decoration: underline;
     }
+
     .yeu-thich-container p {
         width: 100%;
         padding: 1rem;
