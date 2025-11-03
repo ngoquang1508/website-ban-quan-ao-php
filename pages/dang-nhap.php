@@ -1,7 +1,8 @@
 <div class="auth__container">
     <div class="auth__form">
         <h1 class="auth__form-title">Đăng nhập</h1>
-        <form class="auth__form-main" action="xuly/dang-nhap.php" method="post">
+        <?php $redirect = $_GET['redirect'] ?? ''; ?>
+        <form class="auth__form-main" action="xuly/dang-nhap.php<?= $redirect ? '?redirect=' . urlencode($redirect) : '' ?>" method="post">
             <div class="input-box">
                 <input type="text" name="email" placeholder=" " required>
                 <span>Email</span>

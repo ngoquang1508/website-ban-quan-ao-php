@@ -46,6 +46,13 @@ $_SESSION['user'] = [
     'avatar'   => $user['avatar'],
 ];
 
+if (isset($_SESSION['redirect_after_login'])) {
+    $redirect = $_SESSION['redirect_after_login'];
+    unset($_SESSION['redirect_after_login']); // xóa sau khi dùng
+    header("Location: " . $redirect);
+    exit;
+}
+
 // Chuyển trang theo role
 $redirect = ($user['role'] === 'admin') ? "../admin/" : "../?page=trang-chu";
 header("Location: $redirect");
