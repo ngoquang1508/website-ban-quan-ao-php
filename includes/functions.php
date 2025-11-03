@@ -28,6 +28,9 @@ function breadCrumb($page)
         "chi-tiet-san-pham" => [
             "title" => "Chi tiết sản phẩm",
         ],
+        "gio-hang" => [
+            "title" => "Giỏ hàng",
+        ],
 
         // profile
         "thong-tin-ca-nhan" => [
@@ -54,6 +57,7 @@ function breadCrumb($page)
 }
 
 // hàm format price
-function formatPrice($price) {
+function formatPrice($price)
+{
     return number_format($price, 0, ",", ".");
 }
