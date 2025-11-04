@@ -1,6 +1,6 @@
 <?php
 require_once "config/db.php";
-$user_id = $_SESSION['user']['id'];
+$user_id = isset($_SESSION['user']) ? $_SESSION['user']['id'] : null;
 // Đếm số lượng sản phẩm có trong giỏ hàng theo id user
 $sql = "SELECT COUNT(product_id) AS total_product FROM cards WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
