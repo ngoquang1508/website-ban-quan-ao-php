@@ -11,12 +11,13 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/auth.css">
+    
 </head>
 
 <body>
     <?php
 
-    $page = $_GET['page'] ?? "trangchu";
+    $page = $_GET['page'] ?? "trang-chu";
     $file = "pages/$page" . ".php";
 
     // header chung
@@ -26,7 +27,7 @@ session_start();
     <!-- Nội dung chính -->
     <main>
         <?php
-        if ($page == "trangchu") {
+        if ($page == "trang-chu") {
             require "includes/banner.php";
         }
         ?>
@@ -35,7 +36,7 @@ session_start();
             <!-- bread crumb -->
             <?php
             require "includes/functions.php";
-            if ($page !== "trangchu") {
+            if ($page !== "trang-chu") {
                 echo breadCrumb($page);
             }
             ?>

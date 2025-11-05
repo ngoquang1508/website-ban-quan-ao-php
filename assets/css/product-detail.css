@@ -1,0 +1,220 @@
+/* ====== Bố cục chính ====== */
+.product-detail__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 6rem;
+  padding: 2rem 0;
+}
+
+/* ====== Cột ảnh sản phẩm ====== */
+.product-detail__img {
+  flex: 0 0 50%;
+  min-width: 26rem;
+}
+
+.product-detail__img img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ====== Cột nội dung sản phẩm ====== */
+.product-detail__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.product-detail__title {
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
+.product-detail__price {
+  font-size: 2.4rem;
+  color: #ff6347;
+  font-weight: 600;
+}
+
+.product-detail__desc {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.product-detail__info {
+  font-size: 1.6rem;
+}
+
+.product-detail__info p strong {
+    color: green;
+}
+
+.product-detail__container form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== Số lượng & nút ====== */
+.group-input {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4rem;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.quantity-selector button {
+  background-color: #f5f5f5;
+  border: none;
+  width: 3.6rem;
+  height: 3.6rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.quantity-selector button:hover {
+  color: #ff6347;
+}
+
+.quantity-selector .quantity {
+  text-align: center;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+}
+
+/* ====== Nút thêm/mua ====== */
+.add-to-card,
+.buy-now {
+  border: none;
+  padding: 1.5rem 0;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: bold;
+  border: 1px solid transparent;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.add-to-card {
+  background: #000;
+}
+
+.buy-now {
+  background: #ff6347;
+}
+
+.add-to-card:hover,
+.buy-now:hover {
+  color: #ff6347;
+  background-color: #fff;
+  border-color: #ff6347;
+}
+
+/* ========= notice  ========== */
+.product-detail__notice {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+
+.product-detail__notice .icon svg {
+    overflow: hidden;
+    vertical-align: middle;
+    width: 2.4rem;
+    height: 2.4rem;
+    fill: #ff6347;
+}
+
+.product-detail__notice p strong {
+  color: #ff6347;
+}
+
+/* ========= POLICY ========= */
+.product-detail__policy {
+    border-top: 1px solid #ccc;
+    padding-top: 2rem;
+}
+
+.product-detail__policy .item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.product-detail__policy .item .icon {
+    width: 3.6rem;
+    height: 3.6rem;
+}
+
+.product-detail__policy .item .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-detail__policy .info {
+    display: flex;
+    gap: .6rem;
+    font-weight: bold;
+}
+
+.product-detail__policy .info p {
+    font-weight: 500;
+    color: #76809B;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 992px) {
+  .product-detail__container {
+    flex-direction: column;
+  }
+  .product-detail__img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-detail__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-detail__img {
+    width: 70%;
+  }
+}
+
+@media (max-width: 450px) {
+  .product-detail__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-detail__img {
+    width: 50%;
+  }
+  .product-detail__policy .info {
+    flex-direction: column;
+  }
+}

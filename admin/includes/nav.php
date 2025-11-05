@@ -30,7 +30,7 @@
     </div>
 
     <div class="nav__footer">
-        <a href="../xuly/dangxuat.php">
+        <a href="../xuly/dang-xuat.php">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
         </a>
