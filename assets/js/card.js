@@ -9,18 +9,22 @@ addToCardBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   const productId = addToCardBtn.dataset.id;
   const qty = parseInt(quantity.value) || 1;
-  console.log(qty)
 
   try {
-    const res = await fetch("/api/card.php", {
+    const res = await fetch("/api/cart.php", {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
-      body: `product_id=${productId}&quantity=${qty}`,
+      body: JSON.stringify({
+        action: "add",
+        product_id: productId,
+        quantity: qty,
+      }),
     });
 
     const data = await res.json();
+    console.log(data)
 
     if (data.status === "success") {
       showToast("Đã thêm sản phẩm vào giỏ hàng", data.status);
@@ -32,7 +36,6 @@ addToCardBtn.addEventListener("click", async (e) => {
     showToast("Không thể kết nối tới server", "error");
   }
 });
-
 
 // xử lý tăng giảm số lượng sản phẩm
 decrementBtn.addEventListener("click", (e) => {

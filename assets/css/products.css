@@ -314,6 +314,12 @@
   transition: all 0.3s ease;
 }
 
+.product-card__add-to-cart.active {
+  background: #ff6347;
+  color: #fff;
+  pointer-events: none;
+}
+
 .product-card__add-to-cart:hover {
   background: #ff6347;
   color: #fff;

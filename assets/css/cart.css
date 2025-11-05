@@ -50,11 +50,12 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.6rem;
   position: relative;
 }
 
 .cart-item__title {
+  margin-right: 5rem;
   font-size: 1.8rem;
   font-weight: 500;
 }
@@ -121,7 +122,7 @@
   color: #fff;
 }
 
-.cart-qty__input {
+.quantity {
   width: 4.5rem;
   text-align: center;
   border: none;
@@ -129,6 +130,14 @@
   font-size: 1.5rem;
   outline: none;
   color: #333;
+}
+
+/* === Thông báo chưa có sản phẩm nào === */
+.cart__list p.info {
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 1rem;
+  background: #fff3cd;
 }
 
 /* === Tổng tiền giỏ hàng === */
@@ -141,6 +150,7 @@
   font-weight: 500;
   border-top: 1px solid #eee;
   padding-top: 1.5rem;
+  user-select: none;
 }
 
 .cart__summary-total {
@@ -151,9 +161,9 @@
 
 /* === Nút Thanh toán === */
 .cart__checkout {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 .cart__checkout-btn {
   margin-top: 1.5rem;
@@ -172,4 +182,15 @@
   border-color: #ff6347;
   color: #ff6347;
   background: #fff;
+}
+
+@media (max-width: 640px) {
+  .cart-item__details {
+    gap: 2rem;
+  }
+  .cart-item__controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
 }

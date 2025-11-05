@@ -1,7 +1,8 @@
 <?php
-function ProductCard($id, $name, $price, $url_image, $date, $favorites)
+function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $carts = [])
 {
     $activeClass = in_array($id, $favorites) ? 'active' : '';
+    $cartClass = in_array($id, $carts) ? 'active' : '';
 ?>
     <div class="product-card"
         data-price="<?= $price ?>"
@@ -17,7 +18,7 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites)
         </div>
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__detail">Xem chi tiết</a>
 
-        <a href="javascript:void(0)" class="product-card__add-to-cart">
+        <a href="javascript:void(0)" class="product-card__add-to-cart <?= $cartClass ?>" data-id="<?= $id ?>">
             <i class="fa-solid fa-cart-shopping"></i>
         </a>
 
@@ -30,3 +31,39 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites)
 <?php
 }
 ?>
+
+<script type="module">
+    import { showToast } from "/assets/js/toast.js";
+    document.querySelectorAll(".product-card__add-to-cart")
+        .forEach((item) => {
+            item.addEventListener("click", async () => {
+                const productId = item.dataset.id;
+                const qty = 1;
+
+                try {
+                    const res = await fetch("/api/cart.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            action: "add",
+                            product_id: productId,
+                            quantity: qty
+                        })
+                    });
+
+                    const data = await res.json();
+                    
+                    if (data.status === "success") {
+                        showToast(data.message, data.status);
+                    }
+
+                    item.classList.add("active");
+                } catch (error) {
+                    console.log(error);
+                    showToast("Lỗi server", "error");
+                }
+            });
+        });
+</script>

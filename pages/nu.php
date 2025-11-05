@@ -6,6 +6,7 @@ require_once "includes/sidebar.php";
 require_once "includes/sort-dropdown.php";
 require_once "includes/pagination.php";
 require_once "includes/fetch-favorites.php";
+require_once "includes/fetch-products.php";
 
 $where = "sexual='Nữ'";
 $limit = 12;
@@ -26,6 +27,7 @@ $totalPages = $pagination['totalPages'];
 
 $user_id = $_SESSION['user']['id'] ?? null;
 $favorites = getUserFavorites($conn, $user_id);
+$carts = getUserCartProductIds($conn, $user_id);
 ?>
 
 <div>
@@ -36,7 +38,7 @@ $favorites = getUserFavorites($conn, $user_id);
             <div class="products">
                 <?php if ($result->num_rows > 0): ?>
                     <?php while ($row = $result->fetch_assoc()): ?>
-                        <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites) ?>
+                        <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites, $carts) ?>
                     <?php endwhile; ?>
                 <?php else: ?>
                     <div class="empty-product">Không có sản phẩm nào.</div>
