@@ -14,7 +14,8 @@ $stmt_file->bind_param("i", $product_id);
 $stmt_file->execute();
 $product = $stmt_file->get_result()->fetch_assoc();
 
-$target_file_uploads = '../' . $product['url_image'];
+$target_file_uploads = "../../" . $product['url_image'];
+echo $target_file_uploads;
 
 if (!file_exists($target_file_uploads)) {
     echo "Lỗi không tìm thấy thư mục lưu file";

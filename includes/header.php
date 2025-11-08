@@ -7,10 +7,11 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
+
 ?>
 <header class="header">
 
-    <div class="header__topbar">
+    <div class="header__topbar" style="background: url('<?= BASE_URL ?>assets/images/background-topbar.webp') center">
         <div class="header__topbar-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -36,7 +37,7 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
             <div class="menu-title">Menu</div>
         </div>
         <ul class="menu-body">
-            <li><a href="/">Trang chủ</a></li>
+            <li><a href="<?= BASE_URL ?>">Trang chủ</a></li>
 
             <li class="has-submenu">
                 <a href="#">
@@ -74,8 +75,8 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
 
     <div class="header__middle">
         <div class="header__logo">
-            <a class="header__logo-wrapper" href="/">
-                <img src="/assets/images/logo.webp" alt="logo">
+            <a class="header__logo-wrapper" href="<?= BASE_URL ?>">
+                <img src="<?= BASE_URL ?>assets/images/logo.webp" alt="logo">
             </a>
         </div>
         <div class="header__search">
@@ -112,7 +113,7 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                 <div class="header__menu-item header__account avatar">
                     <a href="?page=thong-tin-ca-nhan">
                         <!-- Nếu người dùng chưa có avatar thì mặc định là avatar default -->
-                        <img src="<?php echo $_SESSION['user']['avatar'] ?: '/assets/images/avatar-default.jpg' ?>" alt="avatar">
+                        <img src="<?php echo $_SESSION['user']['avatar'] ?: BASE_URL . 'assets/images/avatar-default.jpg' ?>" alt="avatar">
                         <?= $_SESSION['user']['username'] ?>
                     </a>
                     <div class="header__account-dropdown">
@@ -153,7 +154,7 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
 
     <div class="header__nav">
         <ul class="header__nav-links">
-            <li class="header__nav-link"><a href="/">Trang chủ</a></li>
+            <li class="header__nav-link"><a href="<?= BASE_URL ?>">Trang chủ</a></li>
             <li class="header__nav-link dropdown">
                 <a href="?page=nu#tat-ca">
                     Nữ

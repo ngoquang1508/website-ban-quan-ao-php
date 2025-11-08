@@ -9,7 +9,7 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $ca
         data-date="<?= $date ?>">
 
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__img">
-            <img src="<?= $url_image ?>" alt="<?= $name ?>">
+            <img src="<?= BASE_URL . $url_image ?>" alt="<?= $name ?>">
         </a>
 
         <div class="product-card__info">
@@ -32,38 +32,4 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $ca
 }
 ?>
 
-<script type="module">
-    import { showToast } from "/assets/js/toast.js";
-    document.querySelectorAll(".product-card__add-to-cart")
-        .forEach((item) => {
-            item.addEventListener("click", async () => {
-                const productId = item.dataset.id;
-                const qty = 1;
-
-                try {
-                    const res = await fetch("/api/cart.php", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            action: "add",
-                            product_id: productId,
-                            quantity: qty
-                        })
-                    });
-
-                    const data = await res.json();
-                    
-                    if (data.status === "success") {
-                        showToast(data.message, data.status);
-                    }
-
-                    item.classList.add("active");
-                } catch (error) {
-                    console.log(error);
-                    showToast("Lỗi server", "error");
-                }
-            });
-        });
-</script>
+<script type="module" src="<?= BASE_URL ?>assets/js/addToCart.js"></script>

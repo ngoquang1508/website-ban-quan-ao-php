@@ -1,16 +1,16 @@
 <div class="banner__container">
     <picture>
-        <source media="(min-width: 1200px)" srcset="assets/images/banner_1.webp" type="image/webp">
-        <source media="(min-width: 1024px)" srcset="assets/images/banner_1.webp" type="image/webp">
-        <source media="(min-width: 768px)" srcset="assets/images/banner_1.webp" type="image/webp">
-        <img src="assets/images/banner_1.webp" alt="Banner chính" loading="lazy" style="display:block; margin:0 auto; max-width:100%;">
+        <source media="(min-width: 1200px)" srcset="<?= BASE_URL ?>assets/images/banner_1.webp" type="image/webp">
+        <source media="(min-width: 1024px)" srcset="<?= BASE_URL ?>assets/images/banner_1.webp" type="image/webp">
+        <source media="(min-width: 768px)" srcset="<?= BASE_URL ?>assets/images/banner_1.webp" type="image/webp">
+        <img src="<?= BASE_URL ?>assets/images/banner_1.webp" alt="Banner chính" loading="lazy" style="display:block; margin:0 auto; max-width:100%;">
     </picture>
 
     <div class="banner__policy">
         <div class="banner__policy-list">
             <div class="banner__policy-item">
                 <div class="banner__policy-icon">
-                    <img src="assets/images/icon_policy_1.webp" alt="Giao hàng toàn quốc" loading="lazy">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_1.webp" alt="Giao hàng toàn quốc" loading="lazy">
                 </div>
                 <div class="banner__policy-text">
                     <h4>Giao hàng toàn quốc</h4>
@@ -20,7 +20,7 @@
 
             <div class="banner__policy-item">
                 <div class="banner__policy-icon">
-                    <img src="assets/images/icon_policy_2.webp" alt="Miễn phí giao hàng" loading="lazy">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_2.webp" alt="Miễn phí giao hàng" loading="lazy">
                 </div>
                 <div class="banner__policy-text">
                     <h4>Miễn phí giao hàng</h4>
@@ -30,7 +30,7 @@
 
             <div class="banner__policy-item">
                 <div class="banner__policy-icon">
-                    <img src="assets/images/icon_policy_3.webp" alt="Đổi trả trong 7 ngày" loading="lazy">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_3.webp" alt="Đổi trả trong 7 ngày" loading="lazy">
                 </div>
                 <div class="banner__policy-text">
                     <h4>Đổi trả trong 7 ngày</h4>
@@ -40,7 +40,7 @@
 
             <div class="banner__policy-item">
                 <div class="banner__policy-icon">
-                    <img src="assets/images/icon_policy_4.webp" alt="Hỗ trợ 24/7" loading="lazy">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_4.webp" alt="Hỗ trợ 24/7" loading="lazy">
                 </div>
                 <div class="banner__policy-text">
                     <h4>Hỗ trợ 24/7</h4>

@@ -1,5 +1,5 @@
 <!-- NHÚNG CSS -->
-<link rel="stylesheet" href="/assets/css/he-thong-cua-hang.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/he-thong-cua-hang.css">
 
 <div class="stores-page">
     <div class="container">
@@ -59,4 +59,4 @@
 
 
 
-<script src="/assets/js/storeMap.js" type="module"></script>
+<script src="<?= BASE_URL ?>assets/js/storeMap.js" type="module"></script>

@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once "../config/base-url.php";
+
 // Check admin login
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: ../?page=dang-nhap");
@@ -44,9 +46,9 @@ if ($action === null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang quản trị</title>
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/users.css">
-    <link rel="stylesheet" href="assets/css/products.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/index.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/users.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 

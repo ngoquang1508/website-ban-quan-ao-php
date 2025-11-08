@@ -3,7 +3,7 @@
     <!-- Footer top -->
     <div class="footer__top">
       <div class="footer__logo">
-        <img src="/assets/images/logo-footer.webp" alt="logo">
+        <img src="<?= BASE_URL ?>assets/images/logo-footer.webp" alt="logo">
       </div>
 
       <div class="footer__social">

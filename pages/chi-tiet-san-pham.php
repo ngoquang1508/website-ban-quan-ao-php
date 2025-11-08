@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/css/product-detail.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/product-detail.css">
 <?php
 require_once "config/db.php";
 require_once "includes/functions.php";
@@ -74,7 +74,7 @@ $stmt->close();
         <div class="product-detail__policy">
             <div class="item">
                 <div class="icon">
-                    <img src="/assets/images/icon_policy_1.webp" alt="policy-icon">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_1.webp" alt="policy-icon">
                 </div>
                 <div class="info">
                     Giao hàng toán quốc: <p>Thanh toán (COD) khi nhận hàng</p>
@@ -82,7 +82,7 @@ $stmt->close();
             </div>
             <div class="item">
                 <div class="icon">
-                    <img src="/assets/images/icon_policy_2.webp" alt="policy-icon">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_2.webp" alt="policy-icon">
                 </div>
                 <div class="info">
                     Miễn phí giao hàng: <p>Theo chính sách</p>
@@ -90,7 +90,7 @@ $stmt->close();
             </div>
             <div class="item">
                 <div class="icon">
-                    <img src="/assets/images/icon_policy_3.webp" alt="policy-icon">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_3.webp" alt="policy-icon">
                 </div>
                 <div class="info">
                     Đổi trả trong 7 ngày: <p>Kể từ ngày mua hàng</p>
@@ -98,7 +98,7 @@ $stmt->close();
             </div>
             <div class="item">
                 <div class="icon">
-                    <img src="/assets/images/icon_policy_4.webp" alt="policy-icon">
+                    <img src="<?= BASE_URL ?>assets/images/icon_policy_4.webp" alt="policy-icon">
                 </div>
                 <div class="info">
                     Hỗ trợ 24/7: <p>Theo chính sách</p>
@@ -108,4 +108,4 @@ $stmt->close();
     </div>
 </div>
 
-<script type="module" src="/assets/js/card.js"></script>
+<script type="module" src="<?= BASE_URL ?>assets/js/card.js"></script>

@@ -11,7 +11,7 @@ addToCardBtn.addEventListener("click", async (e) => {
   const qty = parseInt(quantity.value) || 1;
 
   try {
-    const res = await fetch("/api/cart.php", {
+    const res = await fetch("api/cart.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

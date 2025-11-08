@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/css/products.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/products.css">
 <?php
 require_once "config/db.php";
 require_once "includes/fetch-favorites.php";
@@ -59,4 +59,4 @@ $carts = getUserCartProductIds($conn, $user_id);
     }
 </style>
 
-<script type="module" src="/assets/js/favorite.js"></script>
+<script type="module" src="<?= BASE_URL ?>assets/js/favorite.js"></script>

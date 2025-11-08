@@ -1,8 +1,8 @@
-import { showToast } from "/assets/js/toast.js";
+import { showToast } from "./toast.js";
 
 // === Hàm gọi API ===
 async function updateCart(action, productId, quantity = 1) {
-  const res = await fetch("/api/cart.php", {
+  const res = await fetch("api/cart.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ action, product_id: productId, quantity }),

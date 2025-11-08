@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/css/cart.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/cart.css">
 
 <?php
 require_once "config/db.php";
@@ -85,4 +85,4 @@ $total_price = 0;
 
 </div>
 
-<script type="module" src="/assets/js/gio-hang.js"></script>
+<script type="module" src="<?= BASE_URL ?>assets/js/gio-hang.js"></script>

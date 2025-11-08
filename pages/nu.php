@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/css/products.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/products.css">
 <?php
 require_once "includes/fetch-products.php";
 require_once "includes/product-card.php";
@@ -52,5 +52,5 @@ $carts = getUserCartProductIds($conn, $user_id);
     </div>
 </div>
 
-<script src="/assets/js/filterProducts.js"></script>
-<script src="/assets/js/favorite.js" type="module"></script>
+<script src="<?= BASE_URL ?>assets/js/filterProducts.js"></script>
+<script src="<?= BASE_URL ?>assets/js/favorite.js" type="module"></script>

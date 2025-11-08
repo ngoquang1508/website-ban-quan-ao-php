@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/css/products.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/products.css">
 <?php
 require "config/db.php";
 require "includes/product-card.php";
@@ -66,7 +66,7 @@ if ($user_id) {
     <?php Pagination($currentPage, $totalPages, "tim-kiem&query=" . urlencode($keyword)); ?>
 </div>
 
-<script type="module" src="/assets/js/favorite.js"></script>
+<script type="module" src="<?= BASE_URL ?>assets/js/favorite.js"></script>
 
 <style>
     .search-products {
