@@ -1,8 +1,13 @@
 <?php
-
 $env = parse_ini_file(__DIR__ . '/.env');
 
-$conn = new mysqli($env['DB_HOST'], $env['DB_USER'], $env['DB_PASS'], $env['DB_NAME']);
+$host = $env['DB_HOST'];
+$user = $env['DB_USER'];
+$pass = $env['DB_PASS'];
+$dbname = $env['DB_NAME'];
+$port = isset($env['DB_PORT']) ? $env['DB_PORT'] : 3306; // default 3306
+
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
