@@ -27,7 +27,7 @@ if (!$stmt->execute()) {
     exit;
 }
 
-unlink($target_file_uploads);
+// unlink($target_file_uploads);
 
 $stmt_file->close();
 $stmt->close();
