@@ -1,8 +1,9 @@
-<link rel="stylesheet" href="/assets/css/products.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/products.css">
 <?php
 require_once "config/db.php";
 require_once "includes/fetch-favorites.php";
 require_once "includes/product-card.php";
+require_once "includes/fetch-products.php";
 
 $sql = "SELECT * FROM `favorites` f JOIN `products` p ON f.product_id = p.id;";
 $stmt = $conn->prepare($sql);
@@ -11,6 +12,7 @@ $result = $stmt->get_result();
 
 $user_id = $_SESSION['user']['id'] ?? null;
 $favorites = getUserFavorites($conn, $user_id);
+$carts = getUserCartProductIds($conn, $user_id);
 ?>
 
 <div class="yeu-thich-container">
@@ -26,7 +28,7 @@ $favorites = getUserFavorites($conn, $user_id);
         <div class="products">
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                    <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites) ?>
+                    <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites, $carts) ?>
                 <?php endwhile; ?>
             <?php else: ?>
                 <div class="empty-product">Không có sản phẩm nào.</div>
@@ -57,4 +59,4 @@ $favorites = getUserFavorites($conn, $user_id);
     }
 </style>
 
-<script type="module" src="/assets/js/favorite.js"></script>
+<script type="module" src="<?= BASE_URL ?>assets/js/favorite.js"></script>

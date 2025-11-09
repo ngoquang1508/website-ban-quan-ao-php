@@ -51,7 +51,7 @@ function breadCrumb($page)
             "title" => "Đặt lại mật khẩu",
         ],
     ];
-    $root = '<a href="/">Trang chủ</a>';
+    $root = '<a href="'. BASE_URL .'">Trang chủ</a>';
 
     return "<span class='bread-crumb'>{$root} &gt; <strong>{$pages[$page]['title']}</strong></span>";
 }

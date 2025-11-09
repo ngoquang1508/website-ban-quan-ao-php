@@ -12,18 +12,32 @@
             <input class="desInput" type="text" name="description">
 
             <div class="add-product__form-row">
-                <label for="">Giá</label>
-                <input class="priceInput" type="number" name="price" min="0">
+                <div>
+                    <label for="">Giá</label>
+                    <input class="priceInput" type="number" name="price" min="0">
+                </div>
     
-                <label for="">Số lượng</label>
-                <input class="stockInput" type="number" name="stock" min="0">
+                <div>
+                    <label for="">Số lượng</label>
+                    <input class="stockInput" type="number" name="stock" min="0">
+                </div>
 
-                <label for="">Kiểu</label>
-                <select name="type" id="">
-                    <option value="Áo">Áo</option>
-                    <option value="Quần">Quần</option>
-                    <option value="Phụ kiện">Phụ kiện</option>
-                </select>
+                <div>
+                    <label for="">Kiểu</label>
+                    <select name="type" id="">
+                        <option value="Áo">Áo</option>
+                        <option value="Quần">Quần</option>
+                        <option value="Phụ kiện">Phụ kiện</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="">Giới tính</label>
+                    <select name="sexual" id="">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                </div>
             </div>
 
             <div class="file-upload">

@@ -10,7 +10,7 @@ favoriteBtns.forEach((btn) =>
 
     // Gửi Ajax đến PHP
     try {
-      const res = await fetch("/api/favorite.php", {
+      const res = await fetch("api/favorite.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

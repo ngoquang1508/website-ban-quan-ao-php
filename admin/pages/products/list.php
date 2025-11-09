@@ -46,11 +46,15 @@ $i = 1;
                             <td><?php echo htmlspecialchars($row['name']); ?></td>
                             <td style="white-space: nowrap"><?php echo number_format($row['price']); ?> đ</td>
                             <td><?php echo $row['stock']; ?></td>
-                            <td><?php echo htmlspecialchars($row['description']); ?></td>
+                            <td class="main-product__description">
+                                <div class="main-product__description-text">
+                                    <?php echo htmlspecialchars($row['description']); ?>
+                                </div>
+                            </td>
                             <td style="white-space: nowrap"><?php echo date("d/m/Y H:i:s", strtotime($row['created_at'])); ?></td>
                             <td>
                                 <?php if (!empty($row['url_image'])): ?>
-                                    <img src="<?php echo $row['url_image']; ?>" alt="Ảnh sản phẩm" width="100">
+                                    <img src="<?php echo BASE_URL . "../" . $row['url_image']; ?>" alt="Ảnh sản phẩm" width="100">
                                 <?php else: ?>
                                     Chưa có ảnh
                                 <?php endif; ?>
@@ -93,11 +97,15 @@ $i = 1;
                             <td class="main-product__name"><?php echo htmlspecialchars($row['name']); ?></td>
                             <td style="white-space: nowrap"><?php echo number_format($row['price']); ?> đ</td>
                             <td><?php echo $row['stock']; ?></td>
-                            <td class="main-product__description"><?php echo htmlspecialchars($row['description']); ?></td>
+                            <td class="main-product__description">
+                                <div class="main-product__description-text">
+                                    <?php echo htmlspecialchars($row['description']); ?>
+                                </div>
+                            </td>
                             <td style="white-space: nowrap"><?php echo date("d/m/Y H:i:s", strtotime($row['created_at'])); ?></td>
                             <td>
                                 <?php if (!empty($row['url_image'])): ?>
-                                    <img src="<?php echo $row['url_image']; ?>" alt="Ảnh sản phẩm" width="50">
+                                    <img src="<?php echo BASE_URL . "../" . $row['url_image']; ?>" alt="Ảnh sản phẩm" width="50">
                                 <?php else: ?>
                                     Chưa có ảnh
                                 <?php endif; ?>
@@ -116,8 +124,8 @@ $i = 1;
 
 <script>
     const deleteBtns = document.querySelectorAll('.main-product__btn-delete');
-    deleteBtns.forEach(deleteBtn=>{
-        deleteBtn.addEventListener("click", (e)=> {
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener("click", (e) => {
             if (!confirm("Xác nhận xóa sản phẩm này?")) {
                 e.preventDefault();
             }

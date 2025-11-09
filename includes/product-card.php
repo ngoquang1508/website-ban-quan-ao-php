@@ -1,14 +1,15 @@
 <?php
-function ProductCard($id, $name, $price, $url_image, $date, $favorites)
+function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $carts = [])
 {
     $activeClass = in_array($id, $favorites) ? 'active' : '';
+    $cartClass = in_array($id, $carts) ? 'active' : '';
 ?>
     <div class="product-card"
         data-price="<?= $price ?>"
         data-date="<?= $date ?>">
 
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__img">
-            <img src="<?= $url_image ?>" alt="<?= $name ?>">
+            <img src="<?= BASE_URL . $url_image ?>" alt="<?= $name ?>">
         </a>
 
         <div class="product-card__info">
@@ -17,7 +18,7 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites)
         </div>
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__detail">Xem chi tiết</a>
 
-        <a href="javascript:void(0)" class="product-card__add-to-cart">
+        <a href="javascript:void(0)" class="product-card__add-to-cart <?= $cartClass ?>" data-id="<?= $id ?>">
             <i class="fa-solid fa-cart-shopping"></i>
         </a>
 
@@ -30,3 +31,5 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites)
 <?php
 }
 ?>
+
+<script type="module" src="<?= BASE_URL ?>assets/js/addToCart.js"></script>

@@ -54,7 +54,6 @@ ul {
 
 /* ---------- TOP BAR ---------- */
 .header__topbar {
-  background: url("/assets/images/background-topbar.webp") center;
   color: #fff;
   text-align: center;
   font-size: 1.3rem;

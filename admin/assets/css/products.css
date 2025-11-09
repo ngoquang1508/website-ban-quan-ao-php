@@ -97,6 +97,21 @@
   display: block;
 }
 
+.main-product__description {
+  vertical-align: middle; /* căn giữa text theo chiều dọc */
+}
+
+.main-product__description-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;   /* số dòng muốn giới hạn */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  max-width: 350px;        /* tùy ý */
+}
+
+
 /* Buttons */
 .main-product__btn {
   width: 18rem;
@@ -208,15 +223,14 @@
   font-weight: 600;
   color: #333;
   display: block;
+  margin-bottom: 1rem;
 }
 
 .add-product__form-row {
   margin: 1.4rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  white-space: nowrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 .add-product__container input[type="text"],

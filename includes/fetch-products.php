@@ -43,3 +43,22 @@ function getPaginationInfo($totalRow, $limit, $currentPage)
         'start' => $start
     ];
 }
+
+/**
+ * Lấy id sản phẩm người theo id người mua
+ */
+function getUserCartProductIds($conn, $user_id)
+{
+    $cartProductIds = [];
+
+    $stmt = $conn->prepare("SELECT product_id FROM cards WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        $cartProductIds[] = $row['product_id'];
+    }
+
+    return $cartProductIds;
+}
