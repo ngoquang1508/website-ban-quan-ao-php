@@ -10,7 +10,7 @@ $product = $stmt->get_result()->fetch_assoc();
 
 
 // Đếm số người đặt trong giỏ hàng
-$stmt_count_user_card = $conn->prepare("SELECT COUNT(DISTINCT user_id) AS total_user FROM cards WHERE product_id = ?");
+$stmt_count_user_card = $conn->prepare("SELECT COUNT(DISTINCT user_id) AS total_user FROM carts WHERE product_id = ?");
 $stmt_count_user_card->bind_param("i", $product_id);
 $stmt_count_user_card->execute();
 $total_user = $stmt_count_user_card->get_result()->fetch_assoc()['total_user'];
@@ -38,7 +38,7 @@ $stmt->close();
         <div class="product-detail__info">
             <p><b>Tình trạng:</b> <strong><?= $product['stock'] > 0 ? "Còn {$product['stock']} sản phẩm" : "Hết hàng" ?></strong></p>
         </div>
-        <form action="" method="post">
+        <form action="?page=thanh-toan" method="post">
             <div class="group-input">
                 <label>Số lượng:</label>
                 <div class="quantity-selector">
@@ -58,6 +58,9 @@ $stmt->close();
                     <button type="button" class="increment-btn"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
+            <input type="hidden" name="id" value="<?= $product['id'] ?>">
+            <input type="hidden" name="type" value="single">
+
             <button class="add-to-card" type="submit" name="add-to-cart" data-id="<?= $product['id'] ?>">Thêm vào giỏ hàng</button>
             <button class="buy-now" type="submit" name="buy-now">Mua ngay</button>
         </form>

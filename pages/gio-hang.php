@@ -5,7 +5,7 @@ require_once "config/db.php";
 require_once "includes/functions.php";
 
 $user_id = isset($_SESSION['user']) ? $_SESSION['user']['id'] : null;
-$stmt = $conn->prepare("SELECT * FROM cards c JOIN products p ON c.product_id = p.id WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT * FROM carts c JOIN products p ON c.product_id = p.id WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -77,7 +77,7 @@ $total_price = 0;
 
             <!-- Nút thanh toán -->
             <div class="cart__checkout">
-                <button class="cart__checkout-btn" type="button">Thanh toán ngay</button>
+                <a href="?page=thanh-toan&type=cart" class="cart__checkout-btn" type="button">Thanh toán ngay</a>
             </div>
 
         <?php endif; ?>

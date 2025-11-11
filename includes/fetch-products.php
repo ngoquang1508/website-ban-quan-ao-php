@@ -51,7 +51,7 @@ function getUserCartProductIds($conn, $user_id)
 {
     $cartProductIds = [];
 
-    $stmt = $conn->prepare("SELECT product_id FROM cards WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT product_id FROM carts WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();

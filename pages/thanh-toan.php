@@ -2,12 +2,54 @@
 
 <?php
 require_once "config/db.php";
+require_once "includes/functions.php";
 
-// Lấy danh sách sản phẩm trong giỏ hàng
-// $stmt = $conn->prepare("");
+$user_id = $_SESSION['user']['id'] ?? null;
+$product_id = $_POST['id'] ?? $_GET['id'] ?? null;
+$type = $_GET['type'] ?? $_POST['type'] ?? null;
 
-// Lấy sản phẩm mà người dùng chọn
+$result = null;
+$total = 0;
+$quantity = 1;
 
+if ($type === "cart") {
+    // Lấy sản phẩm từ giỏ hàng
+    $sql = "
+        SELECT user_id, product_id, name, price, quantity, url_image
+        FROM carts c
+        JOIN products p ON c.product_id = p.id
+        WHERE user_id = ?
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $sql_total = "SELECT COUNT(product_id) AS total FROM carts WHERE user_id = ?";
+    $stmt_total = $conn->prepare($sql_total);
+    $stmt_total->bind_param("i", $user_id);
+    $stmt_total->execute();
+    $total = $stmt_total->get_result()->fetch_assoc()['total'];
+} elseif ($type === "single") {
+    // Mua ngay 1 sản phẩm
+
+    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+
+    $sql = "SELECT id AS product_id, name, price, url_image FROM products WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $total = 1;
+}
+
+// quay lại trang cũ
+$go_back = BASE_URL;
+if ($type === "cart") {
+    $go_back = "?page=gio-hang";
+} else {
+    $go_back = "?page=chi-tiet-san-pham&id=$product_id";
+}
 ?>
 
 <div class="checkout__container">
@@ -25,23 +67,23 @@ require_once "config/db.php";
                 </div>
 
                 <div class="input-group">
+                    <input type="text" name="name" placeholder="">
+                    <span>Họ và tên</span>
+                </div>
+                <div class="input-group">
                     <input type="email" name="email" placeholder="">
                     <span>Email</span>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="" placeholder="">
-                    <span>Họ và tên</span>
-                </div>
-                <div class="input-group">
-                    <input type="text" name="" placeholder="">
+                    <input type="text" name="phone" placeholder="">
                     <span>Số điện thoại</span>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="" placeholder="">
+                    <input type="text" name="address" placeholder="">
                     <span>Địa chỉ</span>
                 </div>
                 <div class="input-group">
-                    <textarea name="" maxlength="500" placeholder="" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea>
+                    <textarea name="note" maxlength="500" placeholder="" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';"></textarea>
                     <span>Ghi chú (tùy chọn)</span>
                 </div>
             </div>
@@ -61,6 +103,7 @@ require_once "config/db.php";
                         </div>
                     </label>
                 </div>
+
                 <!-- PHƯƠNG THỨC THANH TOÁN -->
                 <div class="title">
                     <i class="fa-regular fa-credit-card"></i>
@@ -90,22 +133,34 @@ require_once "config/db.php";
     <!-- ĐƠN HÀNG -->
     <div class="checkout__orders">
         <div class="col">
-            <h2>Đơn hàng (1 sản phẩm)</h2>
+            <h2>Đơn hàng (<?= $total ?> sản phẩm)</h2>
 
-            <!-- SẢN PHẨM -->
+            <!-- DANH SÁCH SẢN PHẨM -->
             <div class="list">
-                <div class="item">
-                    <div class="image">
-                        <img src="<?= BASE_URL ?>uploads/products/sp11.webp" alt="">
-                        <span class="qty">1</span>
-                    </div>
-                    <div class="decs">
-                        <span class="name">Áo Len Gilet Nữ Cổ Tim Dệt Thừng</span>
-                    </div>
-                    <div class="qty-price">
-                        <span>868.000<u>đ</u></span>
-                    </div>
-                </div>
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()):
+                        $qty = $row['quantity'] ?? $quantity;
+                        $subtotal = $row['price'] * $qty;
+                    ?>
+                        <div class="item"
+                            data-product-id="<?= $row['product_id'] ?>"
+                            data-qty="<?= $qty ?>"
+                            data-price="<?= $row['price'] ?>">
+                            <div class="image">
+                                <img src="<?= BASE_URL . $row['url_image'] ?>" alt="">
+                                <span class="qty"><?= $qty ?></span>
+                            </div>
+                            <div class="decs">
+                                <span class="name"><?= htmlspecialchars($row['name']) ?></span>
+                            </div>
+                            <div class="qty-price">
+                                <span><?= formatPrice($subtotal) ?><u>đ</u></span>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p style="font-size: 1.6rem; font-weight: 600;">Không có sản phẩm nào</p>
+                <?php endif; ?>
             </div>
 
             <!-- MÃ GIẢM GIÁ -->
@@ -118,30 +173,29 @@ require_once "config/db.php";
             <div class="checkout__summary">
                 <div class="item">
                     <span class="label">Tạm tính</span>
-                    <span class="value">868.000<u>đ</u></span>
+                    <span class="value tam-tinh"></span>
                 </div>
                 <div class="item">
                     <span class="label">Phí vận chuyển</span>
-                    <span class="value">868.000<u>đ</u></span>
+                    <span class="value">40.000<u>đ</u></span>
                 </div>
             </div>
-            <!-- TỔNG TIỀN  -->
+
+            <!-- TỔNG TIỀN -->
             <div class="checkout__total">
                 <div class="item">
                     <span class="label">Tổng cộng</span>
-                    <span class="value">868.000<u>đ</u></span>
+                    <span class="value total"></span>
                 </div>
                 <div class="item">
-                    <!-- go back -->
-                    <a href="" class="go-back">
-                        <i class="fa-solid fa-angle-left"></i>
-                        Quay lại
+                    <a href="<?= $go_back ?>" class="go-back">
+                        <i class="fa-solid fa-angle-left"></i> Quay lại
                     </a>
-                    <!-- button -->
-                    <button class="submit">Đặt hàng</button>
+                    <button class="submit" data-type="<?= $type ?>">Đặt hàng</button>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+
+<script type="module" src="<?= BASE_URL ?>assets/js/thanh-toan.js"></script>

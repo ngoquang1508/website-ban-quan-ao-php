@@ -36,7 +36,7 @@ if (!$product) {
 switch ($action) {
     case 'add':
         // Thêm sản phẩm (nếu chưa có)
-        $stmt_check = $conn->prepare("SELECT * FROM cards WHERE user_id = ? AND product_id = ?");
+        $stmt_check = $conn->prepare("SELECT * FROM carts WHERE user_id = ? AND product_id = ?");
         $stmt_check->bind_param("ii", $user_id, $product_id);
         $stmt_check->execute();
         $result = $stmt_check->get_result();
@@ -46,7 +46,7 @@ switch ($action) {
             exit;
         }
 
-        $stmt = $conn->prepare("INSERT INTO cards(user_id, product_id, quantity) VALUES(?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO carts(user_id, product_id, quantity) VALUES(?,?,?)");
         $stmt->bind_param("iii", $user_id, $product_id, $quantity);
         $stmt->execute();
 
@@ -58,7 +58,7 @@ switch ($action) {
         if ($quantity < 1) $quantity = 1;
         if ($quantity > $product['stock']) $quantity = $product['stock'];
 
-        $stmt = $conn->prepare("UPDATE cards SET quantity = ? WHERE product_id = ? AND user_id = ?");
+        $stmt = $conn->prepare("UPDATE carts SET quantity = ? WHERE product_id = ? AND user_id = ?");
         $stmt->bind_param("iii", $quantity, $product_id, $user_id);
         $stmt->execute();
 
@@ -69,7 +69,7 @@ switch ($action) {
         exit;
 
     case 'delete':
-        $stmt = $conn->prepare("DELETE FROM cards WHERE product_id = ? AND user_id = ?");
+        $stmt = $conn->prepare("DELETE FROM carts WHERE product_id = ? AND user_id = ?");
         $stmt->bind_param("ii", $product_id, $user_id);
         $stmt->execute();
 
