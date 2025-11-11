@@ -55,7 +55,6 @@ require_once "config/base-url.php";
     </main>
 
     <?php
-
     // footer chung
     if ($page !== "thanh-toan") require_once 'includes/footer.php';
 

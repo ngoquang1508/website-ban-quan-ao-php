@@ -54,6 +54,10 @@ if (isset($_SESSION['redirect_after_login'])) {
 }
 
 // Chuyển trang theo role
+
 $redirect = ($user['role'] === 'admin') ? "../admin/" : "../?page=trang-chu";
+
 header("Location: $redirect");
+
 exit;
+

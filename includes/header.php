@@ -37,7 +37,9 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
             <div class="menu-title">Menu</div>
         </div>
         <ul class="menu-body">
+
             <li><a href="<?= BASE_URL ?>">Trang chủ</a></li>
+
 
             <li class="has-submenu">
                 <a href="#">
@@ -51,7 +53,6 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                     <li><a href="?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
                 </ul>
             </li>
-
             <li class="has-submenu">
                 <a href="#">
                     Nam
@@ -68,8 +69,6 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
             <li><a href="?page=lien-he">Liên hệ</a></li>
             <li><a href="?page=he-thong-cua-hang">Hệ thống cửa hàng</a></li>
         </ul>
-
-
     </div>
     <div class="overlay"></div>
 
@@ -97,7 +96,6 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                     Menu
                 </a>
             </div>
-
             <div class="header__menu-item header__wishlist">
                 <a href="?page=yeu-thich">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -139,7 +137,9 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                 </div>
             <?php endif; ?>
 
+
             <div class="header__menu-item header__cart">
+
                 <!-- php count item -->
                 <a href="?page=gio-hang">
                     <span class="count-item"><?= $total_product < 10 ? $total_product : "9+" ?></span>
@@ -187,6 +187,61 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
     </div>
 </header>
 
+<style>
+    /* Ẩn/hiển thị menu theo kích thước màn hình */
+    .nav-menu {
+        display: none; /* Ẩn mặc định trên desktop */
+    }
+
+    .header__nav {
+        display: block; /* Hiển thị mặc định trên desktop */
+    }
+
+    /* Responsive: Hiển thị menu mobile dưới 768px */
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: block; /* Hiển thị menu mobile */
+        }
+        .header__nav {
+            display: none; /* Ẩn menu desktop */
+        }
+    }
+
+    /* Style cho overlay */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    /* Style cho submenu */
+    .submenu {
+        display: none;
+        position: absolute;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+        z-index: 1000;
+    }
+
+    .submenu.open {
+        display: block;
+    }
+
+    .fa-caret-down.active {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+</style>
 
 <script>
     const wrapper = document.querySelector('.swiper-wrapper');
@@ -205,14 +260,12 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
     }
 
     function updateButtons() {
-        // Nếu đang ở slide đầu tiên → disable Prev
         if (currentIndex === 0) {
             btnPrev.classList.add('disabled');
         } else {
             btnPrev.classList.remove('disabled');
         }
 
-        // Nếu đang ở slide cuối cùng → disable Next
         if (currentIndex === slides.length - 1) {
             btnNext.classList.add('disabled');
         } else {
@@ -220,7 +273,6 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
         }
     }
 
-    // Nút Next
     btnNext.addEventListener('click', () => {
         if (currentIndex < slides.length - 1) {
             currentIndex++;
@@ -229,7 +281,6 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
         }
     });
 
-    // Nút Prev
     btnPrev.addEventListener('click', () => {
         if (currentIndex > 0) {
             currentIndex--;
@@ -238,14 +289,12 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
         }
     });
 
-    // Khi người dùng cuộn bằng tay → cập nhật nút
     wrapper.addEventListener('scroll', () => {
         const slideWidth = slides[0].offsetWidth;
         currentIndex = Math.round(wrapper.scrollLeft / slideWidth);
         updateButtons();
     });
 
-    // Gọi lần đầu khi load
     updateButtons();
 </script>
 
@@ -254,20 +303,27 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
     const navMenu = document.querySelector('.nav-menu');
     const overlay = document.querySelector('.overlay');
 
+
     // Toggle mở/đóng menu mobile
+
     hamburger.addEventListener('click', (e) => {
         e.preventDefault();
         navMenu.classList.toggle('active');
         overlay.classList.toggle('active');
     });
 
+
     // Click overlay → đóng menu
+
     overlay.addEventListener('click', () => {
         navMenu.classList.remove('active');
         overlay.classList.remove('active');
     });
 
+
+
     // Toggle submenu (Nữ / Nam)
+
     document.querySelectorAll('.has-submenu > a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -275,7 +331,9 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
             const icon = link.querySelector('.fa-caret-down');
             const submenu = link.nextElementSibling;
 
+
             // Đóng các submenu khác
+
             document.querySelectorAll('.submenu').forEach(menu => {
                 if (menu !== submenu) {
                     menu.classList.remove('open');
@@ -284,11 +342,14 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                 }
             });
 
+
             // Toggle submenu hiện tại
+
             submenu.classList.toggle('open');
             icon.classList.toggle('active');
         });
     });
+
 
     // Khi resize cửa sổ → reset trạng thái menu về mặc định
     window.addEventListener('resize', () => {
@@ -299,6 +360,7 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
             overlay.classList.remove('active');
 
             // Đóng submenu & reset icon
+
             document.querySelectorAll('.submenu').forEach(menu => {
                 menu.classList.remove('open');
             });
