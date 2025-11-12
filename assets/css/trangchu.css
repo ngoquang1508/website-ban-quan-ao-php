@@ -1,0 +1,82 @@
+.category-round {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 50px 30px;
+        }
+
+        .category-round__list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px 20px;
+            justify-items: center;
+            list-style: none;
+        }
+
+        .category-round__item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .category-round__item:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Element: hình tròn */
+        .category-round__thumb {
+            width: 160px;
+            height: 160px;
+            background: #fdf3f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .category-round__thumb img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        /* Element: nhãn */
+        .category-round__label {
+            background: #fdf3f0;
+            color: #ee4d2d;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            min-width: 100px;
+            text-transform: uppercase;
+        }
+
+        /* Modifier (nếu cần) */
+        .category-round__item--active .category-round__label {
+            background: #ee4d2d;
+            color: #fff;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 992px) {
+            .category-round__thumb { width: 130px; height: 130px; }
+        }
+
+        @media (max-width: 768px) {
+            .category-round__list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .category-round__thumb { width: 140px; height: 140px; }
+        }
+
+        @media (max-width: 480px) {
+            .category-round { padding: 30px 15px; }
+            .category-round__thumb { width: 120px; height: 120px; }
+        }
