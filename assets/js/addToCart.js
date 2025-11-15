@@ -1,4 +1,5 @@
 import { showToast } from "./toast.js";
+import { updateCartCountUI } from "./global.js";
 
 document.querySelectorAll(".product-card__add-to-cart").forEach((item) => {
   item.addEventListener("click", async () => {
@@ -23,6 +24,7 @@ document.querySelectorAll(".product-card__add-to-cart").forEach((item) => {
       if (data.status === "success") {
         showToast(data.message, data.status);
         item.classList.add("active");
+        updateCartCountUI(data.cart_count);
       } else {
         showToast("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!", "error");
       }

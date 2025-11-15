@@ -50,7 +50,7 @@ switch ($action) {
         $stmt->bind_param("iii", $user_id, $product_id, $quantity);
         $stmt->execute();
 
-        echo json_encode(["status" => "success", "message" => "Thêm sản phẩm thành công"]);
+        echo json_encode(["status" => "success", "message" => "Thêm sản phẩm thành công", "cart_count" => getCartCount($conn, $user_id)]);
         exit;
 
     case 'update':
@@ -64,7 +64,8 @@ switch ($action) {
 
         echo json_encode([
             "status" => "success",
-            "new_item_total" => $product['price'] * $quantity
+            "new_item_total" => $product['price'] * $quantity,
+            "cart_count" => getCartCount($conn, $user_id)
         ]);
         exit;
 
@@ -75,11 +76,22 @@ switch ($action) {
 
         echo json_encode([
             "status" => "success",
-            "message" => "Xóa sản phẩm thành công"
+            "message" => "Xóa sản phẩm thành công",
+            "cart_count" => getCartCount($conn, $user_id)
         ]);
         exit;
 
     default:
         echo json_encode(["status" => "error", "message" => "Action không hợp lệ"]);
         exit;
+}
+
+// Hàm lấy tổng số sản phẩm của user
+function getCartCount($conn, $user_id)
+{
+    $stmt = $conn->prepare("SELECT COUNT(product_id) AS total FROM carts WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $res = $stmt->get_result()->fetch_assoc();
+    return (int)($res['total'] ?? 0);
 }

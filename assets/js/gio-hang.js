@@ -1,4 +1,5 @@
 import { showToast } from "./toast.js";
+import { updateCartCountUI } from "./global.js";
 
 // === Hàm gọi API ===
 async function updateCart(action, productId, quantity = 1) {
@@ -34,9 +35,9 @@ async function handleRemoveItem(id) {
         setTimeout(() => {
           item.remove();
           checkEmptyCart();
+          updateCartCountUI(data.cart_count);
         }, 300);
       }
-      updateCartTotal();
       showToast(data.message, "success");
     } else {
       showToast(data.message, "error");
@@ -53,6 +54,8 @@ function checkEmptyCart() {
   if (cartList.querySelectorAll(".cart-item").length === 0) {
     cartList.innerHTML =
       "<p style='font-size: 1.6rem; padding: 1rem; background: #fff3cd;'>Không có sản phẩm nào trong giỏ hàng của bạn.</p>";
+  } else {
+    updateCartTotal();
   }
 }
 

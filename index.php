@@ -12,7 +12,7 @@ require_once "config/base-url.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/index.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/auth.css">
-    
+
 </head>
 
 <body>
@@ -59,6 +59,9 @@ require_once "config/base-url.php";
     if ($page !== "thanh-toan") require_once 'includes/footer.php';
 
     ?>
+    <?php if ($page !== "thanh-toan"): ?>
+        <script type="module" src="<?= BASE_URL ?>assets/js/global.js"></script>
+    <?php endif; ?>
 </body>
 
 </html>

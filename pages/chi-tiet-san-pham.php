@@ -111,4 +111,4 @@ $stmt->close();
     </div>
 </div>
 
-<script type="module" src="<?= BASE_URL ?>assets/js/card.js"></script>
+<script type="module" src="<?= BASE_URL ?>assets/js/cart.js"></script>

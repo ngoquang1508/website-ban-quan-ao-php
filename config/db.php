@@ -1,26 +1,14 @@
 <?php
 $env = parse_ini_file(__DIR__ . '/.env');
 
-$host = $env['DB_HOST'] ?? 'localhost';
-$user = $env['DB_USER'] ?? 'root';
-$pass = $env['DB_PASS'] ?? '';
-$dbname = $env['DB_NAME'] ?? 'clothing_website';
+$host = $env['DB_HOST'];
+$user = $env['DB_USER'];
+$pass = $env['DB_PASS'];
+$dbname = $env['DB_NAME'];
+// $port = isset($env['DB_PORT']) ? $env['DB_PORT'] : 3306; // default 3306
 
-// Danh sách port phổ biến có thể dùng
-$ports = [3306, 3307, 3308];
+$conn = new mysqli($host, $user, $pass, $dbname);
 
-$conn = null;
-$connected = false;
-
-foreach ($ports as $port) {
-    $conn = @new mysqli($host, $user, $pass, $dbname, $port);
-    if (!$conn->connect_errno) {
-        $connected = true;
-        break;
-    }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-if (!$connected) {
-    die("Không thể kết nối MySQL ở các cổng: " . implode(', ', $ports));
-}
-

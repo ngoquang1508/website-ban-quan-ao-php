@@ -3,11 +3,11 @@ import { showToast } from "./toast.js";
 const decrementBtn = document.querySelector(".decrement-btn");
 const incrementBtn = document.querySelector(".increment-btn");
 const quantity = document.querySelector(".quantity");
-const addToCardBtn = document.querySelector(".add-to-card");
+const addToCartBtn = document.querySelector(".add-to-card");
 
-addToCardBtn.addEventListener("click", async (e) => {
+addToCartBtn.addEventListener("click", async (e) => {
   e.preventDefault();
-  const productId = addToCardBtn.dataset.id;
+  const productId = addToCartBtn.dataset.id;
   const qty = parseInt(quantity.value) || 1;
 
   try {
