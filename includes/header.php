@@ -187,62 +187,6 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
     </div>
 </header>
 
-<style>
-    /* Ẩn/hiển thị menu theo kích thước màn hình */
-    .nav-menu {
-        display: none; /* Ẩn mặc định trên desktop */
-    }
-
-    .header__nav {
-        display: block; /* Hiển thị mặc định trên desktop */
-    }
-
-    /* Responsive: Hiển thị menu mobile dưới 768px */
-    @media (max-width: 768px) {
-        .nav-menu {
-            display: block; /* Hiển thị menu mobile */
-        }
-        .header__nav {
-            display: none; /* Ẩn menu desktop */
-        }
-    }
-
-    /* Style cho overlay */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-    }
-
-    .overlay.active {
-        display: block;
-    }
-
-    /* Style cho submenu */
-    .submenu {
-        display: none;
-        position: absolute;
-        background: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        min-width: 200px;
-        z-index: 1000;
-    }
-
-    .submenu.open {
-        display: block;
-    }
-
-    .fa-caret-down.active {
-        transform: rotate(180deg);
-        transition: transform 0.3s ease;
-    }
-</style>
-
 <script>
     const wrapper = document.querySelector('.swiper-wrapper');
     const slides = document.querySelectorAll('.swiper-slide');
