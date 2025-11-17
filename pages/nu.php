@@ -12,6 +12,22 @@ $where = "sexual='Nữ'";
 $limit = 12;
 $currentPage = isset($_GET['p']) ? (int)$_GET['p'] : 1;
 
+// Đọc category để lấy đúng danh mục
+$cat = $_GET['cat'] ?? '';
+switch ($cat) {
+    case "ao-nu":
+        $where .= " AND type='Áo'";
+        break;
+    case "quan-nu":
+        $where .= " AND type='Quần'";
+        break;
+    case "phu-kien-nu":
+        $where .= " AND type='Phụ kiện'";
+        break;
+    default:
+        break;
+}
+
 // Đếm sản phẩm
 $totalRow = getTotalProduct($where);
 
@@ -33,7 +49,9 @@ $carts = getUserCartProductIds($conn, $user_id);
 <div>
     <div class="product-container">
         <div class="product-main">
-            <?= SortDropdown() ?>
+            <?php if ($result->num_rows > 0): ?>
+                <?= SortDropdown() ?>
+            <?php endif; ?>
 
             <div class="products">
                 <?php if ($result->num_rows > 0): ?>
@@ -41,11 +59,13 @@ $carts = getUserCartProductIds($conn, $user_id);
                         <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites, $carts) ?>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <div class="empty-product">Không có sản phẩm nào.</div>
+                    <div class="empty-product">Sản phẩm đang được cập nhật.</div>
                 <?php endif; ?>
             </div>
 
-            <?= Pagination($currentPage, $totalPages, "nu"); ?>
+            <?php if ($result->num_rows > 0): ?>
+                <?= Pagination($currentPage, $totalPages, "nu", $cat); ?>
+            <?php endif; ?>
         </div>
 
         <?= SidebarFilter() ?>

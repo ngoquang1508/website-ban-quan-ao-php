@@ -17,6 +17,7 @@ function getTotalProduct($where)
  */
 function getProducts($where, $start, $limit)
 {
+    
     global $conn;
     $sql = "SELECT * FROM products WHERE $where LIMIT ?, ?";
     $stmt = $conn->prepare($sql);

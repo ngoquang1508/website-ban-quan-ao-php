@@ -1,8 +1,13 @@
 <?php
-function Pagination($currentPage, $totalPages, $page) {
+function Pagination($currentPage, $totalPages, $page, $cat = "")
+{
     if ($totalPages < 1) return;
 
-    $baseUrl = '?page=' . $page;
+    $category = "";
+    if (isset($cat)) {
+        $category = "&cat=" . $cat;
+    }
+    $baseUrl = '?page=' . $page . $category;
 
     $prevPage = max(1, $currentPage - 1);
     $nextPage = min($totalPages, $currentPage + 1);
@@ -41,4 +46,3 @@ function Pagination($currentPage, $totalPages, $page) {
     echo '<a href="' . $baseUrl . '&p=' . $nextPage . '" class="page-link ' . ($currentPage == $totalPages ? 'disabled' : '') . '">&raquo;</a>';
     echo '</div>';
 }
-?>

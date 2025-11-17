@@ -47,10 +47,10 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="?page=nu#tat-ca">Tất cả</a></li>
-                    <li><a href="?page=nu#ao-nu">Áo nữ</a></li>
-                    <li><a href="?page=nu#quan-nu">Quần nữ</a></li>
-                    <li><a href="?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
+                    <li><a href="?page=nu&cat=tat-ca">Tất cả</a></li>
+                    <li><a href="?page=nu&cat=ao-nu">Áo nữ</a></li>
+                    <li><a href="?page=nu&cat=quan-nu">Quần nữ</a></li>
+                    <li><a href="?page=nu&cat=phu-kien-nu">Phụ kiện nữ</a></li>
                 </ul>
             </li>
             <li class="has-submenu">
@@ -59,10 +59,10 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="?page=nam#tat-ca">Tất cả</a></li>
-                    <li><a href="?page=nam#ao-nam">Áo nam</a></li>
-                    <li><a href="?page=nam#quan-nam">Quần nam</a></li>
-                    <li><a href="?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
+                    <li><a href="?page=nam&cat=tat-ca">Tất cả</a></li>
+                    <li><a href="?page=nam&cat=ao-nam">Áo nam</a></li>
+                    <li><a href="?page=nam&cat=quan-nam">Quần nam</a></li>
+                    <li><a href="?page=nam&cat=phu-kien-nam">Phụ kiện nam</a></li>
                 </ul>
             </li>
 
@@ -156,28 +156,28 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
         <ul class="header__nav-links">
             <li class="header__nav-link"><a href="<?= BASE_URL ?>">Trang chủ</a></li>
             <li class="header__nav-link dropdown">
-                <a href="?page=nu#tat-ca">
+                <a href="?page=nu&cat=tat-ca">
                     Nữ
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <div class="nav-content">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="?page=nu#ao-nu">Áo nữ</a></li>
-                        <li class="nav-item"><a href="?page=nu#quan-nu">Quần nữ</a></li>
-                        <li class="nav-item"><a href="?page=nu#phu-kien-nu">Phụ kiện nữ</a></li>
+                        <li class="nav-item"><a href="?page=nu&cat=ao-nu">Áo nữ</a></li>
+                        <li class="nav-item"><a href="?page=nu&cat=quan-nu">Quần nữ</a></li>
+                        <li class="nav-item"><a href="?page=nu&cat=phu-kien-nu">Phụ kiện nữ</a></li>
                     </ul>
                 </div>
             </li>
             <li class="header__nav-link dropdown">
-                <a href="?page=nam#tat-ca">
+                <a href="?page=nam&cat=tat-ca">
                     Nam
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <div class="nav-content">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="?page=nam#ao-nam">Áo nam</a></li>
-                        <li class="nav-item"><a href="?page=nam#quan-nam">Quần nam</a></li>
-                        <li class="nav-item"><a href="?page=nam#phu-kien-nam">Phụ kiện nam</a></li>
+                        <li class="nav-item"><a href="?page=nam&cat=ao-nam">Áo nam</a></li>
+                        <li class="nav-item"><a href="?page=nam&cat=quan-nam">Quần nam</a></li>
+                        <li class="nav-item"><a href="?page=nam&cat=phu-kien-nam">Phụ kiện nam</a></li>
                     </ul>
                 </div>
             </li>
