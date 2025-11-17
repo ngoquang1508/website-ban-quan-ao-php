@@ -43,14 +43,27 @@ foreach ($data['items'] as $item) {
     $conn->query("UPDATE products SET stock = stock - {$item['quantity']} WHERE id = {$item['product_id']}");
 }
 
-// Nếu kiểu thanh toán là cart thì xóa danh sách sản phẩm ở trang card
+// Nếu kiểu thanh toán là cart thì xóa danh sách sản phẩm ở trang cart
 if ($data['type'] === "cart") {
-    $sql = "DELETE FROM cards where user_id = ?";
+    $sql = "DELETE FROM carts where user_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $stmt->close();
 }
+
+// Lưu SESSION để trang thank-you lấy dữ liệu
+$_SESSION['order_success'] = [
+    "order_id"       => $order_id,
+    "name"           => $data['name'],
+    "email"          => $data['email'],
+    "phone"          => $data['phone'],
+    "address"        => $data['address'],
+    "note"           => $data['note'],
+    "total_price"    => $data['total_price'],
+    "payment_method" => $data['payment_method'],
+    "items"          => $data['items']
+];
 
 echo json_encode([
     "status" => "success",

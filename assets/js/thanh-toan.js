@@ -134,8 +134,12 @@ document.querySelector(".submit").addEventListener("click", async () => {
       });
 
       const data = await res.json();
+      console.log(data);
       if (data?.status === "success") {
         showToast(data?.message, data?.status);
+        setTimeout(() => {
+          window.location.href = "?page=cam-on";
+        }, 500);
       } else {
         showToast(data?.message, data?.status);
       }

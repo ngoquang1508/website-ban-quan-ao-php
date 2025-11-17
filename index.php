@@ -22,7 +22,7 @@ require_once "config/base-url.php";
     $file = "pages/$page" . ".php";
 
     // header chung
-    if ($page !== "thanh-toan") require_once 'includes/header.php';
+    if ($page !== "thanh-toan" && $page !== "cam-on") require_once 'includes/header.php';
     ?>
 
     <!-- Nội dung chính -->
@@ -37,7 +37,7 @@ require_once "config/base-url.php";
             <!-- bread crumb -->
             <?php
             require "includes/functions.php";
-            if ($page !== "trang-chu" && $page !== "thanh-toan") {
+            if ($page !== "trang-chu" && $page !== "thanh-toan" && $page !== "cam-on") {
                 echo breadCrumb($page);
             }
             ?>
@@ -56,10 +56,10 @@ require_once "config/base-url.php";
 
     <?php
     // footer chung
-    if ($page !== "thanh-toan") require_once 'includes/footer.php';
+    if ($page !== "thanh-toan" && $page !== "cam-on") require_once 'includes/footer.php';
 
     ?>
-    <?php if ($page !== "thanh-toan"): ?>
+    <?php if ($page !== "thanh-toan" && $page !== "cam-on"): ?>
         <script type="module" src="<?= BASE_URL ?>assets/js/global.js"></script>
     <?php endif; ?>
 </body>
