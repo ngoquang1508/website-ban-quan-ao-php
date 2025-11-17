@@ -23,9 +23,9 @@ if (!$data || !isset($data['items']) || !is_array($data['items']) || count($data
 }
 
 // Thêm vào orders
-$sql_orders = "INSERT INTO orders(user_id, total_price, payment_method) VALUES(?,?,?)";
+$sql_orders = "INSERT INTO orders(user_id, name, email, phone, address, total_price, payment_method, note) VALUES(?,?,?,?,?,?,?,?)";
 $stmt_orders = $conn->prepare($sql_orders);
-$stmt_orders->bind_param("iis", $user_id, $data['total_price'], $data['payment_method']);
+$stmt_orders->bind_param("issssiss", $user_id, $data['name'], $data['email'], $data['phone'], $data['address'], $data['total_price'], $data['payment_method'], $data['note']);
 $stmt_orders->execute();
 
 // Lấy order_id vừa tạo
