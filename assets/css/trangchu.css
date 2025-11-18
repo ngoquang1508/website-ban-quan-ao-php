@@ -38,7 +38,7 @@
 /* 2. VOUCHER SLIDER */
 .voucher{max-width:1100px;margin:0 auto;padding:60px 20px;text-align:center}
 .voucher__title{display:flex;align-items:center;justify-content:center;gap:80px;margin-bottom:50px;font:700 36px/1.2 sans-serif;color:var(--primary);text-transform:uppercase;letter-spacing:1px}
-.voucher__title-line{flex:1;height:3px;background:var(--primary);position:relative;max-width:350px}
+.voucher__title-line{flex:1;height:3px;background:var(--primary);position:relative;max-width:400px}
 .voucher__title-line--left::after,.voucher__title-line--right::after{content:"";position:absolute;top:50%;width:12px;height:12px;background:var(--primary);transform:translateY(-50%) rotate(45deg)}
 .voucher__title-line--left::after{right:-6px}.voucher__title-line--right::after{left:-6px}
 
@@ -207,6 +207,134 @@
     transform:scale(1.4);
     box-shadow:0 0 0 4px rgba(240,84,70,.3);
 }
+/* ==================== INSTAFEED BLOCK – CHUẨN BEM ==================== */
+
+.instafeed {
+  padding: 100px 0 130px;
+  background: #fff;
+}
+
+.instafeed__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 80px;
+  font: 700 38px/1.2 'Poppins', sans-serif;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.instafeed__title-line {
+  flex: 1;
+  height: 2px;
+  background: var(--primary);
+  max-width: 340px;
+  position: relative;
+}
+
+.instafeed__title-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.instafeed__title-line--left::after  { right: -8px; }
+.instafeed__title-line--right::after { left: -8px; }
+
+/* GRID */
+.instafeed__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.instafeed__item {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0,0,0,.14);
+  transition: all 0.5s cubic-bezier(0.34, 0.66, 0.22, 1);
+  aspect-ratio: 1 / 1;
+  background: #fff;
+}
+
+.instafeed__item:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 35px 70px rgba(0,0,0,.28);
+}
+
+.instafeed__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.instafeed__item:hover img {
+  transform: scale(1.12);
+}
+
+/* Nút Instagram */
+.instafeed__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 90px auto 0;
+  background: var(--primary);
+  color: #fff !important;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font: 600 16px 'Poppins', sans-serif;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(240,84,70,.4);
+  transition: all 0.4s cubic-bezier(0.34, 0.66, 0.22, 1);
+  min-width: 210px;
+  width: fit-content;
+  border: 3px solid #fff;
+  outline: 3px solid var(--primary);
+}
+
+.instafeed__cta svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.instafeed__cta:hover {
+  background: #fff;
+  color: var(--primary) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(240,84,70,.5);
+  border-color: var(--primary);
+}
+
+.instafeed__cta:hover svg path,
+.instafeed__cta:hover svg circle {
+  stroke: var(--primary);
+  fill: var(--primary);
+  color: #fff !important;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .instafeed__cta {
+    padding: 12px 26px;
+    font-size: 15px;
+    min-width: 190px;
+    gap: 8px;
+  }
+  .instafeed__cta svg { width: 19px; height: 19px; }
+}
+
 /* Responsive */
 @media(max-width:1024px){
   .promo-grid{grid-template-columns:1fr 1fr;grid-template-areas:"tall tall""wide wide""square jeans";gap:20px;height:auto;padding:0 15px}

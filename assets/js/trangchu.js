@@ -28,9 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         init() {
             this.createDots();
-            if (this.isVoucher) this.cloneForInfinite(); // chỉ voucher mới cần infinite
             this.update();
-
             this.bindEvents();
             this.startAutoPlay();
             this.handleResize();
@@ -49,12 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.dots = this.dotsContainer.querySelectorAll("span");
         }
 
-        cloneForInfinite() {
-            // Chỉ dùng cho voucher để tạo hiệu ứng lướt vô tận
-            this.items.forEach(item => {
-                this.track.appendChild(item.cloneNode(true));
-            });
-        }
+        
 
         update() {
             const offset = this.isVoucher 

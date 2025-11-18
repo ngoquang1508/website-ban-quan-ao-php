@@ -186,3 +186,54 @@
     <!-- Dots -->
     <div class="lookbook__dots" id="lookbookDots"></div>
 </div>
+
+<!-- 5. INSTAFEED BLOCK -->
+<section class="instafeed">
+  <div class="container">
+    <!-- Tiêu đề -->
+    <h2 class="instafeed__title">
+      <span class="instafeed__title-line instafeed__title-line--left"></span>
+      CẬP NHẬT THÊM TỪ ND STYLE
+      <span class="instafeed__title-line instafeed__title-line--right"></span>
+    </h2>
+
+    <!-- Grid ảnh -->
+    <div class="instafeed__grid">
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_1.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_2.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_3.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_4.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_5.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_6.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_7.webp" alt="ND Style" loading="lazy">
+      </a>
+      <a href="#" class="instafeed__item">
+        <img src="assets/images/image_album_8.webp" alt="ND Style" loading="lazy">
+      </a>
+      <!-- Thêm bao nhiêu ảnh cũng được, tự xuống dòng -->
+    </div>
+
+    <!-- Nút Instagram -->
+    <a href="#" target="_blank" class="instafeed__cta">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2.04c3.24 0 3.63.01 4.91.07 1.18.06 1.98.24 2.68.51.73.27 1.34.63 1.95 1.24.61.61.97 1.22 1.24 1.95.27.7.45 1.5.51 2.68.06 1.28.07 1.67.07 4.91s-.01 3.63-.07 4.91c-.06 1.18-.24 1.98-.51 2.68-.27.73-.63 1.34-1.24 1.95-.61.61-1.22.97-1.95 1.24-.7.27-1.5.45-2.68.51-1.28.06-1.67.07-4.91.07s-3.63-.01-4.91-.07c-1.18-.06-1.98-.24-2.68-.51a5.48 5.48 0 0 1-1.95-1.24 5.48 5.48 0 0 1-1.24-1.95c-.27-.7-.45-1.5-.51-2.68-.06-1.28-.07-1.67-.07-4.91s.01-3.63.07-4.91c.06-1.18.24-1.98.51-2.68.27-.73.63-1.34 1.24-1.95.61-.61 1.22-.97 1.95-1.24.7-.27 1.5-.45 2.68-.51 1.28-.06 1.67-.07 4.91-.07z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="12.5" cy="11.5" r="3.5" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="18" cy="6" r="1.3" fill="#fff"/>
+  </svg>
+    Instagram
+</a>
+  </div>
+</section>
