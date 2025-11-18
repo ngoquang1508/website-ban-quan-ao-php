@@ -9,42 +9,42 @@
 
         <li class="category-round__item">
             <div class="category-round__thumb">
-                <img src="/uploads/image_cate_1.webp" alt="Áo nữ">
+                <img src="/assets/images/image_cate_1.webp" alt="Áo nữ">
             </div>
             <span class="category-round__label">Áo nữ</span>
         </li>
 
         <li class="category-round__item">
             <div class="category-round__thumb">
-                <img src="/uploads/image_cate_2.webp" alt="Váy">
+                <img src="/assets/images/image_cate_2.webp" alt="Váy">
             </div>
             <span class="category-round__label">Váy</span>
         </li>
 
         <li class="category-round__item">
             <div class="category-round__thumb">
-                <img src="/uploads/image_cate_3.webp" alt="Áo nam">
+                <img src="/assets/images/image_cate_3.webp" alt="Áo nam">
             </div>
             <span class="category-round__label">Áo nam</span>
         </li>
 
         <li class="category-round__item">
             <div class="category-round__thumb">
-                <img src="/uploads/image_cate_5.webp" alt="Quần">
+                <img src="/assets/images/image_cate_5.webp" alt="Quần">
             </div>
             <span class="category-round__label">Quần</span>
         </li>
 
         <li class="category-round__item">
             <div class="category-round__thumb">
-                <img src="/uploads/image_cate_6.webp" alt="Áo khoác">
+                <img src="/assets/images/image_cate_6.webp" alt="Áo khoác">
             </div>
             <span class="category-round__label">Áo khoác</span>
         </li>
 
         <li class="category-round__item">
             <div class="category-round__thumb">
-                <img src="/uploads/image_cate_8.webp" alt="Phụ kiện">
+                <img src="/assets/images/image_cate_8.webp" alt="Phụ kiện">
             </div>
             <span class="category-round__label">Phụ kiện</span>
         </li>
