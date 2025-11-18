@@ -1,144 +1,180 @@
-
 document.addEventListener("DOMContentLoaded", () => {
-    const slider = document.getElementById("voucherSlider");
-    const track = document.getElementById("voucherTrack");
-    const cards = track.querySelectorAll(".voucher-card");
-    const cardCount = cards.length;
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const dotsContainer = document.getElementById("dotsContainer");
+    /* ==================== REUSABLE SLIDER CLASS ==================== */
+    class Slider {
+        constructor(containerId, options = {}) {
+            this.slider = document.querySelector(containerId);
+            if (!this.slider) return;
 
-    // Tạo dots
-    for (let i = 0; i < cardCount; i++) {
-        const dot = document.createElement("div");
-        dot.className = "voucher-slider__dot";
-        dot.dataset.index = i;
-        dotsContainer.appendChild(dot);
+            this.track = this.slider.querySelector(options.track || ".lookbook__track, #voucherTrack");
+            this.items = this.track.querySelectorAll(options.item || ".lookbook__item, .voucher-card");
+            this.dotsContainer = this.slider.querySelector(options.dots || "#lookbookDots, #dotsContainer");
+            this.prevBtn = this.slider.querySelector(options.prev || ".lookbook__nav--prev, .voucher-slider__nav--prev");
+            this.nextBtn = this.slider.querySelector(options.next || ".lookbook__nav--next, .voucher-slider__nav--next");
+
+            this.index = 0;
+            this.total = this.items.length;
+            this.autoPlay = null;
+            this.isDragging = false;
+            this.startX = 0;
+            this.walk = 0;
+
+            // Cấu hình riêng
+            this.isVoucher = containerId.includes("voucher");
+            this.gap = this.isVoucher ? 40 : 0; // voucher có gap 40px
+            this.cardWidth = this.isVoucher ? this.items[0].offsetWidth + this.gap : window.innerWidth;
+
+            this.init();
+        }
+
+        init() {
+            this.createDots();
+            if (this.isVoucher) this.cloneForInfinite(); // chỉ voucher mới cần infinite
+            this.update();
+
+            this.bindEvents();
+            this.startAutoPlay();
+            this.handleResize();
+        }
+
+        createDots() {
+            if (!this.dotsContainer) return;
+            this.dotsContainer.innerHTML = "";
+            for (let i = 0; i < this.total; i++) {
+                const dot = document.createElement("span");
+                dot.className = this.isVoucher ? "voucher-slider__dot" : "lookbook__dots-span";
+                if (i === 0) dot.classList.add("active");
+                dot.dataset.index = i;
+                this.dotsContainer.appendChild(dot);
+            }
+            this.dots = this.dotsContainer.querySelectorAll("span");
+        }
+
+        cloneForInfinite() {
+            // Chỉ dùng cho voucher để tạo hiệu ứng lướt vô tận
+            this.items.forEach(item => {
+                this.track.appendChild(item.cloneNode(true));
+            });
+        }
+
+        update() {
+            const offset = this.isVoucher 
+                ? -this.index * (this.items[0].offsetWidth + this.gap)
+                : -this.index * 100 + "%";
+
+            this.track.style.transition = "transform 0.5s cubic-bezier(0.34, 0.66, 0.22, 1)";
+            this.track.style.transform = this.isVoucher 
+                ? `translateX(${offset}px)` 
+                : `translateX(${offset})`;
+
+            // Active item
+            this.items.forEach((item, i) => {
+                const realIndex = this.isVoucher ? i % this.total : i;
+                item.classList.toggle(this.isVoucher ? "active" : "lookbook__item--active", realIndex === this.index);
+            });
+
+            // Active dot
+            this.dots?.forEach((dot, i) => {
+                dot.classList.toggle("active", i === this.index);
+            });
+        }
+
+        goTo(newIndex) {
+            this.index = (newIndex + this.total) % this.total;
+            this.update();
+        }
+
+        next() { this.goTo(this.index + 1); }
+        prev() { this.goTo(this.index - 1); }
+
+        startAutoPlay() {
+            this.autoPlay = setInterval(() => this.next(), 5000);
+        }
+
+        stopAutoPlay() {
+            clearInterval(this.autoPlay);
+        }
+
+        bindEvents() {
+            this.nextBtn?.addEventListener("click", () => { this.stopAutoPlay(); this.next(); this.startAutoPlay(); });
+            this.prevBtn?.addEventListener("click", () => { this.stopAutoPlay(); this.prev(); this.startAutoPlay(); });
+
+            this.dots?.forEach(dot => {
+                dot.addEventListener("click", () => {
+                    this.stopAutoPlay();
+                    this.goTo(+dot.dataset.index);
+                    this.startAutoPlay();
+                });
+            });
+
+            // Hover pause
+            this.slider.addEventListener("mouseenter", () => this.stopAutoPlay());
+            this.slider.addEventListener("mouseleave", () => this.startAutoPlay());
+
+            // Touch & Drag
+            const start = (e) => {
+                this.isDragging = true;
+                this.startX = e.type.includes("touch") ? e.touches[0].pageX : e.pageX;
+                this.track.style.transition = "none";
+                this.stopAutoPlay();
+            };
+
+            const move = (e) => {
+                if (!this.isDragging) return;
+                const x = e.type.includes("touch") ? e.touches[0].pageX : e.pageX;
+                this.walk = x - this.startX;
+                const offset = this.isVoucher
+                    ? -this.index * (this.items[0].offsetWidth + this.gap) + this.walk
+                    : -this.index * 100 + (this.walk / window.innerWidth) * 100 + "%";
+                this.track.style.transform = this.isVoucher ? `translateX(${offset}px)` : `translateX(calc(${offset}))`;
+            };
+
+            const end = () => {
+                if (!this.isDragging) return;
+                this.isDragging = false;
+
+                if (Math.abs(this.walk) > (this.isVoucher ? 80 : window.innerWidth * 0.2)) {
+                    this.walk > 0 ? this.prev() : this.next();
+                } else {
+                    this.update();
+                }
+                this.startAutoPlay();
+            };
+
+            this.slider.addEventListener("mousedown", start);
+            this.slider.addEventListener("mousemove", move);
+            this.slider.addEventListener("mouseup", end);
+            this.slider.addEventListener("mouseleave", end);
+
+            this.slider.addEventListener("touchstart", start, { passive: false });
+            this.slider.addEventListener("touchmove", move, { passive: false });
+            this.slider.addEventListener("touchend", end);
+        }
+
+        handleResize() {
+            window.addEventListener("resize", () => {
+                clearTimeout(this.resizeTimer);
+                this.resizeTimer = setTimeout(() => {
+                    this.cardWidth = this.isVoucher ? this.items[0].offsetWidth + this.gap : window.innerWidth;
+                    this.update();
+                }, 200);
+            });
+        }
     }
-    const dots = dotsContainer.querySelectorAll(".voucher-slider__dot");
 
-    // Tính chiều rộng
-    const getCardWidth = () => {
-        if (!cards[0]) return 370;
-        const style = window.getComputedStyle(cards[0]);
-        const width = cards[0].offsetWidth;
-        const gap = 40;
-        return width + gap;
-    };
-
-    let cardWidth = getCardWidth();
-    window.addEventListener("resize", () => cardWidth = getCardWidth());
-
-    // Nhân đôi danh sách
-    const cloneCount = cardCount;
-    for (let i = 0; i < cloneCount; i++) {
-        track.appendChild(cards[i].cloneNode(true));
-    }
-
-    let index = 0;
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    let autoplay;
-
-    const updateTransform = () => {
-        const offset = -index * cardWidth;
-        track.style.transition = "transform 0.5s cubic-bezier(0.34, 0.66, 0.22, 1)";
-        track.style.transform = `translateX(${offset}px)`;
-
-        // Cập nhật active card
-        document.querySelectorAll(".voucher-card").forEach((c, i) => {
-            c.classList.remove("active");
-            if (i % cardCount === index) c.classList.add("active");
-        });
-
-        // Cập nhật dots
-        dots.forEach((d, i) => {
-            d.classList.toggle("active", i === index);
-        });
-    };
-
-    const nextSlide = () => {
-        index = (index + 1) % cardCount;
-        updateTransform();
-    };
-
-    const prevSlide = () => {
-        index = (index - 1 + cardCount) % cardCount;
-        updateTransform();
-    };
-
-    // Nút điều hướng
-    nextBtn.addEventListener("click", () => { stopAutoplay(); nextSlide(); startAutoplay(); });
-    prevBtn.addEventListener("click", () => { stopAutoplay(); prevSlide(); startAutoplay(); });
-
-    // Dots click
-    dots.forEach(dot => {
-        dot.addEventListener("click", () => {
-            stopAutoplay();
-            index = parseInt(dot.dataset.index);
-            updateTransform();
-            startAutoplay();
-        });
+    /* ==================== KHỞI TẠO 2 SLIDER ==================== */
+    new Slider("#voucherSlider", {
+        track: "#voucherTrack",
+        item: ".voucher-card",
+        dots: "#dotsContainer",
+        prev: ".voucher-slider__nav--prev",
+        next: ".voucher-slider__nav--next"
     });
 
-    // Autoplay
-    const startAutoplay = () => {
-        autoplay = setInterval(nextSlide, 3000);
-    };
-    const stopAutoplay = () => clearInterval(autoplay);
-    startAutoplay();
-
-    // Drag & Touch
-    const handleStart = (e) => {
-        const isTouch = e.type.includes("touch");
-        isDragging = true;
-        startX = isTouch ? e.touches[0].pageX : e.pageX;
-        currentX = startX;
-        stopAutoplay();
-        track.style.transition = "none";
-    };
-
-    const handleMove = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const isTouch = e.type.includes("touch");
-        const x = isTouch ? e.touches[0].pageX : e.pageX;
-        const diff = x - currentX;
-        currentX = x;
-        const offset = -index * cardWidth + (x - startX);
-        track.style.transform = `translateX(${offset}px)`;
-    };
-
-    const handleEnd = (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        const isTouch = e.type.includes("touch");
-        const endX = isTouch ? e.changedTouches[0].pageX : e.pageX;
-        const diff = endX - startX;
-
-        if (Math.abs(diff) > 60) {
-            if (diff > 0) prevSlide();
-            else nextSlide();
-        } else {
-            updateTransform();
-        }
-        startAutoplay();
-    };
-
-    // Events
-    slider.addEventListener("mousedown", handleStart);
-    slider.addEventListener("mousemove", handleMove);
-    slider.addEventListener("mouseup", handleEnd);
-    slider.addEventListener("mouseleave", handleEnd);
-
-    slider.addEventListener("touchstart", handleStart, { passive: false });
-    slider.addEventListener("touchmove", handleMove, { passive: false });
-    slider.addEventListener("touchend", handleEnd);
-
-    slider.addEventListener("mouseenter", stopAutoplay);
-    slider.addEventListener("mouseleave", startAutoplay);
-
-    // Khởi tạo
-    updateTransform();
+    new Slider("#lookbook", {
+        track: ".lookbook__track",
+        item: ".lookbook__item",
+        dots: "#lookbookDots",
+        prev: ".lookbook__nav--prev",
+        next: ".lookbook__nav--next"
+    });
 });
