@@ -1,0 +1,357 @@
+/* ========================================
+1. VARIABLES
+======================================== */
+:root {
+  --white: #ffffff;
+  --primary: #f05446;
+  --primary-hover: #ee4d2d;
+  --primary-light: #f87561;
+  --primary-dark: #d74433;
+  --shadow: rgba(240,84,70,.2);
+  --dot-inactive: #e0e0e0;
+  --dot-active: #f05446;
+
+  --radius: 22px;
+  --radius-btn: 50px;
+  --gap: 40px;
+  --card-w: 330px;
+
+  --ease-base: all .3s cubic-bezier(.4,0,.2,1);
+  --ease-slide: transform .5s cubic-bezier(.34,.66,.22,1);
+}
+
+/* 1. DANH MỤC TRÒN */
+.category-round{max-width:1200px;margin:0 auto;padding:50px 30px}
+.category-round__list{display:grid;grid-template-columns:repeat(3,2fr);gap:40px 20px;justify-items:center;list-style:none;padding:0;margin:0}
+.category-round__item{text-align:center;cursor:pointer;position:relative;padding-bottom:40px;transition:transform .3s}
+.category-round__thumb{width:200px;height:200px;background:#fdf3f0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.06);transition:all .2s}
+.category-round__thumb img{width:80%;height:80%;object-fit:contain}
+.category-round__label{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);background:var(--white);border:4px solid #fdf3f0;border-radius:10px;color:#000;white-space:nowrap;font:600 18px/1 sans-serif;text-transform:uppercase;padding:20px 14px;min-width:120px;z-index:10;transition:all .2s}
+.category-round__item:hover .category-round__label{background:var(--primary-hover);color:var(--white)}
+.category-round__thumb:hover{animation:shake .4s ease-in-out}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-6px)}}
+
+@media(max-width:992px){.category-round__thumb{width:150px;height:150px}.category-round__label{font-size:16px;padding:16px 12px}}
+@media(max-width:768px){.category-round__list{grid-template-columns:repeat(2,1fr);gap:30px}.category-round__thumb{width:140px;height:140px}}
+@media(max-width:480px){.category-round{padding:40px 15px}.category-round__thumb{width:120px;height:120px}.category-round__label{font-size:15px;padding:14px 10px;min-width:100px}}
+
+/* 2. VOUCHER SLIDER */
+.voucher{max-width:1100px;margin:0 auto;padding:60px 20px;text-align:center}
+.voucher__title{display:flex;align-items:center;justify-content:center;gap:80px;margin-bottom:50px;font:700 36px/1.2 sans-serif;color:var(--primary);text-transform:uppercase;letter-spacing:1px}
+.voucher__title-line{flex:1;height:3px;background:var(--primary);position:relative;max-width:400px}
+.voucher__title-line--left::after,.voucher__title-line--right::after{content:"";position:absolute;top:50%;width:12px;height:12px;background:var(--primary);transform:translateY(-50%) rotate(45deg)}
+.voucher__title-line--left::after{right:-6px}.voucher__title-line--right::after{left:-6px}
+
+.voucher-slider{position:relative;overflow:hidden;border-radius:16px;user-select:none;cursor:grab;max-width:1000px;margin:0 auto;contain:layout style}
+.voucher-slider:active{cursor:grabbing}
+.voucher-slider__track{display:flex;gap:var(--gap);padding:20px 0;transition:var(--ease-slide);will-change:transform}
+.voucher-slider__nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(0,0,0,.15);cursor:pointer;z-index:20;opacity:0;transition:var(--ease-base);font-size:24px;color:var(--primary)}
+.voucher-slider:hover .voucher-slider__nav{opacity:.9}
+.voucher-slider__nav:hover{opacity:1;transform:translateY(-50%) scale(1.1)}
+.voucher-slider__nav--prev{left:15px}.voucher-slider__nav--next{right:15px}
+
+.voucher-card{flex:0 0 var(--card-w);border-radius:var(--radius);overflow:hidden;background:linear-gradient(135deg,var(--primary-light),var(--primary));box-shadow:0 10px 30px var(--shadow);transition:var(--ease-base);position:relative;opacity:.85;transform:scale(.92);contain:layout style paint}
+.voucher-card.active{opacity:1;transform:scale(1);z-index:10;box-shadow:0 20px 50px var(--shadow)}
+.voucher-card:hover{transform:translateY(-8px) scale(1.02);z-index:11}
+.voucher-card::before,.voucher-card::after{content:"";position:absolute;top:60px;width:36px;height:36px;background:var(--white);border-radius:50%;z-index:2}
+.voucher-card::before{left:-18px}.voucher-card::after{right:-18px}
+.voucher-card__top{background:var(--primary);padding:35px 24px 30px;color:var(--white);border-bottom-left-radius:60px;border-bottom-right-radius:60px}
+.voucher-card__title{font:700 26px/1.2 sans-serif;margin-bottom:6px}
+.voucher-card__desc{font-size:15px;opacity:.92}
+.voucher-card__bottom{background:var(--bg-light);padding:28px 20px 24px;border-radius:15px;margin:-20px 16px 16px;text-align:center}
+.voucher-card__code{font:700 19px/1 sans-serif;color:var(--primary);margin-bottom:10px;letter-spacing:1.2px}
+.voucher-card__btn{background:var(--primary);color:var(--white);padding:12px 28px;border-radius:var(--radius-btn);font:600 16px/1 sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:var(--ease-base);box-shadow:0 4px 15px rgba(240,84,70,.3)}
+.voucher-card__btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(240,84,70,.4)}
+
+.voucher-slider__dots{display:flex;justify-content:center;gap:10px;margin-top:30px}
+.voucher-slider__dot{width:12px;height:12px;border-radius:50%;background:var(--dot-inactive);cursor:pointer;transition:var(--ease-base)}
+.voucher-slider__dot.active{background:var(--dot-active);transform:scale(1.3);box-shadow:0 0 0 3px rgba(240,84,70,.3)}
+
+/* 3. GỢI Ý HÔM NAY */
+.promo__title{display:flex;align-items:center;justify-content:center;gap:80px;margin-bottom:50px;font:700 36px/1.2 sans-serif;color:var(--primary);text-transform:uppercase;letter-spacing:1px}
+.promo__title-line{flex:1;height:3px;background:var(--primary);position:relative;max-width:400px}
+.promo__title-line--left::after,.promo__title-line--right::after{content:"";position:absolute;top:50%;width:12px;height:12px;background:var(--primary);transform:translateY(-50%) rotate(45deg)}
+.promo__title-line--left::after{right:-6px}.promo__title-line--right::after{left:-6px}
+
+.promo-grid{max-width:1240px;margin:0 auto 100px;padding:0 20px;display:grid;grid-template-columns:380px 1fr 1fr;grid-template-rows:1fr 1fr;gap:28px;height:680px;align-items:stretch;grid-template-areas:"tall wide wide""tall square jeans"}
+.promo-grid__item--tall{grid-area:tall}.promo-grid__item--wide{grid-area:wide}.promo-grid__item--square{grid-area:square}.promo-grid__item--jeans{grid-area:jeans}
+.promo-grid__item{border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12);transition:all .35s;position:relative;display:block}
+.promo-grid__item:hover{transform:translateY(-12px);box-shadow:0 25px 50px rgba(0,0,0,.22)}
+.promo-grid__image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.promo-grid__item:hover .promo-grid__image{transform:scale(1.06)}
+.promo-grid__overlay{position:absolute;bottom:40px;left:40px;z-index:2;color:#fff}
+
+/* ==================== LOOKBOOK SLIDER - CHUẨN BEM ==================== */
+.lookbook{
+    position:relative;
+    max-width:1240px;
+    margin:80px auto 100px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+    user-select:none;
+    contain:layout style;
+}
+.lookbook__track{
+    display:flex;
+    transition:var(--ease-slide);
+    will-change:transform;
+}
+.lookbook__item{
+    min-width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    background:#fff;
+    opacity:.7;
+    transform:scale(.96);
+    transition:var(--ease-base);
+}
+.lookbook__item--active{
+    opacity:1;
+    transform:scale(1);
+    z-index:1;
+}
+.lookbook__media{
+    height:620px;
+    overflow:hidden;
+}
+.lookbook__media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .6s ease;
+}
+.lookbook__item:hover .lookbook__media img{
+    transform:scale(1.08);
+}
+.lookbook__content{
+    padding:60px 80px 60px 60px;
+    color:#333;
+}
+.lookbook__title{
+    font:700 48px/1.2 sans-serif;
+    color:var(--primary);
+    margin-bottom:24px;
+    letter-spacing:1px;
+}
+.lookbook__desc{
+    font-size:17px;
+    line-height:1.75;
+    color:#555;
+    margin-bottom:32px;
+}
+.lookbook__btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--primary);
+    color:#fff;
+    padding:14px 36px;
+    border-radius:50px;
+    font:600 17px sans-serif;
+    text-decoration:none;
+    transition:var(--ease-base);
+    box-shadow:0 6px 20px rgba(240,84,70,.3);
+}
+.lookbook__btn:hover{
+    background:var(--primary-dark);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(240,84,70,.4);
+}
+
+/* Nav & Dots - giống hệt voucher */
+.lookbook__nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:56px;
+    height:56px;
+    background:var(--white);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 30px rgba(0,0,0,.2);
+    cursor:pointer;
+    z-index:10;
+    opacity:0;
+    font-size:28px;
+    color:var(--primary);
+    transition:var(--ease-base);
+}
+.lookbook:hover .lookbook__nav{opacity:.9}
+.lookbook__nav:hover{opacity:1;transform:translateY(-50%) scale(1.12)}
+.lookbook__nav--prev{left:20px}
+.lookbook__nav--next{right:20px}
+
+.lookbook__dots{
+    position:absolute;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:12px;
+    z-index:10;
+}
+.lookbook__dots span{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--dot-inactive);
+    cursor:pointer;
+    transition:var(--ease-base);
+}
+.lookbook__dots span.active{
+    background:var(--dot-active);
+    transform:scale(1.4);
+    box-shadow:0 0 0 4px rgba(240,84,70,.3);
+}
+/* ==================== INSTAFEED BLOCK – CHUẨN BEM ==================== */
+
+.instafeed {
+  padding: 100px 0 130px;
+  background: #fff;
+}
+
+.instafeed__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 80px;
+  font: 700 38px/1.2 'Poppins', sans-serif;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.instafeed__title-line {
+  flex: 1;
+  height: 2px;
+  background: var(--primary);
+  max-width: 340px;
+  position: relative;
+}
+
+.instafeed__title-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.instafeed__title-line--left::after  { right: -8px; }
+.instafeed__title-line--right::after { left: -8px; }
+
+/* GRID */
+.instafeed__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.instafeed__item {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0,0,0,.14);
+  transition: all 0.5s cubic-bezier(0.34, 0.66, 0.22, 1);
+  aspect-ratio: 1 / 1;
+  background: #fff;
+}
+
+.instafeed__item:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 35px 70px rgba(0,0,0,.28);
+}
+
+.instafeed__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.instafeed__item:hover img {
+  transform: scale(1.12);
+}
+
+/* Nút Instagram */
+.instafeed__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 90px auto 0;
+  background: var(--primary);
+  color: #fff !important;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font: 600 16px 'Poppins', sans-serif;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(240,84,70,.4);
+  transition: all 0.4s cubic-bezier(0.34, 0.66, 0.22, 1);
+  min-width: 210px;
+  width: fit-content;
+  border: 3px solid #fff;
+  outline: 3px solid var(--primary);
+}
+
+.instafeed__cta svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.instafeed__cta:hover {
+  background: #fff;
+  color: var(--primary) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(240,84,70,.5);
+  border-color: var(--primary);
+}
+
+.instafeed__cta:hover svg path,
+.instafeed__cta:hover svg circle {
+  stroke: var(--primary);
+  fill: var(--primary);
+  color: #fff !important;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .instafeed__cta {
+    padding: 12px 26px;
+    font-size: 15px;
+    min-width: 190px;
+    gap: 8px;
+  }
+  .instafeed__cta svg { width: 19px; height: 19px; }
+}
+
+/* Responsive */
+@media(max-width:1024px){
+  .promo-grid{grid-template-columns:1fr 1fr;grid-template-areas:"tall tall""wide wide""square jeans";gap:20px;height:auto;padding:0 15px}
+  .promo-grid__item--tall{height:520px}.promo-grid__item--wide{height:400px}.promo-grid__item--square,.promo-grid__item--jeans{height:340px}
+}
+@media(max-width:768px){
+  .promo-grid{gap:16px;padding:0 12px}
+  .promo-grid__item--tall{height:460px}.promo-grid__item--wide{height:360px}.promo-grid__item--square,.promo-grid__item--jeans{height:300px}
+  .promo__title{font-size:30px;gap:50px}
+}
+@media(max-width:480px){
+  .promo-grid{grid-template-columns:1fr;grid-template-areas:"tall""wide""square""jeans";gap:14px;padding:0 10px}
+  .promo-grid__item--tall{height:540px}.promo-grid__item--wide{height:420px}.promo-grid__item--square,.promo-grid__item--jeans{height:380px}
+  .promo-grid__overlay{bottom:20px;left:20px;right:20px}
+  .promo__title{font-size:24px;gap:20px;flex-direction:column;text-align:center;margin-bottom:40px}
+  .promo__title-line{max-width:100px}
+}
+@media(hover:none)and(pointer:coarse){
+  .promo-grid__item:hover,.promo-grid__item:hover .promo-grid__image{transform:none!important;box-shadow:0 10px 30px rgba(0,0,0,.12)!important}
+}
