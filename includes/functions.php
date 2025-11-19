@@ -10,7 +10,7 @@ function breadCrumb($page)
         "nam" => [
             "title" => "Nam",
         ],
-        "tintuc" => [
+        "tin-tuc" => [
             "title" => "Tin tức",
         ],
         "lien-he" => [

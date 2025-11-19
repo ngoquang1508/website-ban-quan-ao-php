@@ -9,11 +9,11 @@ $stmt->execute();
 $product = $stmt->get_result()->fetch_assoc();
 
 
-// Đếm số người đặt trong giỏ hàng
-$stmt_count_user_card = $conn->prepare("SELECT COUNT(DISTINCT user_id) AS total_user FROM carts WHERE product_id = ?");
-$stmt_count_user_card->bind_param("i", $product_id);
-$stmt_count_user_card->execute();
-$total_user = $stmt_count_user_card->get_result()->fetch_assoc()['total_user'];
+// Đếm số lượng sản phẩm trong order_items
+$stmt_count_qty = $conn->prepare("SELECT SUM(quantity) AS total_qty FROM order_items WHERE product_id = ?");
+$stmt_count_qty->bind_param("i", $product_id);
+$stmt_count_qty->execute();
+$total_qty = $stmt_count_qty->get_result()->fetch_assoc()['total_qty'] ?? 0;
 
 // Đếm số người yêu thích
 $stmt_count_user_favorite = $conn->prepare("SELECT COUNT(DISTINCT user_id) AS total_user_favorite FROM favorites WHERE product_id = ?");
@@ -21,7 +21,7 @@ $stmt_count_user_favorite->bind_param("i", $product_id);
 $stmt_count_user_favorite->execute();
 $total_user_favorite = $stmt_count_user_favorite->get_result()->fetch_assoc()['total_user_favorite'];
 
-$stmt_count_user_card->close();
+$stmt_count_qty->close();
 $stmt_count_user_favorite->close();
 $stmt->close();
 ?>
@@ -71,7 +71,7 @@ $stmt->close();
                     <path d="M11.8308 1H5.10256L1 11.3385H6.64103L5.61538 21L16.3846 6.57949H9.86154L11.8308 1Z" stroke="var(--primary-color)" stroke-width="1.4" stroke-linejoin="round"></path>
                 </svg>
             </div>
-            <p>Sản phẩm hiện có có <strong><?= $total_user ?></strong> người thêm vào giỏ hàng, <strong><?= $total_user_favorite ?></strong> người yêu thích.</p>
+            <p>Sản phẩm hiện có <strong><?= $total_qty ?></strong> lượt mua, <strong><?= $total_user_favorite ?></strong> người yêu thích.</p>
         </div>
 
         <div class="product-detail__policy">

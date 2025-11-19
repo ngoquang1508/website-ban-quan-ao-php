@@ -7,45 +7,57 @@
     <ul class="category-round__list">
 
         <li class="category-round__item">
-            <div class="category-round__thumb">
-                <img src="<?= BASE_URL ?>assets/images/image_cate_1.webp" alt="Áo nữ">
-            </div>
-            <span class="category-round__label">Áo nữ</span>
+            <a href="<?= BASE_URL ?>?page=nu&cat=ao-nu">
+                <div class="category-round__thumb">
+                    <img src="<?= BASE_URL ?>assets/images/image_cate_1.webp" alt="Áo nữ">
+                </div>
+                <span class="category-round__label">Áo nữ</span>
+            </a>
         </li>
 
         <li class="category-round__item">
-            <div class="category-round__thumb">
-                <img src="<?= BASE_URL ?>assets/images/image_cate_2.webp" alt="Váy">
-            </div>
-            <span class="category-round__label">Váy</span>
+            <a href="<?= BASE_URL ?>?page=nu&cat=quan-nu">
+                <div class="category-round__thumb">
+                    <img src="<?= BASE_URL ?>assets/images/image_cate_2.webp" alt="Váy">
+                </div>
+                <span class="category-round__label">Váy</span>
+            </a>
         </li>
 
         <li class="category-round__item">
-            <div class="category-round__thumb">
-                <img src="<?= BASE_URL ?>assets/images/image_cate_3.webp" alt="Áo nam">
-            </div>
-            <span class="category-round__label">Áo nam</span>
+            <a href="<?= BASE_URL ?>?page=nam&cat=ao-nam">
+                <div class="category-round__thumb">
+                    <img src="<?= BASE_URL ?>assets/images/image_cate_3.webp" alt="Áo nam">
+                </div>
+                <span class="category-round__label">Áo nam</span>
+            </a>
         </li>
 
         <li class="category-round__item">
-            <div class="category-round__thumb">
-                <img src="<?= BASE_URL ?>assets/images/image_cate_5.webp" alt="Quần">
-            </div>
-            <span class="category-round__label">Quần</span>
+            <a href="<?= BASE_URL ?>?page=nam&cat=quan-nam">
+                <div class="category-round__thumb">
+                    <img src="<?= BASE_URL ?>assets/images/image_cate_5.webp" alt="Quần nam">
+                </div>
+                <span class="category-round__label">Quần nam</span>
+            </a>
         </li>
 
         <li class="category-round__item">
-            <div class="category-round__thumb">
-                <img src="<?= BASE_URL ?>assets/images/image_cate_6.webp" alt="Áo khoác">
-            </div>
-            <span class="category-round__label">Áo khoác</span>
+            <a href="<?= BASE_URL ?>?page=nam&cat=phu-kien-nam">
+                <div class="category-round__thumb">
+                    <img src="<?= BASE_URL ?>assets/images/image_cate_7.webp" alt="Phụ kiện nam">
+                </div>
+                <span class="category-round__label">Phụ kiện nam</span>
+            </a>
         </li>
 
         <li class="category-round__item">
-            <div class="category-round__thumb">
-                <img src="<?= BASE_URL ?>assets/images/image_cate_8.webp" alt="Phụ kiện">
-            </div>
-            <span class="category-round__label">Phụ kiện</span>
+            <a href="<?= BASE_URL ?>?page=nu&cat=phu-kien-nu">
+                <div class="category-round__thumb">
+                    <img src="<?= BASE_URL ?>assets/images/image_cate_8.webp" alt="Phụ kiện nữ">
+                </div>
+                <span class="category-round__label">Phụ kiện nữ</span>
+            </a>
         </li>
 
     </ul>

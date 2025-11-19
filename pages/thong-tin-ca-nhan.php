@@ -133,35 +133,37 @@ $nav_settings = [
             <div class="profile__carts item">
                 <h2>Đơn hàng của bạn</h2>
                 <?php if ($order->num_rows > 0): ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th>Tổng tiền</th>
-                                <th>Hình thức thanh toán</th>
-                                <th>Ngày mua</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($row = $order->fetch_assoc()): ?>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <div>
-                                            <img class="profile-image" src="<?= htmlspecialchars($row['url_image']) ?>" alt="ảnh sản phẩm">
-                                            <?= htmlspecialchars($row['name']) ?>
-                                        </div>
-                                    </td>
-                                    <td><?= htmlspecialchars($row['price']) ?></td>
-                                    <td><?= htmlspecialchars($row['quantity']) ?></td>
-                                    <td><?= htmlspecialchars($row['price'] * $row['quantity']) ?></td>
-                                    <td><?= htmlspecialchars($row['payment_method']) === "cod" ? "COD" : "Chuyển khoản" ?></td>
-                                    <td><?= (new DateTime($row['created_at']))->format("H:i:s d-m-Y") ?></td>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền (VNĐ)</th>
+                                    <th>Hình thức thanh toán</th>
+                                    <th>Ngày mua</th>
                                 </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = $order->fetch_assoc()): ?>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img class="profile-image" src="<?= htmlspecialchars($row['url_image']) ?>" alt="ảnh sản phẩm">
+                                                <?= htmlspecialchars($row['name']) ?>
+                                            </div>
+                                        </td>
+                                        <td><?= formatPrice($row['price']) ?><u>đ</u></td>
+                                        <td><?= htmlspecialchars($row['quantity']) ?></td>
+                                        <td><?= formatPrice($row['price'] * $row['quantity']) ?><u>đ</u></td>
+                                        <td><?= htmlspecialchars($row['payment_method']) === "cod" ? "COD" : "Chuyển khoản" ?></td>
+                                        <td><?= (new DateTime($row['created_at']))->format("H:i:s d-m-Y") ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 <?php else: ?>
                     <div class="profile_carts-empty">
                         <p>Chưa có sản phẩm nào. <a href="">Mua ngay</a></p>

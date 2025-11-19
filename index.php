@@ -8,7 +8,7 @@ require_once "config/base-url.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
+    <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/index.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/auth.css">
@@ -57,11 +57,10 @@ require_once "config/base-url.php";
     <?php
     // footer chung
     if ($page !== "thanh-toan" && $page !== "cam-on") require_once 'includes/footer.php';
-
     ?>
-    <?php if ($page !== "thanh-toan" && $page !== "cam-on"): ?>
-        <script type="module" src="<?= BASE_URL ?>assets/js/global.js"></script>
-    <?php endif; ?>
+
+    <!-- Links js -->
+    <script src="<?= BASE_URL ?>assets/js/app.js"></script>
 </body>
 
 </html>

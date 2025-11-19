@@ -73,12 +73,12 @@
 
 /* Mặc định ẩn */
 .profile-content .item {
-    display: none;
+  display: none;
 }
 
 /* Hiện content khi chọn nav */
 .profile-content .item.active {
-    display: block;
+  display: block;
 }
 
 /* THÔNG TIN CÁ NHÂN */
@@ -137,8 +137,16 @@
 .profile__change-pwd {
 }
 /* ĐƠN HÀNG */
-.profile__carts {
+.profile__carts .table-wrapper {
+  max-height: 30rem;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+}
 
+.table-wrapper::-webkit-scrollbar {
+  width: 0px; /* Chrome, Safari, Edge */
+  background: transparent;
 }
 
 .profile__carts table {
@@ -156,6 +164,11 @@
 
 .profile__carts th {
   background-color: #f4f4f4;
+  white-space: nowrap;
+}
+
+.profile__carts th:last-child {
+  min-width: 15rem;
 }
 
 .profile__carts td div {
@@ -175,7 +188,7 @@
   width: 100%;
   margin-top: 2rem;
   padding: 1rem;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   background: rgba(255, 99, 71, 0.1);
   font-size: 1.6rem;
 }
@@ -187,4 +200,16 @@
 
 .profile_carts-empty p a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  .profile__wrapper {
+    flex-direction: column;
+  }
+  .profile__carts tbody div {
+    min-width: 20rem;
+  }
+  .profile__carts th:last-child {
+    min-width: 9.5rem;
+  }
 }
