@@ -49,11 +49,7 @@ $stmt->close();
             <div class="edit-product__inputs">
                 <label>Tên sản phẩm</label>
                 <input type="text" name="name" value="<?php echo $product['name'] ?>">
-
-                <label>Mô tả</label>
-                <textarea name="description" style="width:100%; min-height:100px; overflow-y:auto; resize:vertical;"
-                    oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight, 400)+'px';"><?php echo htmlspecialchars($product['description']) ?></textarea>
-
+                
                 <label>Giá tiền (vnđ)</label>
                 <input type="number" name="price" value="<?php echo $product['price'] ?>">
 
