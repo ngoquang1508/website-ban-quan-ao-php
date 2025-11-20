@@ -5,7 +5,7 @@ include __DIR__ . "/../../../config/db.php";
 $id_product = $_GET["id"] ?? null;
 
 if (!$id_product || !is_numeric($id_product)) {
-    header("Location: index.php?page=products");
+    header("Location: .. ?page=products");
     exit;
 }
 
@@ -18,7 +18,7 @@ $product = $result->fetch_assoc();
 
 // Nếu không có id user nào khớp -> chặn
 if (!$product) {
-    header("Location: index.php?page=products");
+    header("Location: /?page=products");
     exit;
 }
 $stmt->close();
@@ -26,7 +26,7 @@ $stmt->close();
 ?>
 
 <div class="edit-product__wrapper">
-    <a class="edit-product__go-back" href="index.php?page=products">Quay lại</a>
+    <a class="edit-product__go-back" href="?page=products">Quay lại</a>
 
     <div class="edit-product__container">
         <h2>Sửa sản phẩm có id = <?php echo $product['id'] ?></h2>
@@ -36,29 +36,26 @@ $stmt->close();
 
 
             <div class="edit-product__image">
-                <img id="preview-image" src="<?php echo $product['url_image'] ?>" alt="<?php echo $product['name'] ?>" width="150">
+                <img id="preview-image" src="<?php echo BASE_URL . "../" . $product['url_image'] ?>" alt="<?php echo $product['name'] ?>" width="150">
                 <input type="hidden" name="photo_old" value="<?php echo $product['url_image'] ?>">
                 <div class="file-upload">
                     <label for="product-image" class="file-upload__label">
                         Tải ảnh lên <i class="fa-solid fa-upload"></i>
                     </label>
-                    <input id="product-image" type="file" name="photo_update" class="file-upload__input photoInput url_image" >
+                    <input id="product-image" type="file" name="photo_update" class="file-upload__input photoInput url_image">
                 </div>
             </div>
 
             <div class="edit-product__inputs">
                 <label>Tên sản phẩm</label>
                 <input type="text" name="name" value="<?php echo $product['name'] ?>">
-    
-                <label>Mô tả</label>
-                <textarea name="description" ><?php echo htmlspecialchars($product['description']) ?></textarea>
-    
+                
                 <label>Giá tiền (vnđ)</label>
                 <input type="number" name="price" value="<?php echo $product['price'] ?>">
-    
+
                 <label>Số lượng tồn</label>
                 <input type="number" name="stock" value="<?php echo $product['stock'] ?>">
-    
+
                 <label>Loại sản phẩm</label>
                 <select name="type" id="">
                     <option value="Áo" <?php echo $product['type'] === 'Áo' ? 'selected' : '' ?>>Áo</option>

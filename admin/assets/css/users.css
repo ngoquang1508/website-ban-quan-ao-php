@@ -1,3 +1,4 @@
+/* ====================== USER LIST & EDIT - ĐÃ HOÀN HẢO ====================== */
 :root {
   --title-size: 2.4rem;
   --border-radius: 1rem;
@@ -5,125 +6,125 @@
 
 /* user/list.php */
 .main-user__container {
-  padding: 0 2rem;
-  margin-top: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2.5rem;
   background: #fff;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
 }
 
 .main-user__title {
   font-size: var(--title-size);
   margin-bottom: 2rem;
   color: #333;
-}
-
-.main-user__no_result {
-  color: red;
-  font-size: 2rem;
-  text-align: center;
+  font-weight: 600;
 }
 
 .main-user__container table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1.6rem;
-  margin-top: 2rem;
+  background: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.main-user__container thead {
-  background: #007bff;
-  color: #fff;
+.main-user__container thead th {
+  background: #007bff !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  padding: 1.4rem 1.6rem !important;
+  border: none !important;
+  white-space: nowrap;
 }
 
-.main-user__container th,
-.main-user__container td {
-  padding: 1.2rem 1.6rem;
-  text-align: left;
+/* Bo góc trên */
+.main-user__container thead th:first-child { border-top-left-radius: var(--border-radius); }
+.main-user__container thead th:last-child { border-top-right-radius: var(--border-radius); }
+
+.main-user__container tbody td {
+  padding: 1.4rem 1.6rem;
   border-bottom: 1px solid #e0e0e0;
+  vertical-align: middle;
 }
 
 .main-user__container tbody tr:hover {
-  background: #eeeeee;
+  background: #f8f9fa;
+}
+
+.main-user__btn {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .main-user__btn a {
-  display: inline-block;
-  padding: 1rem 1.8rem;
+  padding: 0.9rem 1.6rem;
   border-radius: 0.6rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.main-user__btn-edit {
-  margin-right: 1rem;
-  background: #ffc107;
-  color: #fff;
-}
-
-.main-user__btn-edit:hover {
-  background: #e0a800;
-}
-
-.main-user__btn-delete {
-  background: #dc3545;
-  color: #fff;
-}
-
-.main-user__btn-delete:hover {
-  background: #b02a37;
-}
-
-.main-user__empty {
-  font-size: 1.4rem;
+  transition: all 0.25s ease;
+  min-width: 60px;
   text-align: center;
-  margin-top: 2rem;
-  color: #777;
 }
 
-/* users/edit.php */
+.main-user__btn-edit { background: #ffc107; color: #fff; }
+.main-user__btn-edit:hover { background: #e0a800; transform: translateY(-2px); }
+.main-user__btn-delete { background: #dc3545; color: #fff; }
+.main-user__btn-delete:hover { background: #c82333; transform: translateY(-2px); }
 
+
+/* ====================== USER EDIT (edit.php) ====================== */
 .edit-user__wrapper {
-  width: 100%;
-  height: 100%;
-  margin: 4rem auto;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: #f8f9fa;
 }
 
 .edit-user__go-back {
-  margin-left: 2rem;
-  padding: 0.8rem 1rem;
+  display: inline-block;
+  margin: 0 0 2rem 2rem;
+  padding: 0.9rem 1.4rem;
+  border: 1px solid #ccc;
   border-radius: var(--border-radius);
   border: 1px solid #ccc;
   font-size: 1.4rem;
   font-weight: 600;
   text-decoration: none;
   color: #333;
-  transition: background, color, border-radius 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .edit-user__go-back:hover {
-  background: #0077ff;
+  background: #007bff;
   color: #fff;
-  border: 1px solid transparent;
-  border-radius: 0;
+  border-color: transparent;
 }
 
 .edit-user__container {
-  width: 50rem;
-  margin: auto;
-  padding: 2rem;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
   background: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .edit-user__container:hover {
-  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
 }
 
 .edit-user__container h2 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   color: #333;
   font-size: var(--title-size);
 }
@@ -131,39 +132,44 @@
 .edit-user__container form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.6rem;
 }
 
 .edit-user__container label {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #444;
 }
 
 .edit-user__container input[type="text"],
 .edit-user__container input[type="email"],
-.edit-user__container select {
+.edit-user__container input[type="tel"],
+.edit-user__container select,
+.edit-user__container textarea {
+  width: 100%;
   padding: 1.4rem;
-  font-size: 1.4rem;
-  border: 0.1rem solid #ccc;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
   border-radius: var(--border-radius);
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
+  background: #fdfdfd;
 }
 
-.edit-user__container input[type="text"]:focus,
-.edit-user__container input[type="email"]:focus,
-.edit-user__container select:focus {
-  border-color: #4a90e2;
+.edit-user__container input:focus,
+.edit-user__container select:focus,
+.edit-user__container textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
 }
 
 .edit-user__container input[type="submit"] {
-  margin-top: 2rem;
-  padding: 1.4rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
   font-size: 1.6rem;
   font-weight: bold;
   color: #fff;
-  background: #4a90e2;
+  background: #007bff;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -172,6 +178,49 @@
 }
 
 .edit-user__container input[type="submit"]:hover {
-  border-radius: 0;
-  background: #357abd;
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* ====================== RESPONSIVE ====================== */
+@media (max-width: 768px) {
+  .main-user__container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: #f50000;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  }
+
+  .main-user__container th,
+  .main-user__container td {
+    padding: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .main-user__btn {
+    justify-content: center;
+  }
+
+  .edit-user__container {
+    padding: 2.5rem 2rem;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 58%; }
+
+  .main-user__btn a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .edit-user__go-back {
+    margin: 0 auto 2rem;
+    display: block;
+    text-align: center;
+    width: fit-content;
+  }
 }

@@ -5,7 +5,7 @@ include __DIR__ . "/../../../config/db.php";
 $id_user = $_GET["id"] ?? null;
 
 if (!$id_user || !is_numeric($id_user)) {
-    header("Location: index.php?page=users");
+    header("Location: .. ?page=users");
     exit;
 }
 
@@ -18,7 +18,7 @@ $user = $result->fetch_assoc();
 
 // Nếu không có id user nào khớp -> chặn
 if (!$user) {
-    header("Location: index.php?page=users");
+    header("Location: .. ?page=users");
     exit;
 }
 $stmt->close();
@@ -26,7 +26,7 @@ $stmt->close();
 ?>
 
 <div class="edit-user__wrapper">
-    <a class="edit-user__go-back" href="index.php?page=users">Quay lại</a>
+    <a class="edit-user__go-back" href="?page=users">Quay lại</a>
 
     <div class="edit-user__container">
         <h2>Sửa user có id = <?php echo $id_user ?></h2>

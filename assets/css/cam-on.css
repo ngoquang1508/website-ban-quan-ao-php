@@ -1,0 +1,275 @@
+.thankyou__container {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.thankyou__container h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.thankyou__container h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.thankyou__logo h1 {
+  font-size: 3.2rem;
+  color: #2a9dcc;
+  font-weight: 500;
+  text-align: center;
+  margin: 2rem 0 1rem;
+
+  &:hover {
+    color: #1b5dab;
+  }
+}
+
+.thankyou__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
+.thankyou__header p {
+  font-size: 1.4rem;
+  margin: 2px 0;
+}
+
+.thankyou__info {
+  order: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid #dadada;
+}
+
+.thankyou__info-column {
+  flex: 0 0 calc(25% - 2rem);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.thankyou__info-column h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.thankyou__info-column p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.thankyou__order {
+  order: 2;
+  margin-bottom: 2rem;
+}
+
+.thankyou__order h2 {
+  margin-bottom: 15px;
+}
+
+.thankyou__products table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.thankyou__products th,
+.thankyou__products td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.thankyou__products th {
+  background-color: #f4f4f4;
+}
+
+.thankyou__products td div {
+  display: flex;
+}
+
+.product-image {
+  width: 50px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.thankyou__summary {
+  margin-top: 15px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thankyou__summary div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.thankyou__summary div:last-child {
+  border-top: 1px solid #dadada;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  font-size: 2rem;
+}
+
+.thankyou__summary .highlight {
+  color: #2a9dcc;
+}
+
+.thankyou__actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thankyou__actions a,
+.thankyou__actions button {
+  padding: 10px 25px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.thankyou__actions a {
+  background-color: #2d89ef;
+  color: #fff;
+}
+
+.thankyou__actions a:hover {
+  background-color: #1b5dab;
+}
+
+.thankyou__actions button {
+  background-color: #f0f0f0;
+  color: #2a9dcc;
+}
+
+.thankyou__actions button:hover {
+  background-color: #e0e0e0;
+  color: #1b5dab;
+}
+
+.title-wrapper .more {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .thankyou__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .thankyou__header {
+    flex-direction: column;
+  }
+
+  .thankyou__header div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .thankyou__info {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .thankyou__order {
+    order: 1;
+  }
+
+  .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title-wrapper .more {
+    display: block;
+    font-size: 1.4rem;
+    color: #2a9dcc;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+
+  .title-wrapper .more:hover {
+    color: #1b5dab;
+  }
+
+  .title-wrapper .more i {
+    transition: transform 0.3s ease;
+  }
+
+  .title-wrapper .more i.rotate {
+    transform: rotateX(180deg);
+  }
+
+  .thankyou__order h2 {
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  .table-wrapper.hidden {
+    display: none;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    /* Firefox */
+    scrollbar-width: none;
+  }
+
+  .table-wrapper::-webkit-scrollbar {
+    /* Chrome, Edge, Safari */
+    display: none;
+  }
+
+  .table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 60rem;
+  }
+
+  .thankyou__actions {
+    order: 3;
+  }
+}
+
+@media print {
+  .thankyou__actions {
+    display: none;
+  }
+  .title-wrapper .more {
+    display: none;
+  }
+  .thankyou__info {
+    display: grid;
+  }
+}

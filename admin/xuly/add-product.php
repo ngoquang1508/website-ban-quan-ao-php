@@ -19,7 +19,7 @@ $filesize = $_FILES['photo']['size'];
 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
 // Vị trí lưu file
-$targetDir = 'uploads/';
+$targetDir = 'uploads/products/';
 
 // Giới hạn dung lượng file < 5mb;
 $maxsize = 2 * 1024 * 1024;
@@ -27,13 +27,13 @@ if ($filesize > $maxsize) {
     die("Dung lượng file lớn hớn 2MB: " . $filesize);
 }
 
-// Đảm bảo thư mục ../uploads tồn tại
-if (!is_dir("../" . $targetDir)) {
-    mkdir("../uploads", 0777, true);
+// Đảm bảo thư mục /uploads tồn tại
+if (!is_dir("../../" . $targetDir)) {
+    mkdir("../../uploads/products", 0777, true);
 }
 
 // upload file
-if (move_uploaded_file($_FILES['photo']['tmp_name'], "../". $targetDir . $filename)) {
+if (move_uploaded_file($_FILES['photo']['tmp_name'], "../../" . $targetDir . $filename)) {
     echo "Tải ảnh thành công!";
 } else {
     die("Lỗi không di chuyển ảnh đến thư mục");
@@ -45,16 +45,16 @@ $description = $_POST['description'];
 $price = $_POST['price'];
 $stock = $_POST['stock'];
 $type = $_POST['type'];
+$sexual = $_POST['sexual'];
 $url = $targetDir . $filename;
 
-echo $type;
 
-$sql_add_product = "INSERT INTO products(name, description, price, stock, type, url_image) VALUES(?,?,?,?,?,?)";
+$sql_add_product = "INSERT INTO products(name, description, price, stock, type, sexual, url_image) VALUES(?,?,?,?,?,?,?)";
 $stmt = $conn->prepare($sql_add_product);
-$stmt->bind_param("ssssss", $name, $description, $price, $stock, $type, $url);
+$stmt->bind_param("sssssss", $name, $description, $price, $stock, $type, $sexual, $url);
 if($stmt->execute()) {
     echo "Thêm sản phẩm thành công";
-    header("Location: ../index.php?page=products");
+    header("Location: ../?page=products");
     exit;
 } else {
     die("Thêm sản phẩm thất bại");

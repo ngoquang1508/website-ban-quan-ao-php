@@ -1,307 +1,286 @@
-/* ==============================
-   GLOBAL SETTINGS
-============================== */
-html {
-  font-size: 62.5%;
+/* ============================================= */
+/* BLOCK: CATEGORIES                             */
+/* ============================================= */
+.categories {
+  padding: 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
 }
 
-*,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.categories__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 2.2rem;
+  text-align: center;
+  justify-items: center;
 }
 
-:root {
-  /* Layout heights */
-  --height-desktop: 6rem;
-  --height-tablet: 8rem;
-
-  /* Banner text sizes */
-  --banner-title-mobile: 1.6rem;
-  --banner-subheadline-mobile: 1.2rem;
-
-  --banner-title-tablet: 2.6rem;
-  --banner-subheadline-tablet: 1.6rem;
-
-  --banner-title-desktop: 3.6rem;
-  --banner-subheadline-desktop: 2rem;
-
-  /* Policy Bar */
-  --policy-radius: 2.4rem;
-  --policy-icon-size: 3.6rem;
-  --policy-gap: 4rem;
-  --policy-padding-y: 2rem;
-  --policy-padding-x: 2rem;
-
-  /* Colors */
-  --color-dark: #2b2f33;
-  --color-sub: #737373;
-  --color-banner-sub: #726252;
-  --color-bg: #fff;
-  --color-shadow: rgba(0, 0, 0, 0.25);
-
-  /* Typography */
-  --fw-bold: 700;
-  --fw-semi: 600;
-
-  /* Effects */
-  --box-shadow: 0px 0px 15px 0px var(--color-shadow);
-  --transition: all 0.3s ease;
-}
-
-/* ==============================
-   BANNER MOBILE (DEFAULT)
-============================== */
-.banner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.banner-img {
-  position: relative;
-  width: 100%;
-}
-
-.banner-img::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3rem;
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.banner img {
-  width: 100%;
-  object-fit: cover;
-  object-position: top left;
-}
-
-/* --- Banner content --- */
-.banner__content {
-  position: absolute;
-  top: 35%;
-  left: 1rem;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-}
-
-.banner__content h2 {
-  font-size: var(--banner-title-mobile);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  text-shadow: 0 0 5px #fff;
-  letter-spacing: 0.2rem;
-  word-spacing: 0.4rem;
-  color: #222;
-  margin-bottom: 1.2rem;
-}
-
-.banner__content p {
-  font-size: var(--banner-subheadline-mobile);
-  color: var(--color-banner-sub);
-  line-height: 1.6rem;
-}
-
-.banner__content button {
-  width: 12rem;
-  padding: 1rem 2rem;
-  margin-top: 2rem;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #333;
-  border-radius: 1rem;
-  font-size: var(--banner-subheadline-mobile);
-  font-weight: var(--fw-semi);
+.categories__item {
   cursor: pointer;
-  transition: var(--transition);
-}
-
-.banner__content button:hover {
-  border-color: transparent;
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: 2px 2px 3px #fff;
-}
-
-.banner__content button:active {
-  transform: scale(1.05);
-}
-
-/* ==============================
-   POLICY BAR (MOBILE)
-============================== */
-.banner__policy {
-  width: 94%;
-  padding: var(--policy-padding-y) var(--policy-padding-x);
+  transition: transform 0.3s ease;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-  background: var(--color-bg);
-  box-shadow: var(--box-shadow);
-  border-radius: var(--policy-radius);
+}
+
+.categories__item:hover {
+  transform: translateY(-10px);
+}
+
+.categories__image {
+  width: 95px;
+  height: 95px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fdf2f0;
+  padding: 8px;
+  border: 3px solid #ffe5e0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categories__item:hover .categories__image {
+  border-color: #e63946;
+  background: #fff8f5;
+  box-shadow: 0 12px 28px rgba(230, 57, 70, 0.25);
+  transform: scale(1.1);
+}
+
+.categories__label {
+  display: inline-block;
+  background: #ffffff;
+  color: #e63946;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding: 0.45rem 1.3rem;
+  border: 2px solid #e63946;
+  border-radius: 30px;
+  min-width: 85px;
+  margin-top: 0.8rem;
+  box-shadow: 0 3px 8px rgba(230, 57, 70, 0.15);
+  transition: all 0.3s ease;
+}
+
+.categories__item:hover .categories__label {
+  background: #e63946;
+  color: white;
+  transform: scale(1.06);
+}
+
+/* ============================================= */
+/* BLOCK: OFFERS                                 */
+/* ============================================= */
+.offers {
+  padding: 3.5rem 1rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.offers__title {
+  color: #e63946;
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin-bottom: 2.8rem;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  z-index: 1;
+}
+
+.offers__title::before,
+.offers__title::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 140px;
+  height: 2px;
+  background: #e63946;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.offers__title::before { 
+  left: -160px; 
+  border-right: 8px solid transparent;
+}
+.offers__title::after { 
+  right: -160px; 
+  border-left: 8px solid transparent;
+}
+
+.offers__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.offers__card {
+  background: linear-gradient(145deg, #fff8f0 0%, #fff0e0 100%);
+  border-radius: 22px;
+  padding: 1.5rem 1.1rem;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(230, 57, 70, 0.14);
+  border: 1px solid #ffccc2;
+  transition: all 0.35s ease;
+  position: relative;
   overflow: hidden;
 }
 
-.banner__policy-list {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 2rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+.offers__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #e63946, #ff6b6b);
+  border-radius: 22px 22px 0 0;
 }
 
-.banner__policy-list::-webkit-scrollbar {
-  display: none;
-}
-.banner__policy-list {
-  scrollbar-width: none;
-}
-
-.banner__policy-item {
-  display: flex;
-  flex: 0 0 28rem;
-  justify-content: flex-start;
-  align-items: center;
-  scroll-snap-align: center;
-  transition: transform 0.2s ease;
+.offers__card:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 20px 40px rgba(230, 57, 70, 0.25);
+  border-color: #e63946;
 }
 
-.banner__policy-icon {
-  width: var(--policy-icon-size);
-  height: var(--policy-icon-size);
-  margin-right: 1rem;
-  flex-shrink: 0;
+.offers__tag {
+  background: #e63946;
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.38rem 0.95rem;
+  border-radius: 25px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  box-shadow: 0 2px 5px rgba(230, 57, 70, 0.2);
 }
 
-.banner__policy-icon img {
-  max-width: 100%;
-  max-height: 100%;
+.offers__desc {
+  font-size: 0.89rem;
+  color: #555;
+  margin: 0.6rem 0 1.1rem;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
-.banner__policy-text {
-  white-space: nowrap;
-  line-height: 2.4rem;
+.offers__btn {
+  display: inline-block;
+  background: #fff9f5;
+  color: #e63946;
+  padding: 0.65rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid #e63946;
+  transition: all 0.3s ease;
+  min-width: 130px;
+  box-shadow: 0 3px 10px rgba(230, 57, 70, 0.15);
 }
 
-.banner__policy-text h4 {
-  font-size: 1.4rem;
-  color: var(--color-dark);
-  font-weight: var(--fw-bold);
+.offers__btn:hover {
+  background: #e63946;
+  color: white;
+  transform: scale(1.07);
+  box-shadow: 0 6px 15px rgba(230, 57, 70, 0.3);
 }
 
-.banner__policy-text p {
-  font-size: 1.2rem;
-  color: var(--color-sub);
+/* ============================================= */
+/* RESPONSIVE                                    */
+/* ============================================= */
+@media (max-width: 992px) {
+  .offers__title::before,
+  .offers__title::after {
+    width: 90px;
+  }
+  .offers__title::before { left: -110px; }
+  .offers__title::after { right: -110px; }
 }
 
-/* ==============================
-   TABLET
-============================== */
-@media (min-width: 600px) and (max-width: 1023px) {
-  :root {
-    --policy-gap: 3rem;
-    --policy-padding-y: 2.5rem;
-    --policy-padding-x: 3rem;
+@media (max-width: 768px) {
+  .categories__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.8rem;
   }
 
-  .banner img {
-    height: calc(100vh - var(--height-tablet));
-    object-position: top left;
+  .categories__image {
+    width: 78px;
+    height: 78px;
   }
 
-  .banner__content {
-    top: 35%;
-    left: 4rem;
+  .categories__label {
+    font-size: 0.78rem;
+    padding: 0.4rem 1.1rem;
   }
 
-  .banner__content h2 {
-    font-size: var(--banner-title-tablet);
+  .offers__title {
+    font-size: 1.55rem;
   }
 
-  .banner__content p {
-    font-size: var(--banner-subheadline-tablet);
-    line-height: 3rem;
+  .offers__title::before,
+  .offers__title::after {
+    display  : none;
   }
 
-  .banner__content button {
-    width: 16rem;
-    font-size: var(--banner-subheadline-tablet);
+  .offers__list {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .banner__policy-item {
-    flex: 0 0 26rem;
+  .offers__card {
+    width: 92%;
+    max-width: 340px;
   }
 }
 
-/* ==============================
-   DESKTOP
-============================== */
-@media (min-width: 1024px) {
-  :root {
-    --policy-gap: 6rem;
-    --policy-padding-y: 3rem;
-    --policy-padding-x: 4rem;
-    --policy-icon-size: 4.6rem;
+@media (max-width: 480px) {
+  .categories__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
   }
 
-  .banner {
-    gap: 6rem;
+  .categories__image {
+    width: 68px;
+    height: 68px;
+    padding: 6px;
   }
 
-  .banner img {
-    height: calc(100vh - var(--height-desktop));
-    object-position: top;
+  .categories__label {
+    font-size: 0.73rem;
+    padding: 0.35rem 0.9rem;
   }
 
-  .banner__content {
-    top: 40%;
-    left: 8rem;
+  .offers {
+    padding: 2.5rem 0.5rem;
   }
 
-  .banner__content h2 {
-    font-size: var(--banner-title-desktop);
+  .offers__title {
+    font-size: 1.35rem;
   }
 
-  .banner__content p {
-    font-size: var(--banner-subheadline-desktop);
-    line-height: 4rem;
+  .offers__card {
+    padding: 1.3rem 0.9rem;
   }
 
-  .banner__content button {
-    width: 20rem;
-    white-space: nowrap;
-    font-size: var(--banner-subheadline-desktop);
+  .offers__desc {
+    font-size: 0.86rem;
   }
 
-  .banner__policy {
-    width: 88%;
-    justify-content: center;
-  }
-
-  .banner__policy-list {
-    gap: 4rem;
-  }
-
-  .banner__policy-icon {
-    width: var(--policy-icon-size);
-    height: var(--policy-icon-size);
-  }
-
-  .banner__policy-item {
-    flex: 0 0 25rem;
+  .offers__btn {
+    padding: 0.6rem 1.3rem;
+    font-size: 0.84rem;
   }
 }
