@@ -10,15 +10,11 @@ require_once "config/base-url.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<<<<<<< Updated upstream
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/index.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/auth.css">
 
-=======
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/auth.css">
     <link rel="stylesheet" href="assets/css/pages/trangchu.css">
->>>>>>> Stashed changes
+
 </head>
 
 <body>
