@@ -1,3 +1,219 @@
+/* VIEW AVT */
+.modal-view {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 100;
+  display: none;
+}
+
+.modal-view.open {
+  display: block;
+}
+
+.modal-view .img {
+  width: 90vw; /* chiếm 90% chiều ngang màn hình */
+  max-width: 60rem; /* không quá lớn trên desktop */
+  height: 60vh; /* chiếm 60% chiều cao màn hình */
+  max-height: 80vh; /* không vượt quá 80% chiều cao */
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin: auto;
+  transform: translateY(25%);
+}
+
+.modal-view .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-view button {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modal-view button:hover {
+  background: #555;
+}
+
+/* MODAL ĐỔI AVT */
+.modal-change-avt {
+  position: fixed;
+  inset: 0;
+  width: 90vw; /* chiếm 90% chiều ngang màn hình */
+  max-width: 60rem; /* không quá lớn trên desktop */
+  height: 60vh; /* chiếm 60% chiều cao màn hình */
+  max-height: 80vh; /* không vượt quá 80% chiều cao */
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin: auto;
+  background: #333;
+  z-index: 100;
+  display: none;
+}
+
+.modal-change-avt.open {
+  display: block;
+}
+
+/* Header */
+.modal-change-avt .head {
+  width: 100%;
+  padding: 1.5rem 0;
+  text-align: center;
+  border-bottom: 1px solid #666;
+  position: relative;
+}
+
+.modal-change-avt .head h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.modal-change-avt .head button {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  padding: .8rem 1.1rem;
+  border-radius: 50%;
+  color: #fff;
+  background: transparent;
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .15s ease;
+}
+
+.modal-change-avt .head button:hover {
+  background: #555;
+}
+
+/* Content */
+.modal-change-avt .content {
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  gap: 1.5rem;
+}
+
+/* Step 1: upload */
+.modal-change-avt .step-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  color: #555;
+  font-size: 2rem;
+  font-weight: 600;
+  border: 2px dashed #ccc;
+  border-radius: 0.6rem;
+  padding: 2rem;
+  width: 80%;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.modal-change-avt .step-1:hover {
+  background: #555;
+  color: #ff6347;
+  border-color: #ff6347;
+}
+
+.modal-change-avt .step-1:active {
+  transform: scale(0.95);
+}
+
+.modal-change-avt .step-1 i {
+  font-size: 2rem;
+}
+
+/* Step 2: preview */
+.modal-change-avt .step-2 {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modal-change-avt .step-2 .img {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eee;
+}
+
+.modal-change-avt .step-2 .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Footer */
+.modal-change-avt .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #666;
+}
+
+.modal-change-avt .footer button {
+  padding: 0.6rem 2rem;
+  border-radius: 0.4rem;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-change-avt .footer button:first-child {
+  background: transparent;
+  color: #ff6347;
+}
+
+.modal-change-avt .footer button:first-child:hover {
+  background: #555;
+}
+
+.modal-change-avt .footer button:last-child {
+  background: #ff6347;
+  color: #fff;
+}
+
+.modal-change-avt .footer button:last-child:hover {
+  background: #ff8264;
+}
+
+/*  */
 .profile__container h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -88,6 +304,119 @@
   gap: 1rem;
 }
 
+.profile__info-wrapper {
+  display: flex;
+  gap: 4rem;
+}
+
+.profile__info-left {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.profile__info-left .options {
+  position: absolute;
+  width: 20rem;
+  top: 14rem;
+  border-radius: 1rem;
+  display: none;
+}
+.profile__info-left .options::after {
+  content: "";
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 0.75rem solid transparent;
+  border-right: 0.75rem solid transparent;
+  border-bottom: 0.75rem solid #555;
+}
+
+.profile__info-left .options.open {
+  display: block;
+}
+
+.profile__info-left .options li button {
+  width: 100%;
+  height: 50%;
+  padding: 1rem 0 1rem 1rem;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #555;
+  color: #fff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  .icon {
+    width: 2.5rem;
+    margin-right: 0.6rem;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    background: #666;
+  }
+}
+
+.profile__info-left .options li .avt-btn-item {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.profile__info-left .options li .choose-btn-item {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.profile__info-left .avatar {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.profile__info-left .avatar .camera-icon {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0;
+  padding: 0.6rem;
+  border: 1px solid #ff6347;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile__info-left .avatar .img {
+  width: 11rem;
+  height: 11rem;
+  border: 2px solid #ff6347;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profile__info-left .avatar .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.98);
+  transition: filter 0.3s ease;
+}
+
+.profile__info-left .avatar .img img:hover {
+  filter: brightness(1.05);
+}
+
+/* Info bên phải */
+.profile__info-right {
+  flex: 1;
+}
+
 .profile-content .input-group {
   display: flex;
   flex-direction: column;
@@ -134,8 +463,6 @@
 }
 
 /* ĐỔI MẬT KHẨU */
-.profile__change-pwd {
-}
 /* ĐƠN HÀNG */
 .profile__carts .table-wrapper {
   max-height: 30rem;
@@ -211,5 +538,13 @@
   }
   .profile__carts th:last-child {
     min-width: 9.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .profile__info-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
   }
 }

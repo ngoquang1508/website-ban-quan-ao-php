@@ -18,7 +18,7 @@ $user = [];
 while ($row = $result->fetch_assoc()) {
     $user['username'] = $row['username'];
     $user['email'] = $row['email'];
-    $user['avatar'] = $row['avatar'];
+    $user['avatar'] = $row['avatar'] ?? null;
     $user['phone'] = $row['phone'];
     $user['address'] = $row['address'];
 }
@@ -59,9 +59,51 @@ $nav_settings = [
         "icon_class" => "fa-solid fa-cart-shopping"
     ],
 ];
+
+$avatar = !empty($user['avatar'])
+    ? BASE_URL . $user['avatar']
+    : BASE_URL . 'assets/images/avatar-default.jpg';
 ?>
 
 <div class="profile__container">
+    <!-- modal XEM ẢNH ĐẠI DIỆN -->
+    <div class="modal-view">
+        <div class="img">
+            <img class="avatar-view" src="<?= $avatar ?>" alt="avatar">
+        </div>
+        <button>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    
+    <!-- modal ĐỔI ẢNH ĐẠI DIỆN -->
+    <div class="modal-change-avt">
+        <div class="head">
+            <h2>Chọn ảnh đại diện</h2>
+            <button class="close-modal-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="content">
+            <div class="step-1 upload-btn">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tải ảnh lên</span>
+                <input class="upload-input" type="file" accept="image/*" hidden >
+            </div>
+            <div class="step-2">
+                <div class="img">
+                    <img id="avatarPreview" src="<?= $avatar ?>" alt="avatar">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="close-modal-btn">Hủy</button>
+            <button class="save-change">Lưu</button>
+        </div>
+    </div>
+
     <div class="profile__wrapper">
         <!-- Thanh điều hướng bên trái -->
         <div class="profile-nav">
@@ -78,36 +120,74 @@ $nav_settings = [
             <div class="profile__info item active">
                 <h2>Thông tin tài khoản</h2>
 
-                <div class="input-group">
-                    <label>Tên khách hàng</label>
-                    <div>
-                        <input type="text" value="<?= $user['username'] ?>" name="username">
-                        <i class="fa-solid fa-pen"></i>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Email</label>
-                    <div>
-                        <input type="text" value="<?= $user['email'] ?>" disabled>
-                        <i class="fa-solid fa-pen" style="pointer-events: none; opacity: 0.6; cursor: no-drop;"></i>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Số điện thoại</label>
-                    <div>
-                        <input type="text" value="<?= $user['phone'] ?? "Chưa có" ?>" name="phone">
-                        <i class="fa-solid fa-pen"></i>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Địa chỉ</label>
-                    <div>
-                        <input type="text" value="<?= $user['address'] ?? "Chưa có" ?>" name="address">
-                        <i class="fa-solid fa-pen"></i>
-                    </div>
-                </div>
+                <!-- ẢNH ĐẠI DIỆN -->
+                <div class="profile__info-wrapper">
+                    <div class="profile__info-left">
+                        <div class="avatar">
+                            <div class="img" id="avt-img">
+                                <img class="avatar-view" src="<?= $avatar ?>" alt="avatar">
+                            </div>
 
-                <button class="save-btn" id="submit-info-btn">Lưu</button>
+                            <button class="camera-icon">
+                                <i class="fa-solid fa-camera"></i>
+                            </button>
+                        </div>
+
+                        <ul class="options">
+                            <li>
+                                <button class="avt-btn-item">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <span>Xem ảnh đại diện</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="choose-btn-item">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-image"></i>
+                                    </div>
+                                    <span>Chọn ảnh đại diện</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!-- RIGHT -->
+                    <div class="profile__info-right">
+                        <div class="input-group">
+                            <label>Tên khách hàng</label>
+                            <div>
+                                <input type="text" value="<?= $user['username'] ?>" name="username">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <div>
+                                <input type="text" value="<?= $user['email'] ?>" disabled>
+                                <i class="fa-solid fa-pen" style="pointer-events: none; opacity: 0.6; cursor: no-drop;"></i>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Số điện thoại</label>
+                            <div>
+                                <input type="text" value="<?= $user['phone'] ?? "Chưa có" ?>" name="phone">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Địa chỉ</label>
+                            <div>
+                                <input type="text" value="<?= $user['address'] ?? "Chưa có" ?>" name="address">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+
+                        <button class="save-btn" id="submit-info-btn">Lưu</button>
+                    </div>
+                </div>
             </div>
 
             <!-- ĐỔI MẬT KHẨU -->
