@@ -73,6 +73,9 @@ $avatar = $stmt_get_avt->get_result()->fetch_assoc()['avatar'] ?? null;
 
             <li><a href="?page=lien-he">Liên hệ</a></li>
             <li><a href="?page=he-thong-cua-hang">Hệ thống cửa hàng</a></li>
+            <?php if (isset($_SESSION['user'])): ?>
+                <li><a href="xuly/dang-xuat.php" style="background: rgba(255, 99, 71, 0.4); color: #333;">Đăng xuất</a></li>
+            <?php endif; ?>
         </ul>
     </div>
     <div class="overlay"></div>
@@ -116,7 +119,7 @@ $avatar = $stmt_get_avt->get_result()->fetch_assoc()['avatar'] ?? null;
                 <div class="header__menu-item header__account avatar">
                     <a href="?page=thong-tin-ca-nhan">
                         <!-- Nếu người dùng chưa có avatar thì mặc định là avatar default -->
-                        <img class="avatar-view" src="<?= BASE_URL . $avatar ?: BASE_URL . 'assets/images/avatar-default.jpg' ?>" alt="avatar">
+                        <img class="avatar-view" src="<?= isset($avatar) ? BASE_URL . $avatar : BASE_URL . 'assets/images/avatar-default.jpg' ?>" alt="avatar">
                         <?= $_SESSION['user']['username'] ?>
                     </a>
                     <div class="header__account-dropdown">
