@@ -8,6 +8,11 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
 
+// Lấy ảnh đại diện người dùng
+$stmt_get_avt = $conn->prepare("SELECT avatar FROM users WHERE id = ?");
+$stmt_get_avt->bind_param("i", $user_id);
+$stmt_get_avt->execute();
+$avatar = $stmt_get_avt->get_result()->fetch_assoc()['avatar'] ?? null;
 ?>
 <header class="header">
 
@@ -111,7 +116,7 @@ $total_product = $stmt->get_result()->fetch_assoc()['total_product'];
                 <div class="header__menu-item header__account avatar">
                     <a href="?page=thong-tin-ca-nhan">
                         <!-- Nếu người dùng chưa có avatar thì mặc định là avatar default -->
-                        <img src="<?php echo $_SESSION['user']['avatar'] ?: BASE_URL . 'assets/images/avatar-default.jpg' ?>" alt="avatar">
+                        <img class="avatar-view" src="<?= BASE_URL . $avatar ?: BASE_URL . 'assets/images/avatar-default.jpg' ?>" alt="avatar">
                         <?= $_SESSION['user']['username'] ?>
                     </a>
                     <div class="header__account-dropdown">
