@@ -25,8 +25,11 @@ document.getElementById("exportExcelBtn").addEventListener("click", () => {
         if (tr.children[i]) tr.removeChild(tr.children[i]);
       });
   });
-
+  
+  
   // Xuất Excel
   const wb = XLSX.utils.table_to_book(clone, { sheet: "Sheet1" });
   XLSX.writeFile(wb, page + ".xlsx");
+
+  alert(`Xuất file ${page}.xlsx thành công`);
 });

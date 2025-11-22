@@ -348,4 +348,4 @@ $products = $conn->query($sql_product);
     });
 </script>
 
-<script src="<?= BASE_URL ?>assets/js/excel.js"></script>
+<script src="<?= BASE_URL ?>assets/js/excel.js" ></script>
