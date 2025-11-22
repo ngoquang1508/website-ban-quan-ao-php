@@ -3,7 +3,7 @@
 include __DIR__ . "/../../../config/db.php";
 
 // Lấy danh sách tất cả user (trừ admin)
-$sql_user = "SELECT id, username, email, phone, address, status, role FROM users WHERE role != 'admin'";
+$sql_user = "SELECT id, username, email, phone, address, status, role, created_at FROM users WHERE role != 'admin'";
 $users = $conn->query($sql_user);
 
 // Biến đếm STT
@@ -38,6 +38,7 @@ $i = 1;
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
                         <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
@@ -50,6 +51,7 @@ $i = 1;
                             <td><?php echo htmlspecialchars($row['phone'] ?? '-'); ?></td>
                             <td><?php echo htmlspecialchars($row['address'] ?? '-'); ?></td>
                             <td><?php echo $row['status'] === 'unlock' ? 'Hoạt động' : 'Bị khóa'; ?></td>
+                            <td><?php echo htmlspecialchars($row['created_at']) ?></td>
                             <td class="main-user__btn">
                                 <a class="main-user__btn-edit" href="?page=users&action=edit&id=<?php echo $row['id']; ?>">Sửa</a>
                                 <a class="main-user__btn-delete" href="xuly/delete-user.php?id=<?php echo $row['id']; ?>">Xóa</a>
@@ -74,6 +76,7 @@ $i = 1;
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
                         <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
@@ -86,6 +89,7 @@ $i = 1;
                             <td><?php echo htmlspecialchars($row['phone'] ?? '-'); ?></td>
                             <td><?php echo htmlspecialchars($row['address'] ?? '-'); ?></td>
                             <td><?php echo $row['status'] === 'unlock' ? 'Hoạt động' : 'Bị khóa'; ?></td>
+                            <td><?php echo htmlspecialchars($row['created_at']) ?></td>
                             <td class="main-user__btn">
                                 <a class="main-user__btn-edit" href="?page=users&action=edit&id=<?php echo $row['id']; ?>">Sửa</a>
                                 <a class="main-user__btn-delete" href="xuly/delete-user.php?id=<?php echo $row['id']; ?>">Xóa</a>

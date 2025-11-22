@@ -188,7 +188,6 @@
     max-width: 1200px;
     margin: 3rem auto;
     padding: 2.5rem;
-    background: #f50000;
     border-radius: var(--border-radius);
     box-shadow: 0 2px 15px rgba(0,0,0,0.08);
   }

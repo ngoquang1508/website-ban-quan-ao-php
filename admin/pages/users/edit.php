@@ -34,9 +34,9 @@ $stmt->close();
         <form action="xuly/edit-user.php" method="post">
             <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
             <label for="">Họ tên</label>
-            <input type="text" name="username" value="<?php echo $user['username'] ?>">
+            <input type="text" name="username" value="<?php echo $user['username'] ?>" disabled >
             <label for="">Email</label>
-            <input type="email" name="email" value="<?php echo $user['email'] ?>">
+            <input type="email" name="email" value="<?php echo $user['email'] ?>" disabled >
             <label for="">Trạng thái</label>
             <select name="status">
                 <option value="unlock" <?= ($user['status'] === 'unlock') ? 'selected' : '' ?>>Hoạt động</option>
