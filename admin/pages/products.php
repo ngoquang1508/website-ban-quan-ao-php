@@ -105,8 +105,16 @@ $products = $conn->query($sql_product);
                     </div>
                     <div class="mb-3">
                         <label>Ảnh sản phẩm</label>
-                        <input type="file" name="image" class="form-control" accept="image/*" required>
+
+                        <div id="dropAreaAdd"
+                            style="border:2px dashed #ccc;padding:20px;text-align:center;border-radius:10px;cursor:pointer;">
+                            <p>Kéo & Thả ảnh vào đây hoặc bấm để chọn</p>
+                            <img id="previewAdd" style="max-width:150px;display:none;margin-top:10px;">
+                        </div>
+
+                        <input type="file" id="addImage" name="image" class="form-control" accept="image/*" hidden required>
                     </div>
+
                     <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
                 </form>
             </div>
@@ -158,7 +166,14 @@ $products = $conn->query($sql_product);
                     </div>
                     <div class="mb-3">
                         <label>Ảnh sản phẩm (bỏ trống nếu không đổi)</label>
-                        <input type="file" name="image" id="editProductImage" class="form-control" accept="image/*">
+                        <div id="dropAreaEdit"
+     style="border:2px dashed #ccc;padding:20px;text-align:center;border-radius:10px;cursor:pointer;">
+    <p>Kéo & Thả ảnh mới hoặc bấm để chọn</p>
+    <img id="previewEdit" style="max-width:150px;display:none;margin-top:10px;">
+</div>
+
+<input type="file" id="editProductImage" name="image" accept="image/*" hidden>
+
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </form>
@@ -347,5 +362,52 @@ $products = $conn->query($sql_product);
         reader.readAsArrayBuffer(file);
     });
 </script>
+<script>
+// ========== FUNCTION CHUNG ========== //
+function enableDragDrop(dropAreaId, fileInputId, previewId) {
+    const drop = document.getElementById(dropAreaId);
+    const input = document.getElementById(fileInputId);
+    const preview = document.getElementById(previewId);
+
+    // Khi click vào vùng drop → mở chọn file
+    drop.addEventListener("click", () => input.click());
+
+    // Kéo file vào
+    drop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        drop.style.borderColor = "#007bff";
+    });
+
+    drop.addEventListener("dragleave", () => {
+        drop.style.borderColor = "#ccc";
+    });
+
+    drop.addEventListener("drop", (e) => {
+        e.preventDefault();
+        drop.style.borderColor = "#ccc";
+
+        if (!e.dataTransfer.files.length) return;
+
+        const file = e.dataTransfer.files[0];
+        input.files = e.dataTransfer.files;
+
+        // Show preview
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    });
+
+    // Khi chọn file bằng tay
+    input.addEventListener("change", () => {
+        if (!input.files.length) return;
+        preview.src = URL.createObjectURL(input.files[0]);
+        preview.style.display = "block";
+    });
+}
+
+// ========== ÁP DỤNG ========== //
+enableDragDrop("dropAreaAdd", "addImage", "previewAdd");
+enableDragDrop("dropAreaEdit", "editProductImage", "previewEdit");
+</script>
+
 
 <script src="<?= BASE_URL ?>assets/js/excel.js" ></script>
