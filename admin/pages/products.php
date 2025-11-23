@@ -167,12 +167,12 @@ $products = $conn->query($sql_product);
                     <div class="mb-3">
                         <label>Ảnh sản phẩm (bỏ trống nếu không đổi)</label>
                         <div id="dropAreaEdit"
-     style="border:2px dashed #ccc;padding:20px;text-align:center;border-radius:10px;cursor:pointer;">
-    <p>Kéo & Thả ảnh mới hoặc bấm để chọn</p>
-    <img id="previewEdit" style="max-width:150px;display:none;margin-top:10px;">
-</div>
+                            style="border:2px dashed #ccc;padding:20px;text-align:center;border-radius:10px;cursor:pointer;">
+                            <p>Kéo & Thả ảnh mới hoặc bấm để chọn</p>
+                            <img id="previewEdit" style="max-width:150px;display:none;margin-top:10px;">
+                        </div>
 
-<input type="file" id="editProductImage" name="image" accept="image/*" hidden>
+                        <input type="file" id="editProductImage" name="image" accept="image/*" hidden>
 
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
@@ -307,19 +307,18 @@ $products = $conn->query($sql_product);
 <script>
     const fileInput = document.getElementById("excelInput");
 
-    fileInput.addEventListener("change", () => {
+    fileInput.addEventListener("change", async () => {
         if (!fileInput.files.length) return;
 
         const file = fileInput.files[0];
 
-        // Hiện confirm
         if (!confirm(`Bạn có chắc muốn nhập file Excel "${file.name}" không?`)) {
-            fileInput.value = ""; // reset file input
+            fileInput.value = "";
             return;
         }
 
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = async (e) => {
             const data = new Uint8Array(e.target.result);
             const workbook = XLSX.read(data, {
                 type: "array"
@@ -332,7 +331,6 @@ $products = $conn->query($sql_product);
                 defval: ""
             });
 
-            // Map các cột Excel → backend
             const mappedRows = rows.map((r) => ({
                 name: r["Tên sản phẩm"] || r["name"] || "",
                 description: r["Mô tả"] || r["description"] || "",
@@ -340,74 +338,86 @@ $products = $conn->query($sql_product);
                 stock: r["Tồn kho"] || r["stock"] || 0,
                 type: r["Loại"] || r["type"] || "",
                 sexual: r["Giới tính"] || r["sexual"] || "",
-                image_url: r["image_url"] || ""
+                url_image: r["url_image"] || ""
             }));
 
-            // Gọi API import
-            fetch("api/products.php?action=importExcel", {
+            // Tạo FormData để gửi lên server
+            const formData = new FormData();
+            formData.append("action", "importExcel");
+            formData.append("rows", JSON.stringify(mappedRows));
+
+            try {
+                const res = await fetch("api/products.php", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(mappedRows)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    alert(data.message);
-                    if (data.status === "success") location.reload();
-                })
-                .catch(console.error);
+                    body: formData
+                });
+
+                const text = await res.text();
+                let data;
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    console.error("JSON parse error:", e, "Response text:", text);
+                    return;
+                }
+
+                console.log(data);
+                alert(data.message || "Import xong!");
+
+            } catch (err) {
+                console.error("Fetch error:", err);
+            }
         };
 
         reader.readAsArrayBuffer(file);
     });
 </script>
+
 <script>
-// ========== FUNCTION CHUNG ========== //
-function enableDragDrop(dropAreaId, fileInputId, previewId) {
-    const drop = document.getElementById(dropAreaId);
-    const input = document.getElementById(fileInputId);
-    const preview = document.getElementById(previewId);
+    // ========== FUNCTION CHUNG ========== //
+    function enableDragDrop(dropAreaId, fileInputId, previewId) {
+        const drop = document.getElementById(dropAreaId);
+        const input = document.getElementById(fileInputId);
+        const preview = document.getElementById(previewId);
 
-    // Khi click vào vùng drop → mở chọn file
-    drop.addEventListener("click", () => input.click());
+        // Khi click vào vùng drop → mở chọn file
+        drop.addEventListener("click", () => input.click());
 
-    // Kéo file vào
-    drop.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        drop.style.borderColor = "#007bff";
-    });
+        // Kéo file vào
+        drop.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            drop.style.borderColor = "#007bff";
+        });
 
-    drop.addEventListener("dragleave", () => {
-        drop.style.borderColor = "#ccc";
-    });
+        drop.addEventListener("dragleave", () => {
+            drop.style.borderColor = "#ccc";
+        });
 
-    drop.addEventListener("drop", (e) => {
-        e.preventDefault();
-        drop.style.borderColor = "#ccc";
+        drop.addEventListener("drop", (e) => {
+            e.preventDefault();
+            drop.style.borderColor = "#ccc";
 
-        if (!e.dataTransfer.files.length) return;
+            if (!e.dataTransfer.files.length) return;
 
-        const file = e.dataTransfer.files[0];
-        input.files = e.dataTransfer.files;
+            const file = e.dataTransfer.files[0];
+            input.files = e.dataTransfer.files;
 
-        // Show preview
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-    });
+            // Show preview
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        });
 
-    // Khi chọn file bằng tay
-    input.addEventListener("change", () => {
-        if (!input.files.length) return;
-        preview.src = URL.createObjectURL(input.files[0]);
-        preview.style.display = "block";
-    });
-}
+        // Khi chọn file bằng tay
+        input.addEventListener("change", () => {
+            if (!input.files.length) return;
+            preview.src = URL.createObjectURL(input.files[0]);
+            preview.style.display = "block";
+        });
+    }
 
-// ========== ÁP DỤNG ========== //
-enableDragDrop("dropAreaAdd", "addImage", "previewAdd");
-enableDragDrop("dropAreaEdit", "editProductImage", "previewEdit");
+    // ========== ÁP DỤNG ========== //
+    enableDragDrop("dropAreaAdd", "addImage", "previewAdd");
+    enableDragDrop("dropAreaEdit", "editProductImage", "previewEdit");
 </script>
 
-
-<script src="<?= BASE_URL ?>assets/js/excel.js" ></script>
+<script src="<?= BASE_URL ?>assets/js/excel.js"></script>

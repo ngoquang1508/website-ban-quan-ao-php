@@ -2,7 +2,7 @@
 require_once "../../config/db.php";
 header('Content-Type: application/json');
 
-$action = $_GET['action'] ?? '';
+$action = $_POST['action'] ?? $_GET['action'] ?? '';
 $uploadDir = '../../uploads/products/';
 
 if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
@@ -112,68 +112,93 @@ switch ($action) {
         break;
 
     case "importExcel":
-        // Lấy JSON từ body
-        $json = file_get_contents("php://input");
-        $rows = json_decode($json, true);
+        $rows = isset($_POST['rows']) ? json_decode($_POST['rows'], true) : null;
 
         if (!$rows || !is_array($rows)) {
             echo json_encode([
                 "status" => "error",
-                "message" => "Dữ liệu Excel không hợp lệ!",
-                "raw" => $json
+                "message" => "Dữ liệu Excel không hợp lệ!"
             ]);
             exit;
         }
 
         $success = 0;
         $fails = [];
+        $products = [];
 
         foreach ($rows as $index => $p) {
-            // Chuẩn hóa dữ liệu
+
             $name    = trim($p["name"] ?? "");
             $desc    = trim($p["description"] ?? "");
             $price   = floatval($p["price"] ?? 0);
             $stock   = intval($p["stock"] ?? 0);
             $type    = trim($p["type"] ?? "");
             $sexual  = trim($p["sexual"] ?? "");
-            $img     = trim($p["image_url"] ?? "");
+            $imgUrl  = trim($p["url_image"] ?? "");
 
-            // Debug log
-            file_put_contents("php://stderr", "Row " . ($index + 2) . ": " . json_encode($p) . "\n");
-
-            // Kiểm tra dữ liệu bắt buộc
+            // Check thiếu dữ liệu
             $missing = [];
-            if (!$name) $missing[] = "name";
-            if (!$price) $missing[] = "price";
-            if (!$stock) $missing[] = "stock";
-            if (!$type) $missing[] = "type";
+            if (!$name)   $missing[] = "name";
+            if (!$price)  $missing[] = "price";
+            if (!$stock)  $missing[] = "stock";
+            if (!$type)   $missing[] = "type";
             if (!$sexual) $missing[] = "sexual";
 
             if (!empty($missing)) {
-                $fails[] = "Dòng " . ($index + 2) . " thiếu dữ liệu: " . implode(", ", $missing);
+                $fails[] = "Dòng " . ($index + 2) . " thiếu: " . implode(", ", $missing);
                 continue;
             }
 
-            // Insert DB
+            // DOWNLOAD IMAGE
+            $savedPath = "";
+            if ($imgUrl !== "") {
+                $ext = pathinfo(parse_url($imgUrl, PHP_URL_PATH), PATHINFO_EXTENSION) ?: "jpg";
+                $fileName = time() . "_" . uniqid() . "." . strtolower($ext);
+                $localPath = "../../uploads/products/" . $fileName;
+
+                $imgData = @file_get_contents($imgUrl);
+                if ($imgData === false) {
+                    $fails[] = "Dòng " . ($index + 2) . " không tải được ảnh: $imgUrl";
+                } else {
+                    file_put_contents($localPath, $imgData);
+                    $savedPath = "uploads/products/" . $fileName;
+                }
+            }
+
+            // INSERT DB
             $stmt = $conn->prepare("
             INSERT INTO products(name, description, price, stock, type, sexual, url_image)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ");
-            $stmt->bind_param("ssdisss", $name, $desc, $price, $stock, $type, $sexual, $img);
+            $stmt->bind_param("ssdisss", $name, $desc, $price, $stock, $type, $sexual, $savedPath);
 
             if ($stmt->execute()) {
                 $success++;
+                $products[] = [
+                    "id" => $stmt->insert_id,
+                    "name" => $name,
+                    "description" => $desc,
+                    "price" => $price,
+                    "stock" => $stock,
+                    "type" => $type,
+                    "sexual" => $sexual,
+                    "url_image" => $savedPath
+                ];
             } else {
                 $fails[] = "Dòng " . ($index + 2) . " lỗi SQL: " . $stmt->error;
             }
         }
 
+        // Trả JSON
         echo json_encode([
             "status" => "success",
             "message" => "Nhập thành công $success sản phẩm. Lỗi: " . count($fails),
-            "fails" => $fails
+            "fails" => $fails,
+            "products" => $products
         ]);
         break;
+
+
 
     default:
         echo json_encode(['status' => 'error', 'message' => 'Action không hợp lệ']);
