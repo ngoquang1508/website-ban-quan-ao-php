@@ -21,7 +21,7 @@ $products = $conn->query($sql_product);
 
     <div class="card shadow-sm p-3 mt-3">
         <div class="table-responsive">
-            <table class="table table-striped table-hover align-middle" data-table="<?= $_GET['page'] ?>">
+            <table id="productTable" class="table table-striped table-hover align-middle" data-table="<?= $_GET['page'] ?>">
                 <thead class="table-dark">
                     <tr>
                         <th>STT</th>
@@ -363,6 +363,38 @@ $products = $conn->query($sql_product);
 
                 console.log(data);
                 alert(data.message || "Import xong!");
+
+                // Cập nhật bảng sản phẩm
+                if (data.status === "success" && data.products.length) {
+                    const tbody = document.querySelector("#productTable tbody");
+                    data.products.forEach(p => {
+                        const i = tbody.rows.length + 1;
+                        const tr = document.createElement("tr");
+                        tr.id = "productRow" + p.id;
+                        tr.innerHTML = `
+                            <td>${i}</td>
+                            <td><img src="<?= BASE_URL . '../' ?>${p.url_image}" style="width:80px;height:80px;object-fit:cover;"></td>
+                            <td class="productName">${p.name}</td>
+                            <td class="productPrice">${Number(p.price).toLocaleString()}</td>
+                            <td class="productStock">${p.stock}</td>
+                            <td class="productType">${p.type}</td>
+                            <td class="productSexual">${p.sexual}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info" onclick='showProductDetail(${JSON.stringify(p)})'>Xem chi tiết</button>
+                                <button class="btn btn-sm btn-warning" onclick='showEditProductModal(${JSON.stringify(p)})'>Sửa</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.id})">Xóa</button>
+                            </td>
+                        `;
+                        tbody.prepend(tr);
+                        // Cập nhật lại STT tất cả các dòng
+                        Array.from(tbody.rows).forEach((row, index) => {
+                            row.cells[0].textContent = index + 1;
+                        });
+                    });
+                }
+
+                fileInput.value = ""; // reset input
+
 
             } catch (err) {
                 console.error("Fetch error:", err);
