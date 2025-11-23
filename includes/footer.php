@@ -9,9 +9,9 @@
       <div class="footer__social">
         <h4 class="footer__social-title">KẾT NỐI</h4>
         <ul class="footer__social-list">
-          <li><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
-          <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href="https://www.tiktok.com/@ndstyle4" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li><a href="https://www.instagram.com/nd.style/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61553076257683" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
           <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
           <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
         </ul>
