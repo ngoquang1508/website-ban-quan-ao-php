@@ -93,35 +93,55 @@ $users = $conn->query($sql_user);
 
 </div>
 
+<!-- MỞ / KHÓA TÀI KHOẢN -->
 <script>
-    function toggleUser(id, btn) {
-        const action = btn.textContent.trim() === "Khóa" ? "ban" : "unban";
-        if (!confirm(`${action === 'ban' ? 'Khóa' : 'Mở khóa'} tài khoản này?`)) return;
+    const toggleUser = async (id, btn) => {
+        const isBan = btn.textContent.trim() === "Khóa";
+        const action = isBan ? "ban" : "unban";
 
-        fetch(`api/users.php?action=${action}&id=${id}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    // Cập nhật giao diện nút và badge
-                    if (data.new_status === "ban") {
-                        btn.textContent = "Mở khóa";
-                        btn.classList.remove("btn-danger");
-                        btn.classList.add("btn-success");
-                        btn.closest("tr").querySelector("td:nth-child(7) span").textContent = "Bị khóa";
-                        btn.closest("tr").querySelector("td:nth-child(7) span").className = "badge badge-banned";
-                    } else {
-                        btn.textContent = "Khóa";
-                        btn.classList.remove("btn-success");
-                        btn.classList.add("btn-danger");
-                        btn.closest("tr").querySelector("td:nth-child(7) span").textContent = "Hoạt động";
-                        btn.closest("tr").querySelector("td:nth-child(7) span").className = "badge badge-active";
-                    }
+        if (!confirm(`${isBan ? "Khóa" : "Mở khóa"} tài khoản này?`)) return;
+
+        showLoading();
+
+        try {
+            const res = await fetch(`api/users.php?action=${action}&id=${id}`);
+            const data = await res.json();
+
+            if (data.status === "success") {
+
+                const statusCell = btn.closest("tr").querySelector("td:nth-child(7) span");
+
+                if (data.new_status === "ban") {
+                    btn.textContent = "Mở khóa";
+                    btn.classList.remove("btn-danger");
+                    btn.classList.add("btn-success");
+
+                    statusCell.textContent = "Bị khóa";
+                    statusCell.className = "badge badge-banned";
+
+                    showSuccess("Đã khóa tài khoản!");
                 } else {
-                    alert(data.message);
+                    btn.textContent = "Khóa";
+                    btn.classList.remove("btn-success");
+                    btn.classList.add("btn-danger");
+
+                    statusCell.textContent = "Hoạt động";
+                    statusCell.className = "badge badge-active";
+
+                    showSuccess("Đã mở khóa tài khoản!");
                 }
-            })
-            .catch(err => console.error(err));
+
+            } else {
+                alert(data.message);
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert("Lỗi kết nối máy chủ!");
+        }
+
+        hideLoading();
     }
 </script>
 
-<script src="<?= BASE_URL ?>assets/js/excel.js" ></script>
+<script src="<?= BASE_URL ?>assets/js/excel.js"></script>

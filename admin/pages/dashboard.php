@@ -68,13 +68,14 @@ $recentOrders = $conn->query("
 
 
 // ==== 5. SẢN PHẨM YÊU THÍCH ====
-// Top 6 sản phẩm bán chạy
+// Top 6 sản phẩm được yêu thích nhất (dựa trên số user thích)
 $favProducts = $conn->query("
-    SELECT p.*, COALESCE(SUM(oi.quantity), 0) AS total_sold
+    SELECT p.*, COUNT(f.user_id) AS total_favorites
     FROM products p
-    LEFT JOIN order_items oi ON p.id = oi.product_id
+    LEFT JOIN favorites f ON p.id = f.product_id
     GROUP BY p.id
-    ORDER BY total_sold DESC
+    HAVING total_favorites > 0
+    ORDER BY total_favorites DESC
     LIMIT 6
 ");
 
@@ -274,7 +275,7 @@ $newUsers = $conn->query("
             <?php while ($p = $favProducts->fetch_assoc()): ?>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
                     <img src="<?= BASE_URL . "../" . $p['url_image'] ?>" class="product-img" alt="<?= htmlspecialchars($p['name']) ?>"
-                        title="Đã bán: <?= $p['total_sold'] ?>">
+                        title="Yêu thích: <?= $p['total_favorites'] ?>">
                     <p class="fw-bold mt-2 mb-0 product-name"><?= htmlspecialchars($p['name']) ?></p>
                     <small class="text-muted"><?= number_format($p['price']) ?>₫</small>
                 </div>
@@ -474,7 +475,7 @@ $newUsers = $conn->query("
                 const tbody = document.getElementById('dashboardOrderItems');
                 tbody.innerHTML = '';
                 if (items.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" class="text-center">Không có sản phẩm</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" class="text-center">Sản phẩm không tồn tại!</td></tr>';
                 } else {
                     items.forEach((item, index) => {
                         const total = parseFloat(item.price) * parseInt(item.quantity);

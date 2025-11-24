@@ -2,7 +2,7 @@
     <div class="auth__form">
         <h1 class="auth__form-title">Đăng nhập</h1>
         <?php $redirect = $_GET['redirect'] ?? ''; ?>
-        <form class="auth__form-main" action="xuly/dang-nhap.php<?= $redirect ? '?redirect=' . urlencode($redirect) : '' ?>" method="post">
+        <form class="auth__form-main" method="post">
             <div class="input-box">
                 <input type="text" name="email" placeholder=" " required>
                 <span>Email</span>
@@ -12,7 +12,7 @@
                 <input type="password" name="password" placeholder=" " required>
                 <span>Mật khẩu</span>
             </div>
-            <button type="submit" name="submit">Đăng nhập</button>
+            <button id="submitBtn" type="submit" name="submit">Đăng nhập</button>
         </form>
         <a class="auth__forgot-pass" href="?page=quen-mat-khau">Quên mật khẩu</a>
 

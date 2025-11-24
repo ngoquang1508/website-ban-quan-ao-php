@@ -45,7 +45,7 @@ $route = "pages/" . $page . ".php";
                 <li><a href="?page=users"><i class="fas fa-user"></i><span class="text">Người dùng</span></a></li>
                 <li><a href="?page=products"><i class="fas fa-box"></i><span class="text">Sản phẩm</span></a></li>
                 <li><a href="?page=orders"><i class="fas fa-shopping-cart"></i><span class="text">Đơn hàng</span></a></li>
-                <li><a href="<?= BASE_URL ?>../xuly/dang-xuat.php"><i class="fas fa-sign-out-alt"></i><span class="text">Đăng xuất</span></a></li>
+                <li><a href="javascript:void(0)" class="logout-btn"><i class="fas fa-sign-out-alt"></i><span class="text">Đăng xuất</span></a></li>
             </ul>
         </aside>
 
@@ -81,6 +81,54 @@ $route = "pages/" . $page . ".php";
             </main>
         </div>
     </div>
+
+    <!-- LOADING OVERLAY -->
+    <div id="loadingOverlay"
+        style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        display: none;">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
+    </div>
+
+    <!-- SUCCESS TOAST -->
+    <div id="successToast"
+        style="
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        padding: 20px 24px;
+        background: white;
+        color: #28a745;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-size: 16px;
+        font-weight: 500;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s ease;
+     ">
+
+        <!-- ICON CHECK -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="12" fill="#28a745" />
+            <path d="M17 8L10.5 14.5L7 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        <!-- TEXT -->
+        <span id="successToastText">Thành công!</span>
+    </div>
+
 
     <!-- SEARCH -->
     <script>
@@ -148,11 +196,16 @@ $route = "pages/" . $page . ".php";
             fetch('api/notifications.php?action=list')
                 .then(res => res.json())
                 .then(data => {
+                    // Cập nhật badge = tổng số notification
                     notifBadge.textContent = data.length;
+
                     notifList.innerHTML = '';
 
-                    if (data.length > 0) {
-                        data.forEach(o => {
+                    // Hiển thị tối đa 6 notification
+                    const toShow = data.slice(0, 6);
+
+                    if (toShow.length > 0) {
+                        toShow.forEach(o => {
                             const li = document.createElement('li');
                             li.style.display = "flex";
                             li.style.alignItems = "center";
@@ -160,7 +213,7 @@ $route = "pages/" . $page . ".php";
                             li.style.borderBottom = "1px solid #999";
                             li.innerHTML = `
                         ${o.username || 'Guest'} vừa đặt 1 đơn hàng (${timeAgo(o.created_at)})
-                        <button class="btn btn-sm btn-link text-danger float-end" onclick="deleteNotif(${o.id}, this)">Xóa</button>
+                        <button class="btn btn-sm btn-link text-danger float-end" onclick="deleteNotif(${o.id})">Xóa</button>
                     `;
                             notifList.appendChild(li);
                         });
@@ -172,16 +225,17 @@ $route = "pages/" . $page . ".php";
                 });
         }
 
-        function deleteNotif(id, btn) {
+        // Khi xóa, reload lại danh sách
+        function deleteNotif(id) {
             fetch(`api/notifications.php?action=delete&id=${id}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        btn.closest('li').remove();
-                        notifBadge.textContent = notifList.children.length;
+                        loadNotifications(); // reload cả list + cập nhật badge
                     }
                 });
         }
+
 
         // Xóa tất cả notification
         function deleteAllNotifs() {
@@ -214,22 +268,7 @@ $route = "pages/" . $page . ".php";
         setInterval(loadNotifications, 10000);
     </script>
 
-    <!-- TOGGLE SIDEBAR -->
-    <script>
-        const sidebar = document.querySelector('.sidebar');
-        const toggleBtn = document.getElementById('sidebar-toggle');
-        const overlay = document.querySelector('.overlay');
-
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-    </script>
+    <script src="<?= BASE_URL ?>assets/js/admin.js"></script>
 </body>
 
 </html>

@@ -146,6 +146,6 @@ document.querySelector(".submit").addEventListener("click", async () => {
     }
   } catch (error) {
     console.log(error)
-    showToast(error, "error");
+    showToast("Có lỗi xảy ra!", "error");
   }
 });

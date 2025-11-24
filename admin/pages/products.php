@@ -205,7 +205,7 @@ $products = $conn->query($sql_product);
     </div>
 </div>
 
-<!--  -->
+<!-- THÊM, SỬA, XÓA 1 SẢN PHẨM -->
 <script>
     // --------- Hiển thị modal ----------
     function showAddProductModal() {
@@ -221,6 +221,7 @@ $products = $conn->query($sql_product);
         document.getElementById('productSexual').textContent = p.sexual;
         document.getElementById('productStock').textContent = p.stock;
         document.getElementById('productCreatedAt').textContent = p.created_at;
+
         new bootstrap.Modal(document.getElementById('productDetailModal')).show();
     }
 
@@ -232,25 +233,36 @@ $products = $conn->query($sql_product);
         document.getElementById('editProductStock').value = p.stock;
         document.getElementById('editProductType').value = p.type;
         document.getElementById('editProductSexual').value = p.sexual;
-        document.getElementById('editProductImage').value = '';
+        document.getElementById('editProductImage').value = "";
+
         new bootstrap.Modal(document.getElementById('editProductModal')).show();
     }
 
-    // --------- Thêm sản phẩm ----------
-    document.getElementById('addProductForm').addEventListener('submit', function(e) {
+    // Thêm sản phẩm
+    document.getElementById('addProductForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        fetch('api/products.php?action=add', {
+
+        showLoading();
+
+        try {
+            const res = await fetch('api/products.php?action=add', {
                 method: 'POST',
                 body: new FormData(this)
-            })
-            .then(r => r.json()).then(data => {
-                if (data.status === 'success') {
-                    const tbody = document.querySelector('table tbody');
-                    const p = data.product;
-                    const i = tbody.rows.length + 1;
-                    const row = document.createElement('tr');
-                    row.id = 'productRow' + p.id;
-                    row.innerHTML = `<td>${i}</td>
+            });
+
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                showSuccess(data.message);
+                const tbody = document.querySelector('table tbody');
+                const p = data.product;
+                const i = tbody.rows.length + 1;
+
+                const row = document.createElement('tr');
+                row.id = 'productRow' + p.id;
+
+                row.innerHTML = `
+                <td>${i}</td>
                 <td><img src="<?= BASE_URL . '../' ?>${p.url_image}" style="width:80px;height:80px;object-fit:cover;"></td>
                 <td class="productName">${p.name}</td>
                 <td class="productPrice">${Number(p.price).toLocaleString()}</td>
@@ -261,45 +273,91 @@ $products = $conn->query($sql_product);
                     <button class="btn btn-sm btn-info" onclick='showProductDetail(${JSON.stringify(p)})'>Xem chi tiết</button>
                     <button class="btn btn-sm btn-warning" onclick='showEditProductModal(${JSON.stringify(p)})'>Sửa</button>
                     <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.id})">Xóa</button>
-                </td>`;
-                    tbody.prepend(row);
-                    bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
-                    this.reset();
-                } else alert(data.message);
-            }).catch(console.error);
+                </td>
+            `;
+
+                tbody.prepend(row);
+
+                bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
+                this.reset();
+                showSuccess("Thêm sản phẩm thành công!");
+
+            } else {
+                alert(data.message);
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert("Có lỗi xảy ra khi thêm sản phẩm!");
+        }
+        hideLoading();
     });
 
-    // --------- Sửa sản phẩm ----------
-    document.getElementById('editProductForm').addEventListener('submit', function(e) {
+    // Sửa sản phẩm
+    document.getElementById('editProductForm').addEventListener('submit', async function(e) {
         e.preventDefault();
+
         const form = new FormData(this);
-        fetch('api/products.php?action=edit', {
+
+        showLoading();
+
+        try {
+            const res = await fetch('api/products.php?action=edit', {
                 method: 'POST',
                 body: form
-            })
-            .then(r => r.json()).then(data => {
-                if (data.status === 'success') {
-                    const row = document.getElementById('productRow' + form.get('id'));
-                    row.querySelector('.productName').textContent = form.get('name');
-                    row.querySelector('.productPrice').textContent = Number(form.get('price')).toLocaleString();
-                    row.querySelector('.productStock').textContent = form.get('stock');
-                    row.querySelector('.productType').textContent = form.get('type');
-                    row.querySelector('.productSexual').textContent = form.get('sexual');
-                    if (data.url_image) row.querySelector('td img').src = "<?= BASE_URL . '../' ?>" + data.url_image;
-                    bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
-                } else alert(data.message);
-            }).catch(console.error);
+            });
+
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                showSuccess(data.message);
+                const row = document.getElementById('productRow' + form.get('id'));
+
+                row.querySelector('.productName').textContent = form.get('name');
+                row.querySelector('.productPrice').textContent = Number(form.get('price')).toLocaleString();
+                row.querySelector('.productStock').textContent = form.get('stock');
+                row.querySelector('.productType').textContent = form.get('type');
+                row.querySelector('.productSexual').textContent = form.get('sexual');
+
+                if (data.url_image) {
+                    row.querySelector('td img').src = "<?= BASE_URL . '../' ?>" + data.url_image;
+                }
+
+                bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
+                showSuccess("Cập nhật sản phẩm thành công!");
+
+            } else {
+                alert(data.message);
+            }
+            hideLoading();
+        } catch (err) {
+            console.error(err);
+            alert("Có lỗi xảy ra khi sửa sản phẩm!");
+        }
     });
 
+
     // --------- Xóa sản phẩm ----------
-    function deleteProduct(id) {
+    async function deleteProduct(id) {
         if (!confirm('Bạn có chắc muốn xóa sản phẩm này?')) return;
-        fetch(`api/products.php?action=delete&id=${id}`)
-            .then(r => r.json()).then(data => {
-                if (data.status === 'success') {
-                    document.getElementById('productRow' + id).remove();
-                } else alert(data.message);
-            }).catch(console.error);
+        
+        showLoading();
+
+        try {
+            const res = await fetch(`api/products.php?action=delete&id=${id}`);
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                showSuccess(data.message);
+                document.getElementById('productRow' + id).remove();
+            } else {
+                alert(data.message);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Có lỗi xảy ra, vui lòng thử lại!");
+        }
+        hideLoading();
     }
 </script>
 
@@ -346,6 +404,8 @@ $products = $conn->query($sql_product);
             formData.append("action", "importExcel");
             formData.append("rows", JSON.stringify(mappedRows));
 
+            showLoading();
+
             try {
                 const res = await fetch("api/products.php", {
                     method: "POST",
@@ -361,11 +421,9 @@ $products = $conn->query($sql_product);
                     return;
                 }
 
-                console.log(data);
-                alert(data.message || "Import xong!");
-
                 // Cập nhật bảng sản phẩm
                 if (data.status === "success" && data.products.length) {
+                    showSuccess(data.message);
                     const tbody = document.querySelector("#productTable tbody");
                     data.products.forEach(p => {
                         const i = tbody.rows.length + 1;
@@ -394,8 +452,7 @@ $products = $conn->query($sql_product);
                 }
 
                 fileInput.value = ""; // reset input
-
-
+                hideLoading();
             } catch (err) {
                 console.error("Fetch error:", err);
             }
@@ -405,6 +462,7 @@ $products = $conn->query($sql_product);
     });
 </script>
 
+<!-- KÉO THẢ UPLOAD ẢNH -->
 <script>
     // ========== FUNCTION CHUNG ========== //
     function enableDragDrop(dropAreaId, fileInputId, previewId) {

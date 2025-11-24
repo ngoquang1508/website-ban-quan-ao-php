@@ -100,7 +100,19 @@ switch ($action) {
             @unlink($filePath); // @ để tránh warning nếu lỗi
         }
 
-        // Xóa bản ghi
+        // Xóa bản ghi có khóa ngoại với bảng favorites
+        $delete_foreign_key_favorites = $conn->prepare("DELETE FROM favorites WHERE product_id = ?");
+        $delete_foreign_key_favorites->bind_param("i", $id);
+        $delete_foreign_key_favorites->execute();
+        $delete_foreign_key_favorites->close();
+
+        // Xóa bản ghi có khóa ngoại với bảng order_items
+        $delete_foreign_key_order_items = $conn->prepare("DELETE FROM order_items WHERE product_id = ?");
+        $delete_foreign_key_order_items->bind_param("i", $id);
+        $delete_foreign_key_order_items->execute();
+        $delete_foreign_key_order_items->close();
+
+        // Xóa bản ghi tại bảng products
         $stmt = $conn->prepare("DELETE FROM products WHERE id=?");
         $stmt->bind_param("i", $id);
         if ($stmt->execute()) {

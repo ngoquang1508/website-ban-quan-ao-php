@@ -25,20 +25,9 @@ while ($row = $result->fetch_assoc()) {
 
 // Lấy thông tin mua hàng của user
 $sql = "
-    SELECT
-        `order_items`.`quantity`,
-        `orders`.`total_price`,
-        `orders`.`created_at`,
-        `products`.`name`,
-        `products`.`url_image`,
-        `products`.`price`,
-        `orders`.`payment_method`
-    FROM
-        `order_items`
-    JOIN `orders` ON `order_items`.`order_id` = `orders`.`id`
-    JOIN `products` ON `products`.`id` = `order_items`.`product_id`
-    WHERE
-        `orders`.`user_id` = ?
+    SELECT *
+    FROM `order_history`
+    WHERE user_id = ?
 ";
 $stmt_get_order = $conn->prepare($sql);
 $stmt_get_order->bind_param("i", $user_id);
@@ -220,6 +209,7 @@ $avatar = !empty($user['avatar'])
                                     <th>Sản phẩm</th>
                                     <th>Giá</th>
                                     <th>Số lượng</th>
+                                    <th>Phí ship</th>
                                     <th>Tổng tiền (VNĐ)</th>
                                     <th>Hình thức thanh toán</th>
                                     <th>Ngày mua</th>
@@ -236,7 +226,8 @@ $avatar = !empty($user['avatar'])
                                         </td>
                                         <td><?= formatPrice($row['price']) ?><u>đ</u></td>
                                         <td><?= htmlspecialchars($row['quantity']) ?></td>
-                                        <td><?= formatPrice($row['price'] * $row['quantity']) ?><u>đ</u></td>
+                                        <td>40.000<u>đ</u></td>
+                                        <td><?= formatPrice($row['total_price']) ?><u>đ</u></td>
                                         <td><?= htmlspecialchars($row['payment_method']) === "cod" ? "COD" : "Chuyển khoản" ?></td>
                                         <td><?= (new DateTime($row['created_at']))->format("H:i:s d-m-Y") ?></td>
                                     </tr>
