@@ -9,15 +9,12 @@
       <div class="footer__social">
         <h4 class="footer__social-title">KẾT NỐI</h4>
         <ul class="footer__social-list">
-          <li><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
-          <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://www.tiktok.com/@ndstyle4" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li><a href="https://www.instagram.com/nd.style/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
           <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-          <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
         </ul>
       </div>
     </div>
-
     <!-- Footer middle -->
     <div class="footer__middle">
       <div class="footer__col">
@@ -31,22 +28,20 @@
       <div class="footer__col">
         <h4 class="footer__col-title">VỀ CHÚNG TÔI</h4>
         <ul class="footer__links">
-          <li><a href="#">Giới thiệu</a></li>
-          <li><a href="#">Liên hệ</a></li>
-          <li><a href="#">Tin tức</a></li>
-          <li><a href="#">Hệ thống cửa hàng</a></li>
-          <li><a href="#">Sản phẩm</a></li>
+          <li><a href="?page=lien-he">Liên hệ</a></li>
+          <li><a href="?page=he-thong-cua-hang">Hệ thống cửa hàng</a></li>
+          <li><a href="?page=nu&cat=ao-nu">Sản phẩm</a></li>
         </ul>
       </div>
 
       <div class="footer__col">
         <h4 class="footer__col-title">DỊCH VỤ KHÁCH HÀNG</h4>
         <ul class="footer__links">
-          <li><a href="#">Kiểm tra đơn hàng</a></li>
-          <li><a href="#">Chính sách vận chuyển</a></li>
-          <li><a href="#">Chính sách đổi trả</a></li>
-          <li><a href="#">Bảo mật khách hàng</a></li>
-          <li><a href="#">Đăng ký tài khoản</a></li>
+          <li><a href="?page=lien-he">Kiểm tra đơn hàng</a></li>
+          <li><a href="?page=lien-he">Chính sách vận chuyển</a></li>
+          <li><a href="?page=lien-he">Chính sách đổi trả</a></li>
+          <li><a href="?page=lien-he">Bảo mật khách hàng</a></li>
+          <li><a href="?page=dang-ky">Đăng ký tài khoản</a></li>
         </ul>
       </div>
     </div>

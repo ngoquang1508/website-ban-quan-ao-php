@@ -61,8 +61,10 @@ require_once "config/base-url.php";
     if ($page !== "thanh-toan" && $page !== "cam-on") require_once 'includes/footer.php';
     ?>
 
+    <?php include "includes/loading-overlay.php" ?>
+
     <!-- Links js -->
-    <script src="<?= BASE_URL ?>assets/js/app.js"></script>
+    <script type="module" src="<?= BASE_URL ?>assets/js/app.js"></script>
 </body>
 
 </html>

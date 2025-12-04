@@ -35,12 +35,39 @@ $order_id = $conn->insert_id;
 $sql_item = "INSERT INTO order_items(order_id, product_id, quantity, price) VALUES(?,?,?,?)";
 $stmt_item = $conn->prepare($sql_item);
 
+// Chuẩn bị câu lệnh order_history
+$sql_history = "INSERT INTO order_history(user_id, product_id, name, price, quantity, total_price, payment_method, url_image) VALUES(?,?,?,?,?,?,?,?)";
+$stmt_history = $conn->prepare($sql_history);
+
 foreach ($data['items'] as $item) {
     $stmt_item->bind_param("iiii", $order_id, $item['product_id'], $item['quantity'], $item['price']);
     $stmt_item->execute();
 
     // Update stock (giảm số lượng)
     $conn->query("UPDATE products SET stock = stock - {$item['quantity']} WHERE id = {$item['product_id']}");
+
+    // Lấy thông tin sản phẩm để lưu history
+    $product = $conn->query("SELECT name, url_image FROM products WHERE id = {$item['product_id']}")->fetch_assoc();
+    $history_name = $product['name'] ?? '';
+    $history_image = $product['url_image'] ?? '';
+
+    // Thêm vào order_history
+    $price = floatval($item['price']);
+    $total_price = $price * intval($item['quantity']) + 40000.00;
+    $payment_method = strtoupper($data['payment_method']);
+
+    $stmt_history->bind_param(
+        "iisdidss",
+        $user_id,
+        $item['product_id'],
+        $history_name,
+        $price,
+        $item['quantity'],
+        $total_price,
+        $payment_method,
+        $history_image
+    );
+    $stmt_history->execute();
 }
 
 // Nếu kiểu thanh toán là cart thì xóa danh sách sản phẩm ở trang cart

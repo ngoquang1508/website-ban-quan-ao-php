@@ -9,7 +9,7 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $ca
         data-date="<?= $date ?>">
 
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__img">
-            <img src="<?= BASE_URL . $url_image ?>" alt="<?= $name ?>">
+            <img src="<?= isset($url_image) && $url_image ? BASE_URL . $url_image : BASE_URL . "assets/images/no-image.jpg" ?>" alt="<?= htmlspecialchars($name) ?>">
         </a>
 
         <div class="product-card__info">

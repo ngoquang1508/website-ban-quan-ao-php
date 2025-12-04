@@ -74,7 +74,7 @@ $avatar = $stmt_get_avt->get_result()->fetch_assoc()['avatar'] ?? null;
             <li><a href="?page=lien-he">Liên hệ</a></li>
             <li><a href="?page=he-thong-cua-hang">Hệ thống cửa hàng</a></li>
             <?php if (isset($_SESSION['user'])): ?>
-                <li><a href="xuly/dang-xuat.php" style="background: rgba(255, 99, 71, 0.4); color: #333;">Đăng xuất</a></li>
+                <li><a href="javascript:void(0)" class="logout-btn" style="background: rgba(255, 99, 71, 0.4); color: #333;">Đăng xuất</a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -124,7 +124,7 @@ $avatar = $stmt_get_avt->get_result()->fetch_assoc()['avatar'] ?? null;
                     </a>
                     <div class="header__account-dropdown">
                         <a href="?page=thong-tin-ca-nhan" class="header__account-item">Thông tin cá nhân</a>
-                        <a href="xuly/dang-xuat.php" class="header__account-item">Đăng xuất</a>
+                        <a href="javascript:void(0)" class="header__account-item logout-btn">Đăng xuất</a>
                     </div>
                 </div>
 
@@ -321,4 +321,30 @@ $avatar = $stmt_get_avt->get_result()->fetch_assoc()['avatar'] ?? null;
             });
         }
     });
+</script>
+
+<!-- logout -->
+<script>
+    const logoutBtns = document.querySelectorAll(".logout-btn");
+    logoutBtns.forEach(btn => {
+        btn.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            try {
+                await fetch("api/auth.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        action: "dang-xuat"
+                    })
+                })
+
+                window.location.href = "?page=dang-nhap"
+            } catch (error) {
+                console.error(error);
+            }
+        })
+    })
 </script>
