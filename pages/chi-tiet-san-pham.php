@@ -29,6 +29,7 @@ $stmt->close();
 <div class="product-detail__container">
     <div class="product-detail__img">
         <img src="<?= $product['url_image'] ?>" alt="<?= $product['name'] ?>">
+        <?= $product['stock'] ?>
     </div>
 
     <div class="product-detail__content">

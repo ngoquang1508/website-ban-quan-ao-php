@@ -56,7 +56,7 @@ $carts = getUserCartProductIds($conn, $user_id);
             <div class="products">
                 <?php if ($result->num_rows > 0): ?>
                     <?php while ($row = $result->fetch_assoc()): ?>
-                        <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites, $carts) ?>
+                        <?= ProductCard($row['id'], $row['name'], $row['price'], $row['stock'], $row['url_image'], $row['created_at'], $favorites, $carts) ?>
                     <?php endwhile; ?>
                 <?php else: ?>
                     <div class="empty-product">Sản phẩm đang được cập nhật.</div>

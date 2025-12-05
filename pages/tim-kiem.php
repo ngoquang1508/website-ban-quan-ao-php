@@ -58,7 +58,7 @@ if ($user_id) {
     <div class="search-products">
         <?php if ($result && $result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
-                <?= ProductCard($row['id'], $row['name'], $row['price'], $row['url_image'], $row['created_at'], $favorites) ?>
+                <?= ProductCard($row['id'], $row['name'], $row['price'], $row['stock'], $row['url_image'], $row['created_at'], $favorites) ?>
             <?php endwhile; ?>
         <?php endif; ?>
     </div>

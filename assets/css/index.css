@@ -165,7 +165,7 @@ ul {
 .header__search form {
   background-color: #f8f8f8;
   border-radius: 4rem;
-  padding: .8rem 0.8rem;
+  padding: 0.8rem 0.8rem;
   display: flex;
   align-items: center;
   width: 100%;
@@ -601,7 +601,6 @@ ul {
   }
 }
 
-
 /* ---------------------------
           FOOTER
 ----------------------------- */
@@ -806,7 +805,6 @@ main {
   color: #ff6347;
 }
 
-
 /* ---------------------------
 /       TOAST         /
 --------------------------- */
@@ -814,7 +812,7 @@ main {
 /* Hiển thị thông báo trên mobile */
 #toast-container {
   position: fixed;
-  top: 1.5rem;
+  bottom: 1.5rem;
   right: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -833,7 +831,6 @@ main {
   transform: translateX(30px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   font-size: 15px;
-  white-space: nowrap;
 }
 
 /* Khi được hiển thị */
@@ -848,3 +845,8 @@ main {
   transform: translateX(30px);
 }
 
+@media (max-width: 480px) {
+  .toast {
+    max-width: 30rem;
+  }
+}

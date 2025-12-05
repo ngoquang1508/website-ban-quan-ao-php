@@ -4,7 +4,14 @@ import { updateCartCountUI } from "./global.js";
 document.querySelectorAll(".product-card__add-to-cart").forEach((item) => {
   item.addEventListener("click", async () => {
     const productId = item.dataset.id;
+    const stock = item.dataset.stock;
     const qty = 1;
+
+    if (stock < 1) {
+      showToast("Sản phẩm hiện hết hàng! Vui lòng chờ cập nhật thêm", "info");
+      return;
+    }
+
 
     try {
       const res = await fetch("api/cart.php", {

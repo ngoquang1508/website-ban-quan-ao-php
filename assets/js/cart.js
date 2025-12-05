@@ -4,11 +4,26 @@ const decrementBtn = document.querySelector(".decrement-btn");
 const incrementBtn = document.querySelector(".increment-btn");
 const quantity = document.querySelector(".quantity");
 const addToCartBtn = document.querySelector(".add-to-card");
+const buyNowBtn = document.querySelector(".buy-now");
+
+buyNowBtn.addEventListener("click", (e) => {
+  const qty = parseInt(quantity.dataset.stock);
+  if (qty < 1) {
+    e.preventDefault();
+    showToast("Sản phẩm hiện hết hàng! Vui lòng chờ cập nhật thêm", "info");
+    return;
+  }
+});
 
 addToCartBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   const productId = addToCartBtn.dataset.id;
-  const qty = parseInt(quantity.value) || 1;
+  const qty = parseInt(quantity.dataset.stock);
+
+  if (qty < 1) {
+    showToast("Sản phẩm hiện hết hàng! Vui lòng chờ cập nhật thêm", "info");
+    return;
+  }
 
   try {
     const res = await fetch("api/cart.php", {
@@ -24,7 +39,7 @@ addToCartBtn.addEventListener("click", async (e) => {
     });
 
     const data = await res.json();
-    console.log(data)
+    console.log(data);
 
     if (data.status === "success") {
       showToast("Đã thêm sản phẩm vào giỏ hàng", data.status);

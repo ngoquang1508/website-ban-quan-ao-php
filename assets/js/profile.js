@@ -12,10 +12,19 @@ submitInfoBtn.addEventListener("click", async () => {
   const address = document.querySelector("input[name='address']");
 
   // Validation
-  if (!username.value.trim()) return showToast("Tên người dùng không được để trống", "warning"), username.focus();
-  if (!phone.value.trim()) return showToast("Số điện thoại không được để trống", "warning"), phone.focus();
-  if (!address.value.trim()) return showToast("Địa chỉ không được để trống", "warning"), address.focus();
-  if (phone.value.length > 10 || !phoneRegex.test(phone.value.trim())) return showToast("Số điện thoại không hợp lệ", "warning"), phone.focus();
+  if (!username.value.trim())
+    return (
+      showToast("Tên người dùng không được để trống", "warning"),
+      username.focus()
+    );
+  if (!phone.value.trim())
+    return (
+      showToast("Số điện thoại không được để trống", "warning"), phone.focus()
+    );
+  if (!address.value.trim())
+    return showToast("Địa chỉ không được để trống", "warning"), address.focus();
+  if (phone.value.length > 10 || !phoneRegex.test(phone.value.trim()))
+    return showToast("Số điện thoại không hợp lệ", "warning"), phone.focus();
 
   // Gửi request update info
   try {
@@ -45,11 +54,11 @@ const avatarViewBtn = document.querySelector(".avt-btn-item");
 const avatarViewCloseBtn = document.querySelector(".modal-view button");
 avatarViewBtn.addEventListener("click", () => {
   modalAvatarView.classList.add("open");
-})
+});
 
 avatarViewCloseBtn.addEventListener("click", () => {
   modalAvatarView.classList.remove("open");
-})
+});
 
 const avatarImage = document.getElementById("avt-img");
 const options = document.querySelector(".options");
@@ -79,12 +88,16 @@ cameraIconBtn.addEventListener("click", () => {
   modalChangeAvt.classList.add("open");
 });
 
-chooseBtnItem.addEventListener("click", () => modalChangeAvt.classList.add("open"));
-closeBtns.forEach(btn => btn.addEventListener("click", () => {
-  modalChangeAvt.classList.remove("open");
-  step1.style.display = "flex";
-  step2.style.display = "none";
-}));
+chooseBtnItem.addEventListener("click", () =>
+  modalChangeAvt.classList.add("open")
+);
+closeBtns.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    modalChangeAvt.classList.remove("open");
+    step1.style.display = "flex";
+    step2.style.display = "none";
+  })
+);
 
 uploadBtn.addEventListener("click", () => uploadInput.click());
 
@@ -96,7 +109,7 @@ uploadInput.addEventListener("change", (e) => {
   step2.style.display = "flex";
 
   const reader = new FileReader();
-  reader.onload = e => avatarPreview.src = e.target.result;
+  reader.onload = (e) => (avatarPreview.src = e.target.result);
   reader.readAsDataURL(file);
 });
 
@@ -109,13 +122,27 @@ saveChangeBtn.addEventListener("click", async () => {
   formData.append("avatar", file);
 
   try {
-    const res = await fetch("api/profile.php", { method: "POST", body: formData });
+    const res = await fetch("api/profile.php", {
+      method: "POST",
+      body: formData,
+    });
     let data;
-    try { data = await res.json(); } 
-    catch { showToast("Server trả về không phải JSON", "error"); return; }
+    try {
+      data = await res.json();
+    } catch {
+      showToast("Server trả về không phải JSON", "error");
+      return;
+    }
 
     showToast(data.message, data.status);
-    if (data.status === "success" && data.file) avatarPreview.src = data.file;
+    if (data.status === "success" && data.file) {
+      // Gán ảnh header và profile
+      document.querySelectorAll(".avatar-view").forEach((avatar) => {
+        avatar.src = URL.createObjectURL(file);
+      });
+
+      avatarPreview.src = data.file;
+    }
   } catch (err) {
     console.error(err);
     showToast("Có lỗi xảy ra", "error");
@@ -124,11 +151,6 @@ saveChangeBtn.addEventListener("click", async () => {
   modalChangeAvt.classList.remove("open");
   step1.style.display = "flex";
   step2.style.display = "none";
-
-  // Gán ảnh header và profile
-  document.querySelectorAll(".avatar-view").forEach(avatar=>{
-      avatar.src = URL.createObjectURL(file);
-    });
 });
 
 /* ==========================
@@ -141,16 +163,24 @@ changePasswordBtn.addEventListener("click", async () => {
   const newPass = document.querySelector(".input-pass-new").value;
   const rePass = document.querySelector(".input-pass-re").value;
 
-  if (!oldPass || !newPass || !rePass) return showToast("Nhập đủ các trường để đổi mật khẩu!", "warning");
-  if (oldPass === newPass) return showToast("Mật khẩu mới không được giống mật khẩu cũ", "warning");
-  if (newPass.length < 6) return showToast("Mật khẩu mới không nhỏ hơn 6 ký tự", "warning");
-  if (newPass !== rePass) return showToast("Mật khẩu mới không khớp!", "warning");
+  if (!oldPass || !newPass || !rePass)
+    return showToast("Nhập đủ các trường để đổi mật khẩu!", "warning");
+  if (oldPass === newPass)
+    return showToast("Mật khẩu mới không được giống mật khẩu cũ", "warning");
+  if (newPass.length < 6)
+    return showToast("Mật khẩu mới không nhỏ hơn 6 ký tự", "warning");
+  if (newPass !== rePass)
+    return showToast("Mật khẩu mới không khớp!", "warning");
 
   try {
     const res = await fetch("api/profile.php", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "change_pass", input_pass_old: oldPass, input_pass_new: newPass }),
+      body: JSON.stringify({
+        action: "change_pass",
+        input_pass_old: oldPass,
+        input_pass_new: newPass,
+      }),
     });
     const data = await res.json();
     showToast(data.message, data.status);
@@ -174,16 +204,20 @@ const inputs = document.querySelectorAll("input[type='text']");
 const icons = document.querySelectorAll(".input-group i");
 
 navItems[0].classList.add("active");
-navItems.forEach((item, i) => item.addEventListener("click", () => {
-  navItems.forEach(i => i.classList.remove("active"));
-  contentItems.forEach(i => i.classList.remove("active"));
-  item.classList.add("active");
-  contentItems[i].classList.add("active");
-}));
+navItems.forEach((item, i) =>
+  item.addEventListener("click", () => {
+    navItems.forEach((i) => i.classList.remove("active"));
+    contentItems.forEach((i) => i.classList.remove("active"));
+    item.classList.add("active");
+    contentItems[i].classList.add("active");
+  })
+);
 
-icons.forEach((icon, i) => icon.addEventListener("click", () => {
-  const input = inputs[i];
-  input.focus();
-  const length = input.value.length;
-  input.setSelectionRange(length, length);
-}));
+icons.forEach((icon, i) =>
+  icon.addEventListener("click", () => {
+    const input = inputs[i];
+    input.focus();
+    const length = input.value.length;
+    input.setSelectionRange(length, length);
+  })
+);

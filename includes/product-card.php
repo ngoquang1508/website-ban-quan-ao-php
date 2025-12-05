@@ -1,5 +1,5 @@
 <?php
-function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $carts = [])
+function ProductCard($id, $name, $price, $stock, $url_image, $date, $favorites = [], $carts = [])
 {
     $activeClass = in_array($id, $favorites) ? 'active' : '';
     $cartClass = in_array($id, $carts) ? 'active' : '';
@@ -11,14 +11,15 @@ function ProductCard($id, $name, $price, $url_image, $date, $favorites = [], $ca
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__img">
             <img src="<?= isset($url_image) && $url_image ? BASE_URL . $url_image : BASE_URL . "assets/images/no-image.jpg" ?>" alt="<?= htmlspecialchars($name) ?>">
         </a>
-
+        
         <div class="product-card__info">
             <h2><?= $name ?></h2>
-            <span><?= formatPrice($price) ?><u>đ</u></span>
+            <span><?= formatPrice($price) ?><u>đ</u></span> <br>
+            <div class="stock <?= $stock > 0 ? "" : "hetHang" ?>"><?= $stock > 0 ? "Còn " . $stock : "Hết hàng" ?></div>
         </div>
         <a href="?page=chi-tiet-san-pham&id=<?= $id ?>" class="product-card__detail">Xem chi tiết</a>
 
-        <a href="javascript:void(0)" class="product-card__add-to-cart <?= $cartClass ?>" data-id="<?= $id ?>">
+        <a href="javascript:void(0)" class="product-card__add-to-cart <?= $cartClass ?>" data-id="<?= $id ?>" data-stock="<?= $stock ?>">
             <i class="fa-solid fa-cart-shopping"></i>
         </a>
 
